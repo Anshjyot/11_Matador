@@ -7,7 +7,7 @@ import game.Player;
 import java.util.*;
 import java.util.List;
 
-public class JuniorMonopolyController {
+public class MatadorController {
 
     private final int StartField = 0;
     private GUIController guiController = new GUIController();
