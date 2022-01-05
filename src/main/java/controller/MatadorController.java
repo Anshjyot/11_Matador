@@ -31,10 +31,10 @@ public class MatadorController {
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);
 
-                if (players.get(i).getPosition() + faceValue > 31) { // When you exceed the last field, you get to a new round
+                if (players.get(i).getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
 
                     StartField(i);
-                    players.get(i).setPosition(players.get(i).getPosition() + faceValue - 32);
+                    players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
 
                 } else {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
