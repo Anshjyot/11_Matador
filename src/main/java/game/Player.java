@@ -40,4 +40,6 @@ public class Player { // This class creates the player which will be used in the
     public int getIndex() {
         return index;
     }
+
+
 }

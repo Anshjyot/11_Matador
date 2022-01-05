@@ -1,18 +1,19 @@
 package GUI;
-        import java.awt.*;
-        import java.util.List;
-        import game.Board;
-        import game.Dice;
-        import game.Player;
+import java.awt.*;
+import java.util.List;
+import game.Board;
+import game.Dice;
+import game.Player;
 
-        import gui_fields.GUI_Car;
-        import gui_fields.GUI_Player;
-        import gui_main.GUI;
+import gui_fields.GUI_Car;
+import gui_fields.GUI_Player;
+import gui_main.GUI;
 
 public class GUIController {
 
     private GUI_Player[] guiPlayers;
-    private Dice dice = new Dice();
+    private Dice dice1 = new Dice();
+    private Dice dice2 = new Dice();
     private GUI gui;
 
     Board board;
@@ -35,12 +36,11 @@ public class GUIController {
 
     public int setDice() { // Creates the dice in the GUI
         gui.getUserButtonPressed("Throw Dice", "Throw");
-        int x = (int)(Math.random()*7)+2;
-        int y = (int)(Math.random()*7)+2;
-        int rotation = (int)(Math.random()*360);
-        gui.setDice(dice.getDice(),rotation,x,y,dice.getDice(),rotation, x,y); // Only one dice visible on the board
-        dice.ThrowDice();
-        return dice.getDice();
+        dice1.ThrowDice();
+        dice2.ThrowDice();
+        gui.setDice(dice1.getDice(),dice2.getDice()); // Only one dice visible on the board
+        return dice1.getDice() + dice2.getDice();
+
     }
 
     public void addPlayers(List<Player> players) { // Creates different types of game-pieces
