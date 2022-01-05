@@ -26,7 +26,7 @@ public class GUIController {
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI
-        return Integer.parseInt(gui.getUserButtonPressed("Choose number of players", "2", "3", "4"));
+        return Integer.parseInt(gui.getUserButtonPressed("Choose number of players", "3", "4", "5", "6"));
     }
 
     public String getPlayerName(int i) { // Entering the names of the players in the GUI
@@ -49,7 +49,9 @@ public class GUIController {
                 new GUI_Car(Color.PINK, Color.RED, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_GRADIANT),
                 new GUI_Car(Color.BLACK, Color.WHITE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED),
                 new GUI_Car(Color.BLUE, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED),
-                new GUI_Car(Color.YELLOW, Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA)
+                new GUI_Car(Color.YELLOW, Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA),
+                new GUI_Car(Color.GREEN,Color.DARK_GRAY,GUI_Car.Type.TRACTOR,GUI_Car.Pattern.HORIZONTAL_LINE),
+                new GUI_Car(Color.RED,Color.ORANGE,GUI_Car.Type.UFO,GUI_Car.Pattern.FILL)
         };
         for (int i = 0; i < players.size(); i++) { // Array of players in the GUI
             this.guiPlayers[i] = new GUI_Player(players.get(i).getPlayerName(), players.get(i).getAccount().getBalance(), car_choices[i]);
