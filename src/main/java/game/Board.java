@@ -64,6 +64,15 @@ public class Board {
         fields[29] = new GUI_Street("Red Line Railroad", "Price: $1","", "",Color.WHITE, Color.RED);
         fields[30] = new GUI_Street("Loop The Loop", "Price: $5","", "",Color.BLUE, Color.BLACK);
         fields[31] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[32] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[33] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[34] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[35] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[36] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[37] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[38] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[39] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[40] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
         return fields;
     }
 
@@ -104,6 +113,15 @@ public class Board {
         squares[29] = new OwnedProperty("Red Line Railroad", 1, 1,controller);
         squares[30] = new OwnedProperty("Loop The Loop", 5, 2,controller);
         squares[31] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[32] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[33] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[34] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[35] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[36] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[37] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[38] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[39] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[40] = new OwnedProperty("Roller Coaster", 5, 2,controller);
 
     }
 }
