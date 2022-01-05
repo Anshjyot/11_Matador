@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 import java.util.List;
 import GUI.GUIController;
+import fields.*;
 import gui_fields.*;
 
 public class Board {
