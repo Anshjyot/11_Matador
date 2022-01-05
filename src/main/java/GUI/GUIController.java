@@ -22,7 +22,7 @@ public class GUIController {
     }
     public void initializeBoard(Board board) { // Initializing the board
         this.board = board;
-        this.gui = new GUI(board.BoardCreator(),Color.GREEN); // Change game-board color
+        this.gui = new GUI(board.BoardCreator(),new Color(87, 167, 26)); // Change game-board color
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI
@@ -32,6 +32,10 @@ public class GUIController {
     public String getPlayerName(int i) { // Entering the names of the players in the GUI
         String name = gui.getUserString("Enter the name of Player"+ (i + 1));
         return name;
+    }
+
+    public void getPlayerAge(int a) { // Entering the ages of the players in the GUI
+        int age = gui.getUserInteger("Enter the name of Player"+ (a + 1));
     }
 
     public int setDice() { // Creates the dice in the GUI

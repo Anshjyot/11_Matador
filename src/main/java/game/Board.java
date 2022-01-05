@@ -23,102 +23,100 @@ public class Board {
 
     public GUI_Field[] BoardCreator() {  // This constructor creates our GUI Board/Fields
 
-        fields[0] = new GUI_Start("START", "", "",Color.getHSBColor(153,232,179), Color.PINK);
-        fields[1] = new GUI_Chance("?", "","",Color.BLACK, Color.YELLOW);
-        fields[2] = new GUI_Street("Balloon Stand","Price: $1","", "",Color.magenta, Color.BLACK);
-        fields[3] = new GUI_Street("Cotton Candy", "Price: $1","", "",Color.magenta, Color.BLACK);
-        fields[4] = new GUI_Chance("?", "","",Color.BLACK, Color.YELLOW);
-        fields[5] = new GUI_Street("Yellow Line Railroad", "Price: $1","", "",Color.WHITE, Color.ORANGE);
-        fields[6] = new GUI_Street("Puppet Show", "Price: $2","", "",Color.cyan, Color.BLACK);
-        fields[7] = new GUI_Street("Magic Show", "Price: $2","", "",Color.cyan, Color.black);
+        fields[0] = new GUI_Start("START", "Modtag kr. 4.000 hver gang du passere", "",Color.RED, Color.BLACK);
+        fields[1] = new GUI_Street("Rødovrevej", "kr. 1200","","",Color.BLUE, Color.BLACK);
+        fields[2] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
+        fields[3] = new GUI_Street("Hvidovrevej", "kr. 1200","", "",Color.BLUE, Color.BLACK);
+        fields[4] = new GUI_Tax("Betal Indkomst-skat", "10% eller kr. 4.000","", new Color(0, 171, 255), Color.BLACK);
+        fields[5] = new GUI_Shipping("Scandlines", "kr. 4.000","","", "",Color.BLUE, Color.BLACK);
+        fields[6] = new GUI_Street("Roskildevej", "kr. 2.000","", "",Color.ORANGE, Color.BLACK);
+        fields[7] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
+        fields[8] = new GUI_Street("ValbyLanggade", "kr. 2.000","","",Color.ORANGE, Color.BLACK);
+        fields[9] = new GUI_Street("Allégade", "kr. 2.400","", "", Color.ORANGE, Color.BLACK);
 
-        fields[8] = new GUI_Jail();
-        fields[8].setSubText("JAIL VISIT");
-        fields[8].setDescription("Jail visit");
+        fields[10] = new GUI_Jail();
+        fields[10].setSubText("På fængsels-besøg");
 
-        fields[9] = new GUI_Chance("?", "","",Color.BLACK, Color.YELLOW);
-        fields[10] = new GUI_Street("Rest Rooms", "Price: $3","", "", new Color(165, 114, 47, 207), Color.WHITE);
-        fields[11] = new GUI_Street("Merry-Go-Round", "Price: $2","", "",Color.PINK, Color.BLACK);
-        fields[12] = new GUI_Street("Paddle Boats", "Price: $2","", "",Color.PINK, Color.BLACK);
-        fields[13] = new GUI_Street("Green Line Railroad", "Price: $1","", "",Color.WHITE, Color.GREEN);
-        fields[14] = new GUI_Street("Water Slide", "Price: $3","", "",Color.orange, Color.BLACK);
-        fields[15] = new GUI_Street("Miniature Golf", "Price: $3", "", "",Color.orange, Color.BLACK);
-        fields[16] = new GUI_Street("Pennybag", "Price: $1","", "",Color.white, Color.BLACK);
-        fields[17] = new GUI_Chance("?", "","",Color.BLACK, Color.YELLOW);
-        fields[18] = new GUI_Street("Video Arcade", "Price: $3","", "",Color.RED, Color.BLACK);
-        fields[19] = new GUI_Street("Haunted House", "Price: $3","", "",Color.RED, Color.BLACK);
-        fields[20] = new GUI_Chance("?", "","",Color.BLACK, Color.YELLOW);
-        fields[21] = new GUI_Street("Blue Line Railroad", "Price: $1","", "",Color.WHITE, Color.BLUE);
-        fields[22] = new GUI_Street("Helicopter Ride", "Price: $4","", "",Color.YELLOW, Color.BLACK);
-        fields[23] = new GUI_Street("Pony Ride","Price: $4","", "",Color.YELLOW, Color.BLACK);
+        fields[11] = new GUI_Street("Frederiksbergs Allé", "kr. 2.800","", "",Color.yellow, Color.BLACK);
+        fields[12] = new GUI_Brewery();
+        fields[13] = new GUI_Street("Bülowsvej", "kr. 2.800","", "",Color.yellow, Color.BLACK);
+        fields[14] = new GUI_Street("Gl. Kongevej", "kr. 3.200", "", "",Color.yellow, Color.BLACK);
+        fields[15] = new GUI_Shipping("Mols linien", "kr. 4.000","","", "",Color.RED, Color.BLACK);
+        fields[16] = new GUI_Street("Bernstorffsvej","kr. 3.600", "","",Color.LIGHT_GRAY, Color.YELLOW);
+        fields[17] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
+        fields[18] = new GUI_Street("Hellerupvej", "kr. 3.600","", "",Color.LIGHT_GRAY, Color.BLACK);
+        fields[19] = new GUI_Street("Strandvejen","kr. 4.000", "","",Color.LIGHT_GRAY, Color.BLACK);
+        fields[20] = new GUI_Street("Parkering", "","", "",new Color(0, 171, 255), Color.BLACK);
+        fields[21] = new GUI_Street("Trianglen", "kr. 4.000","", "",Color.RED, Color.BLACK);
+        fields[22] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
+        fields[23] = new GUI_Street("Østerbrogade","kr. 4.000", "","",Color.RED, Color.BLACK);
+        fields[24] = new GUI_Street("Grønningen","kr. 4.800","","", Color.RED, Color.BLACK);
+        fields[25] = new GUI_Shipping("Scandlines","kr. 4.000","","", "",Color.BLUE, Color.BLACK);
+        fields[26] = new GUI_Street("Bredgade", "kr. 5.200","", "",Color.WHITE, Color.BLACK);
+        fields[27] = new GUI_Street("Kgs. Nytorv", "kr. 5.200","", "",Color.WHITE, Color.BLACK);
+        fields[28] = new GUI_Brewery();
+        fields[29] = new GUI_Street("Østergade","kr. 5.600","", "",Color.WHITE, Color.BLACK);
 
-        fields[24] = new GUI_Jail();
-        fields[24].setSubText("JAIL");
-        fields[24].setDescription("Locked up");
+        fields[30] = new GUI_Jail();
+        fields[30].setSubText("Du fængsles");
 
-        fields[25] = new GUI_Chance("?", "","",Color.BLACK, Color.YELLOW);
-        fields[26] = new GUI_Street("Go to Rest rooms","Price: $3","You got the Tower, now make it Shower!","",new Color(165, 114, 47, 207), Color.WHITE);
-        fields[27] = new GUI_Street("Bumper Cars","Price: $4","", "",Color.GREEN, Color.BLACK);
-        fields[28] = new GUI_Street("Ferris Wheel", "Price: $4","", "",Color.GREEN, Color.BLACK);
-        fields[29] = new GUI_Street("Red Line Railroad", "Price: $1","", "",Color.WHITE, Color.RED);
-        fields[30] = new GUI_Street("Loop The Loop", "Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[31] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[32] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[33] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[34] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[35] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[36] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[37] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[38] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[39] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
+        fields[31] = new GUI_Street("Amagertorv","kr. 6.000","", "",Color.YELLOW, Color.BLACK);
+        fields[32] = new GUI_Street("Vimmelskaftet","kr. 6.000","", "",Color.YELLOW, Color.BLACK);
+        fields[33] = new GUI_Chance("?","Prøv Lykken","",Color.BLACK, Color.GREEN);
+        fields[34] = new GUI_Street("Nygade","kr. 6.400","", "",Color.YELLOW, Color.BLACK);
+        fields[35] = new GUI_Shipping("Scandlines","kr. 4.000","","", "",Color.BLUE, Color.BLACK);
+        fields[36] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
+        fields[37] = new GUI_Street("Frederiksberggade","kr. 7.000","", "", Color.MAGENTA, Color.BLACK);
+        fields[38] = new GUI_Tax("Ekstraordinær stats-skat","kr. 2.000", "",Color.BLUE, Color.BLACK);
+        fields[39] = new GUI_Street("Rådhuspladsen","kr. 8.000","", "",Color.MAGENTA, Color.BLACK);
         return fields;
     }
 
     public void CreateStreets(List<Player> players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
         squares[0] = new StartSquare("START");
-        squares[1] = new ChanceSquare("?", players, controller);
-        squares[2] = new OwnedProperty("Balloon Stand", 1, 1,controller);
-        squares[3] = new OwnedProperty("Cotton Candy", 1, 1,controller);
-        squares[4] = new ChanceSquare("?", players, controller);
-        squares[5] = new OwnedProperty("Yellow Line Railroad", 1, 1,controller);
-        squares[6] = new OwnedProperty("Puppet Show", 2, 1,controller);
-        squares[7] = new OwnedProperty("Magic Show", 2, 1,controller);
+        squares[1] = new OwnedProperty("Rødovrevej",1200, 1,controller);
+        squares[2] = new ChanceSquare("Prøv Lykken", players, controller);
+        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1,controller);
+        squares[4] = new OwnedProperty("Betal Indkomst-skat", 4000, 0,controller);
+        squares[5] = new OwnedProperty("Scandlines", 4000, 1,controller);
+        squares[6] = new OwnedProperty("Roskildevej", 2000, 1,controller);
+        squares[7] = new ChanceSquare("Prøv Lykken", players,controller);
+        squares[8] = new OwnedProperty("Valbylanggade", 2000, 1,controller);
+        squares[9] = new OwnedProperty("Allégade", 2400, 1,controller);
 
-        squares[8] = new VisitJailSquare("Jail Visit");
+        squares[10] = new VisitJailSquare("På fængsels-besøg");
 
-        squares[9] = new ChanceSquare("?", players, controller);
-        squares[10] = new OwnedProperty("Rest Rooms", 3, 1,controller);
-        squares[11] = new OwnedProperty("Merry-Go-Round", 2, 1,controller);
-        squares[12] = new OwnedProperty("Paddle Boats",2, 2,controller);
-        squares[13] = new OwnedProperty("Green Line Railroad", 1, 1,controller);
-        squares[14] = new OwnedProperty("Water Slide", 3, 1,controller);
-        squares[15] = new OwnedProperty("Miniature Golf",3, 2,controller);
-        squares[16] = new OwnedProperty("Pennybag", 1, 1,controller);
-        squares[17] = new ChanceSquare("?", players, controller);
-        squares[18] = new OwnedProperty("Video Arcade", 3, 1,controller);
-        squares[19] = new OwnedProperty("Haunted House", 3, 2,controller);
-        squares[20] = new ChanceSquare("?", players, controller);
-        squares[21] = new OwnedProperty("Blue Line Railroad", 3, 1,controller);
-        squares[22] = new OwnedProperty("Helicopter Ride", 4, 1,controller);
-        squares[23] = new OwnedProperty("Pony Ride", 4, 1,controller);
+        squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 1,controller);
+        squares[12] = new OwnedProperty("Tuborg Squash",3000, 2,controller);
+        squares[13] = new OwnedProperty("Bülowsvej", 2800, 1,controller);
+        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 1,controller);
+        squares[15] = new OwnedProperty("Mols linien",4000, 2,controller);
+        squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 1,controller);
+        squares[17] = new ChanceSquare("Prøv Lykken", players,controller);
+        squares[18] = new OwnedProperty("Hellerupvej", 3600, 1,controller);
+        squares[19] = new OwnedProperty("Strandvejen", 4000, 2,controller);
+        squares[20] = new ChanceSquare("Parkering", players, controller);
+        squares[21] = new OwnedProperty("Trianglen", 4000, 1,controller);
+        squares[22] = new ChanceSquare("Prøv Lykken", players,controller);
+        squares[23] = new OwnedProperty("Østerbrogade", 4000, 1,controller);
+        squares[24] = new OwnedProperty("Grønningen", 4600, 1,controller);
+        squares[25] = new OwnedProperty("Scandlines", 4000, 1,controller);
+        squares[26] = new OwnedProperty("Bredgade", 5200, 1,controller);
+        squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 2,controller);
+        squares[28] = new OwnedProperty("Coca Cola", 3000, 1,controller);
+        squares[29] = new OwnedProperty("Østergade", 5600, 2,controller);
 
-        squares[24] = new JailSquare("JAIL",controller);
+        squares[30] = new JailSquare("JAIL",controller);
 
-        squares[25] = new ChanceSquare("?", players, controller);
-        squares[26] = new OwnedProperty("Go to Rest rooms", 3, 1,controller);
-        squares[27] = new OwnedProperty("Bumper Cars", 4, 1,controller);
-        squares[28] = new OwnedProperty("Ferris Wheel", 4, 2,controller);
-        squares[29] = new OwnedProperty("Red Line Railroad", 1, 1,controller);
-        squares[30] = new OwnedProperty("Loop The Loop", 5, 2,controller);
-        squares[31] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[32] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[33] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[34] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[35] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[36] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[37] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[38] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[39] = new OwnedProperty("Roller Coaster", 5, 2,controller);
+        squares[31] = new OwnedProperty("Amagertorv", 6000, 2,controller);
+        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 2,controller);
+        squares[33] = new ChanceSquare("Prøv Lykken", players,controller);
+        squares[34] = new OwnedProperty("Nygade", 6400, 2,controller);
+        squares[35] = new OwnedProperty("Scandlines", 4000, 2,controller);
+        squares[36] = new ChanceSquare("Prøv Lykken", players,controller);
+        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 2,controller);
+        squares[38] = new OwnedProperty("Ekstraordinær stats-skat", 2000, 2,controller);
+        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 2,controller);
 
     }
 }

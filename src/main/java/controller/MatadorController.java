@@ -75,13 +75,13 @@ public class MatadorController {
         int playerList = guiController.getPlayerList();
 
         if (playerList == 2) {
-            startBalance = 35;
+            startBalance = 30000;
         }
         if (playerList == 3) {
-            startBalance = 35;
+            startBalance = 30000;
         }
         if (playerList == 4) {
-            startBalance = 35;
+            startBalance = 30000;
         }
 
 
@@ -99,7 +99,7 @@ public class MatadorController {
     }
 
     private void StartField(int i) { // You get $2 when you pass the Start-field
-        players.get(i).getAccount().setBalance(players.get(i).getAccount().getBalance() + 2);
+        players.get(i).getAccount().setBalance(players.get(i).getAccount().getBalance() + 4000);
     }
 
 }
