@@ -74,14 +74,17 @@ public class MatadorController {
     private void NumberOfPlayers() { // Start money declaration
         int playerList = guiController.getPlayerList();
 
-        if (playerList == 2) {
-            startBalance = 35;
-        }
         if (playerList == 3) {
-            startBalance = 35;
+            startBalance = 30000;
         }
         if (playerList == 4) {
-            startBalance = 35;
+            startBalance = 30000;
+        }
+        if (playerList == 5) {
+            startBalance = 30000;
+        }
+        if (playerList == 6) {
+            startBalance = 30000;
         }
 
 
