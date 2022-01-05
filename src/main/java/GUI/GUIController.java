@@ -22,7 +22,7 @@ public class GUIController {
     }
     public void initializeBoard(Board board) { // Initializing the board
         this.board = board;
-        this.gui = new GUI(board.BoardCreator(),Color.GRAY); // Change game-board color
+        this.gui = new GUI(board.BoardCreator(),Color.GREEN); // Change game-board color
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI
