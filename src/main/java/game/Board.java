@@ -6,8 +6,8 @@ import GUI.GUIController;
 import gui_fields.*;
 
 public class Board {
-    GUI_Field[] fields = new GUI_Field[40];
-    Square[] squares = new Square[40];
+    GUI_Field[] fields = new GUI_Field[41];
+    Square[] squares = new Square[41];
     public Board(List<Player> players, GUIController controller) {
         CreateStreets(players, controller);
     }
