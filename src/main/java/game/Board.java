@@ -6,8 +6,8 @@ import GUI.GUIController;
 import gui_fields.*;
 
 public class Board {
-    GUI_Field[] fields = new GUI_Field[41];
-    Square[] squares = new Square[41];
+    GUI_Field[] fields = new GUI_Field[40];
+    Square[] squares = new Square[40];
     public Board(List<Player> players, GUIController controller) {
         CreateStreets(players, controller);
     }
@@ -71,7 +71,6 @@ public class Board {
         fields[37] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
         fields[38] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
         fields[39] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
-        fields[40] = new GUI_Street("Roller Coaster","Price: $5","", "",Color.BLUE, Color.BLACK);
         return fields;
     }
 
@@ -120,7 +119,6 @@ public class Board {
         squares[37] = new OwnedProperty("Roller Coaster", 5, 2,controller);
         squares[38] = new OwnedProperty("Roller Coaster", 5, 2,controller);
         squares[39] = new OwnedProperty("Roller Coaster", 5, 2,controller);
-        squares[40] = new OwnedProperty("Roller Coaster", 5, 2,controller);
 
     }
 }
