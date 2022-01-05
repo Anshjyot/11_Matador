@@ -21,56 +21,51 @@ public class Board {
 
     }
 
-    public GUI_Field[] BoardCreator() {  // This constructor creates our GUI Board/Fields
+    public GUI_Field[] BoardCreator() {
 
-        fields[0] = new GUI_Start("START", "Modtag kr. 4.000 hver gang du passere", "",Color.RED, Color.BLACK);
-        fields[1] = new GUI_Street("Rødovrevej", "kr. 1200","","",Color.BLUE, Color.BLACK);
-        fields[2] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
-        fields[3] = new GUI_Street("Hvidovrevej", "kr. 1200","", "",Color.BLUE, Color.BLACK);
-        fields[4] = new GUI_Tax("Betal Indkomst-skat", "10% eller kr. 4.000","", new Color(0, 171, 255), Color.BLACK);
-        fields[5] = new GUI_Shipping("Scandlines", "kr. 4.000","","", "",Color.BLUE, Color.BLACK);
-        fields[6] = new GUI_Street("Roskildevej", "kr. 2.000","", "",Color.ORANGE, Color.BLACK);
-        fields[7] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
-        fields[8] = new GUI_Street("ValbyLanggade", "kr. 2.000","","",Color.ORANGE, Color.BLACK);
-        fields[9] = new GUI_Street("Allégade", "kr. 2.400","", "", Color.ORANGE, Color.BLACK);
-
-        fields[10] = new GUI_Jail();
-        fields[10].setSubText("På fængsels-besøg");
-
-        fields[11] = new GUI_Street("Frederiksbergs Allé", "kr. 2.800","", "",Color.yellow, Color.BLACK);
-        fields[12] = new GUI_Brewery();
-        fields[13] = new GUI_Street("Bülowsvej", "kr. 2.800","", "",Color.yellow, Color.BLACK);
-        fields[14] = new GUI_Street("Gl. Kongevej", "kr. 3.200", "", "",Color.yellow, Color.BLACK);
-        fields[15] = new GUI_Shipping("Mols linien", "kr. 4.000","","", "",Color.RED, Color.BLACK);
-        fields[16] = new GUI_Street("Bernstorffsvej","kr. 3.600", "","",Color.LIGHT_GRAY, Color.YELLOW);
-        fields[17] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
-        fields[18] = new GUI_Street("Hellerupvej", "kr. 3.600","", "",Color.LIGHT_GRAY, Color.BLACK);
-        fields[19] = new GUI_Street("Strandvejen","kr. 4.000", "","",Color.LIGHT_GRAY, Color.BLACK);
-        fields[20] = new GUI_Street("Parkering", "","", "",new Color(0, 171, 255), Color.BLACK);
-        fields[21] = new GUI_Street("Trianglen", "kr. 4.000","", "",Color.RED, Color.BLACK);
-        fields[22] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
-        fields[23] = new GUI_Street("Østerbrogade","kr. 4.000", "","",Color.RED, Color.BLACK);
-        fields[24] = new GUI_Street("Grønningen","kr. 4.800","","", Color.RED, Color.BLACK);
-        fields[25] = new GUI_Shipping("Scandlines","kr. 4.000","","", "",Color.BLUE, Color.BLACK);
-        fields[26] = new GUI_Street("Bredgade", "kr. 5.200","", "",Color.WHITE, Color.BLACK);
-        fields[27] = new GUI_Street("Kgs. Nytorv", "kr. 5.200","", "",Color.WHITE, Color.BLACK);
-        fields[28] = new GUI_Brewery();
-        fields[29] = new GUI_Street("Østergade","kr. 5.600","", "",Color.WHITE, Color.BLACK);
-
-        fields[30] = new GUI_Jail();
-        fields[30].setSubText("Du fængsles");
-
-        fields[31] = new GUI_Street("Amagertorv","kr. 6.000","", "",Color.YELLOW, Color.BLACK);
-        fields[32] = new GUI_Street("Vimmelskaftet","kr. 6.000","", "",Color.YELLOW, Color.BLACK);
-        fields[33] = new GUI_Chance("?","Prøv Lykken","",Color.BLACK, Color.GREEN);
-        fields[34] = new GUI_Street("Nygade","kr. 6.400","", "",Color.YELLOW, Color.BLACK);
-        fields[35] = new GUI_Shipping("Scandlines","kr. 4.000","","", "",Color.BLUE, Color.BLACK);
-        fields[36] = new GUI_Chance("?","Prøv Lykken", "",Color.BLACK, Color.GREEN);
-        fields[37] = new GUI_Street("Frederiksberggade","kr. 7.000","", "", Color.MAGENTA, Color.BLACK);
-        fields[38] = new GUI_Tax("Ekstraordinær stats-skat","kr. 2.000", "",Color.BLUE, Color.BLACK);
-        fields[39] = new GUI_Street("Rådhuspladsen","kr. 8.000","", "",Color.MAGENTA, Color.BLACK);
+        fields[0] = new GUI_Start("Start", "Modtag: 4.000", "Modtag kr. 4.000,-\nnår de passerer start", Color.RED, Color.BLACK);
+        fields[1] = new GUI_Street("Rødovrevej", "kr. 1200", "Rødovrevej", "Leje:  20", new Color(75, 155, 225), Color.BLACK);
+        fields[2] = new GUI_Chance("?", "Prøv lykken", "Ta' et chancekort.", new Color(0, 0, 0), Color.WHITE);
+        fields[3] = new GUI_Street("Hvidovrevej", "kr. 1200", "Hvidovrevej", "Leje:  20", new Color(75, 155, 225), Color.BLACK);
+        fields[4] = new GUI_Tax("Betal\nindkomst-\nskat", "10% el. 4.000,-", "Betal indkomstskat\n10% eller kr. 4.000,-", new Color(20,82,226), Color.BLACK);
+        fields[5] = new GUI_Shipping("default", "Scandlines", "kr. 4.000", "Øresundsredderiet", "Leje:  75", Color.WHITE, Color.BLACK);
+        fields[6] = new GUI_Street("Roskildevej", "kr. 2.000", "Roskildevej", "Leje:  40", new Color(255, 135, 120), Color.BLACK);
+        fields[7] = new GUI_Chance("?", "Prøv lykken", "Ta' et chancekort.",new Color(0, 0, 0), Color.WHITE);
+        fields[8] = new GUI_Street("Valby\nLanggade", "kr. 2.000", "Valby Langgade", "Leje:  40", new Color(255, 135, 120), Color.BLACK);
+        fields[9] = new GUI_Street("Allégade", "kr. 2.400", "Allégade", "Leje:  45", new Color(255, 135, 120), Color.BLACK);
+        fields[10] = new GUI_Jail("default", "Fængsel", "Fængsel", "På besøg i fængslet", new Color(125, 125, 125), Color.BLACK);
+        fields[11] = new GUI_Street("Frederiks-\nberg Allé", "kr. 2.800", "Frederiksberg Allé", "Leje:  50", new Color(255, 255, 50), Color.BLACK);
+        fields[12] = new GUI_Brewery("default", "Tuborg", "kr. 3.000", "Tuborg bryggeri", "10 x [Terningslag]", Color.BLACK, Color.WHITE);
+        fields[13] = new GUI_Street("Bülowsvej", "kr. 2.800", "Bülowsvej", "Leje:  50", new Color(255, 255, 50), Color.BLACK);
+        fields[14] = new GUI_Street("Gammel Kongevej", "kr. 3.200", "Gammel Kongevej", "Leje:  50", new Color(255, 255, 50), Color.BLACK);
+        fields[15] = new GUI_Shipping("default", "Scandlines", "kr. 4.000", "D.F.D.S.", "Leje:  75", Color.WHITE, Color.BLACK);
+        fields[16] = new GUI_Street("Bernstorffsvej", "kr. 3.600", "Bernstorffsvej", "Leje:  60", new Color(153, 153, 153), Color.BLACK);
+        fields[17] = new GUI_Chance("?", "Prøv lykken", "Ta' et chancekort.", new Color(0, 0, 0), Color.WHITE);
+        fields[18] = new GUI_Street("Hellerupvej", "kr. 3.600", "Hellerupvej", "Leje:  60", new Color(153, 153, 153), Color.BLACK);
+        fields[19] = new GUI_Street("Strandvejen", "kr. 4.000", "Strandvejen", "Leje:  60", new Color(153, 153, 153), Color.BLACK);
+        fields[20] = new GUI_Refuge("default", "Parkering", "Parkering", "Ta' en pause", Color.WHITE, Color.BLACK);
+        fields[21] = new GUI_Street("Trianglen", "kr. 4.000", "Trianglen", "Leje:  70", Color.RED, Color.BLACK);
+        fields[22] = new GUI_Chance("?", "Prøv lykken", "Ta' et chancekort.", new Color(0, 0, 0), Color.WHITE);
+        fields[23] = new GUI_Street("Østerbro-\ngade", "kr. 4.000", "Østerbrogade", "Leje:  70", Color.RED, Color.BLACK);
+        fields[24] = new GUI_Street("Grønningen", "kr. 4.800", "Grønningen", "Leje:  80", Color.RED, Color.BLACK);
+        fields[25] = new GUI_Shipping("default", "Scandlines", "kr. 4.000", "Ø.S. redderiet", "Leje:  75", Color.WHITE, Color.BLACK);
+        fields[26] = new GUI_Street("Bredgade", "kr. 5.200", "Bredgade", "Leje:  80", Color.WHITE, Color.BLACK);
+        fields[27] = new GUI_Street("Kgs. Nytorv", "kr. 5.200", "Kongens Nytorv", "Leje:  80", Color.WHITE, Color.BLACK);
+        fields[28] = new GUI_Brewery("default", "Carlsberg", "kr. 3.000", "Carlsberg bryggeri", "10 x [Terningslag]", Color.BLACK, Color.WHITE);
+        fields[29] = new GUI_Street("Østergade", "kr. 5.600", "Østergade", "Leje:  85", Color.WHITE, Color.BLACK);
+        fields[30] = new GUI_Jail("default", "Gå i fængsel", "Gå i fængsel", "De fængsles\nSlå to ens for at komme ud", new Color(125, 125, 125), Color.BLACK);
+        fields[31] = new GUI_Street("Amagertorv", "kr. 6.000", "Amagertorv", "Leje:  95", new Color(255, 255, 50), Color.BLACK);
+        fields[32] = new GUI_Street("Vimmel-\nskaftet", "kr. 6.000", "Vimmelskaftet", "Leje:  95", new Color(255, 255, 50), Color.BLACK);
+        fields[33] = new GUI_Chance("?", "Prøv lykken", "Ta' et chancekort.", new Color(0, 0, 0), Color.WHITE);
+        fields[34] = new GUI_Street("Nygade", "kr. 6.400", "Nygade", "Leje:  100", new Color(255, 255, 50), Color.BLACK);
+        fields[35] = new GUI_Shipping("default", "Scandlines", "kr. 4.000", "Bornholms redderi", "Leje:  75", Color.WHITE, Color.BLACK);
+        fields[36] = new GUI_Chance("?", "Prøv lykken", "Ta' et chancekort.",new Color(0, 0, 0), Color.WHITE);
+        fields[37] = new GUI_Street("Frederiks-\nberggade", "kr. 7.000", "Frederiksberggade", "Leje:  120", new Color(150, 60, 150), Color.BLACK);
+        fields[38] = new GUI_Tax("Ekstra-\nordinær\nstatsskat", "Betal 2000", "Betal ekstraordinær\nstatsskat: kr. 100,-",new Color(20,82,226), Color.BLACK);
+        fields[39] = new GUI_Street("Rådhuspladsen", "kr. 8.000", "Rådhuspladsen", "Leje:  150", new Color(150, 60, 150), Color.BLACK);
         return fields;
     }
+
 
     public void CreateStreets(List<Player> players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
         squares[0] = new StartSquare("START");

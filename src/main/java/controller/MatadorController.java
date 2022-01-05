@@ -74,13 +74,16 @@ public class MatadorController {
     private void NumberOfPlayers() { // Start money declaration
         int playerList = guiController.getPlayerList();
 
-        if (playerList == 2) {
-            startBalance = 30000;
-        }
         if (playerList == 3) {
             startBalance = 30000;
         }
         if (playerList == 4) {
+            startBalance = 30000;
+        }
+        if (playerList == 5) {
+            startBalance = 30000;
+        }
+        if (playerList == 6) {
             startBalance = 30000;
         }
 
@@ -98,7 +101,7 @@ public class MatadorController {
 
     }
 
-    private void StartField(int i) { // You get $2 when you pass the Start-field
+    private void StartField(int i) { // You get 4.000 dkk when you pass the Start-field
         players.get(i).getAccount().setBalance(players.get(i).getAccount().getBalance() + 4000);
     }
 

@@ -34,10 +34,6 @@ public class GUIController {
         return name;
     }
 
-    public void getPlayerAge(int a) { // Entering the ages of the players in the GUI
-        int age = gui.getUserInteger("Enter the name of Player"+ (a + 1));
-    }
-
     public int setDice() { // Creates the dice in the GUI
         gui.getUserButtonPressed("Throw Dice", "Throw");
         dice1.ThrowDice();
@@ -70,7 +66,7 @@ public class GUIController {
     } // Adds the car to the GUI
     public void RemoveCar(int position2, int player2) {
         board.getField(position2).setCar(guiPlayers[player2], false);
-    } // Removes the car to the GUI
+    } // Removes the car from the GUI
 
     public void setNewBalance(int player, int newBalance) {
         this.guiPlayers[player].setBalance(newBalance);
