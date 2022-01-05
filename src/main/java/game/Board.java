@@ -2,7 +2,6 @@ package game;
 
 import java.awt.Color;
 import java.util.List;
-
 import GUI.GUIController;
 import gui_fields.*;
 
