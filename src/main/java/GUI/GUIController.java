@@ -38,8 +38,8 @@ public class GUIController {
         gui.getUserButtonPressed("Throw Dice", "Throw");
         dice1.ThrowDice();
         dice2.ThrowDice();
-        gui.setDice(dice1.getDice(),dice2.getDice()); // Only one dice visible on the board
-        return dice1.getDice() + dice2.getDice();
+        gui.setDice(dice1.getFaces(),dice2.getFaces()); // Only one dice visible on the board
+        return dice1.getFaces() + dice2.getFaces();
 
     }
 
