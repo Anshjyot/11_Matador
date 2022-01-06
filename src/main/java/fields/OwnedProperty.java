@@ -5,15 +5,27 @@ import game.Player;
 
 public class OwnedProperty extends Field { // This class extends the Square class
 
-    public OwnedProperty(String fieldname, int price, int rent, GUIController controller) {
+    public OwnedProperty(String fieldname, int price, int houseprice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, GUIController controller) {
         super(fieldname);
         this.price = price;
-        this.rent = rent;
+        this.houseprice = houseprice;
+        this.rent0 = rent0;
+        this.rent1 = rent1;
+        this.rent2 = rent2;
+        this.rent3 = rent3;
+        this.rent4 = rent4;
+        this.rent5 = rent5;
         this.controller = controller;
     }
 
     int price;
-    int rent;
+    int houseprice;
+    int rent0;
+    int rent1;
+    int rent2;
+    int rent3;
+    int rent4;
+    int rent5;
     Player owner;
     GUIController controller;
 
@@ -26,9 +38,9 @@ public class OwnedProperty extends Field { // This class extends the Square clas
         }
 
         else {
-            player.getAccount().setBalance(player.getAccount().getBalance() - rent);
-            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName()+"'s" + " property: " +  fieldName + " for " + "$"+rent);
+            player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
+            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
+            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName()+"'s" + " property: " +  fieldName + " for " + "$"+rent0);
         }
     }
 

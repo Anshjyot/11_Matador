@@ -70,49 +70,49 @@ public class Board {
 
     public void CreateStreets(List<Player> players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
         squares[0] = new StartField("START");
-        squares[1] = new OwnedProperty("Rødovrevej",1200, 1,controller);
+        squares[1] = new OwnedProperty("Rødovrevej",1200, 1,1,1,1,1,1,1,controller);
         squares[2] = new ChanceField("Prøv Lykken", players, controller);
-        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1,controller);
+        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1,1,1,1,1,1,1,controller);
         squares[4] = new IncomeTaxField("Betal Indkomst-skat", 4000, controller);
-        squares[5] = new OwnedProperty("Scandlines", 4000, 1,controller);
-        squares[6] = new OwnedProperty("Roskildevej", 2000, 1,controller);
+        squares[5] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
+        squares[6] = new OwnedProperty("Roskildevej", 2000, 1,1,1,1,1,1,1,controller);
         squares[7] = new ChanceField("Prøv Lykken", players,controller);
-        squares[8] = new OwnedProperty("Valbylanggade", 2000, 1,controller);
-        squares[9] = new OwnedProperty("Allégade", 2400, 1,controller);
+        squares[8] = new OwnedProperty("Valbylanggade", 2000, 1,1,1,1,1,1,1,controller);
+        squares[9] = new OwnedProperty("Allégade", 2400, 1,1,1,1,1,1,1,controller);
 
         squares[10] = new VisitJailField("På fængsels-besøg");
 
-        squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 1,controller);
-        squares[12] = new OwnedProperty("Tuborg Squash",3000, 2,controller);
-        squares[13] = new OwnedProperty("Bülowsvej", 2800, 1,controller);
-        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 1,controller);
-        squares[15] = new OwnedProperty("Mols linien",4000, 2,controller);
-        squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 1,controller);
+        squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 1,1,1,1,1,1,1,controller);
+        squares[12] = new BreweryField("Tuborg Squash",3000, 100, 200,controller);
+        squares[13] = new OwnedProperty("Bülowsvej", 2800, 1,1,1,1,1,1,1,controller);
+        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 1,1,1,1,1,1,1,controller);
+        squares[5] = new FerryField("Mols linien", 4000, 500,1000,2000, 4000,controller);
+        squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 1,1,1,1,1,1,1,controller);
         squares[17] = new ChanceField("Prøv Lykken", players,controller);
-        squares[18] = new OwnedProperty("Hellerupvej", 3600, 1,controller);
-        squares[19] = new OwnedProperty("Strandvejen", 4000, 2,controller);
-        squares[20] = new ChanceField("Parkering", players, controller);
-        squares[21] = new OwnedProperty("Trianglen", 4000, 1,controller);
+        squares[18] = new OwnedProperty("Hellerupvej", 3600, 1,1,1,1,1,1,1,controller);
+        squares[19] = new OwnedProperty("Strandvejen", 4000, 1,1,1,1,1,1,1,controller);
+        squares[20] = new ParkingField("Parkering");
+        squares[21] = new OwnedProperty("Trianglen", 4000, 1,1,1,1,1,1,1,controller);
         squares[22] = new ChanceField("Prøv Lykken", players,controller);
-        squares[23] = new OwnedProperty("Østerbrogade", 4000, 1,controller);
-        squares[24] = new OwnedProperty("Grønningen", 4600, 1,controller);
-        squares[25] = new OwnedProperty("Scandlines", 4000, 1,controller);
-        squares[26] = new OwnedProperty("Bredgade", 5200, 1,controller);
-        squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 2,controller);
-        squares[28] = new OwnedProperty("Coca Cola", 3000, 1,controller);
-        squares[29] = new OwnedProperty("Østergade", 5600, 2,controller);
+        squares[23] = new OwnedProperty("Østerbrogade", 4000, 1,1,1,1,1,1,1,controller);
+        squares[24] = new OwnedProperty("Grønningen", 4600, 1,1,1,1,1,1,1,controller);
+        squares[5] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
+        squares[26] = new OwnedProperty("Bredgade", 5200, 1,1,1,1,1,1,1,controller);
+        squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 1,1,1,1,1,1,1,controller);
+        squares[28] = new BreweryField("Coca Cola", 3000, 100, 200,controller);
+        squares[29] = new OwnedProperty("Østergade", 5600, 1,1,1,1,1,1,1,controller);
 
         squares[30] = new JailField("JAIL",controller);
 
-        squares[31] = new OwnedProperty("Amagertorv", 6000, 2,controller);
-        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 2,controller);
+        squares[31] = new OwnedProperty("Amagertorv", 6000, 1,1,1,1,1,1,1,controller);
+        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 1,1,1,1,1,1,1,controller);
         squares[33] = new ChanceField("Prøv Lykken", players,controller);
-        squares[34] = new OwnedProperty("Nygade", 6400, 2,controller);
-        squares[35] = new OwnedProperty("Scandlines", 4000, 2,controller);
+        squares[34] = new OwnedProperty("Nygade", 6400, 1,1,1,1,1,1,1,controller);
+        squares[5] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
         squares[36] = new ChanceField("Prøv Lykken", players,controller);
-        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 2,controller);
+        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 1,1,1,1,1,1,1,controller);
         squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000, controller);
-        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 2,controller);
+        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 1,1,1,1,1,1,1,controller);
 
     }
 }
