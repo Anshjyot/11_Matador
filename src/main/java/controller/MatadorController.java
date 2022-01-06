@@ -31,10 +31,10 @@ public class MatadorController {
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);
 
-                if (players.get(i).getPosition() + faceValue > 31) { // When you exceed the last field, you get to a new round
+                if (players.get(i).getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
 
                     StartField(i);
-                    players.get(i).setPosition(players.get(i).getPosition() + faceValue - 32);
+                    players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
 
                 } else {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
@@ -101,8 +101,8 @@ public class MatadorController {
 
     }
 
-    private void StartField(int i) { // You get $2 when you pass the Start-field
-        players.get(i).getAccount().setBalance(players.get(i).getAccount().getBalance() + 2);
+    private void StartField(int i) { // You get 4.000 dkk when you pass the Start-field
+        players.get(i).getAccount().setBalance(players.get(i).getAccount().getBalance() + 4000);
     }
 
 }

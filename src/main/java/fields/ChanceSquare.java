@@ -1,6 +1,8 @@
-package game;
+package fields;
 
 import GUI.GUIController;
+import fields.Square;
+import game.Player;
 
 import java.util.List;
 

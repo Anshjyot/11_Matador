@@ -1,6 +1,8 @@
-package game;
+package fields;
 
 import GUI.GUIController;
+import fields.Square;
+import game.Player;
 
 public class OwnedProperty extends Square { // This class extends the Square class
 

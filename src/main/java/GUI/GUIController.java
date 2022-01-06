@@ -22,7 +22,7 @@ public class GUIController {
     }
     public void initializeBoard(Board board) { // Initializing the board
         this.board = board;
-        this.gui = new GUI(board.BoardCreator(),Color.GREEN); // Change game-board color
+        this.gui = new GUI(board.BoardCreator(),new Color(87, 167, 26)); // Change game-board color
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI
@@ -66,7 +66,7 @@ public class GUIController {
     } // Adds the car to the GUI
     public void RemoveCar(int position2, int player2) {
         board.getField(position2).setCar(guiPlayers[player2], false);
-    } // Removes the car to the GUI
+    } // Removes the car from the GUI
 
     public void setNewBalance(int player, int newBalance) {
         this.guiPlayers[player].setBalance(newBalance);
