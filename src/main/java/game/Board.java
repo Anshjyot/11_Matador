@@ -73,7 +73,7 @@ public class Board {
         squares[1] = new OwnedProperty("Rødovrevej",1200, 1,controller);
         squares[2] = new ChanceSquare("Prøv Lykken", players, controller);
         squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1,controller);
-        squares[4] = new OwnedProperty("Betal Indkomst-skat", 4000, 0,controller);
+        squares[4] = new IncomeTaxSquare("Betal Indkomst-skat", 4000, controller);
         squares[5] = new OwnedProperty("Scandlines", 4000, 1,controller);
         squares[6] = new OwnedProperty("Roskildevej", 2000, 1,controller);
         squares[7] = new ChanceSquare("Prøv Lykken", players,controller);
@@ -111,7 +111,7 @@ public class Board {
         squares[35] = new OwnedProperty("Scandlines", 4000, 2,controller);
         squares[36] = new ChanceSquare("Prøv Lykken", players,controller);
         squares[37] = new OwnedProperty("Frederiksberggade", 7000, 2,controller);
-        squares[38] = new OwnedProperty("Ekstraordinær stats-skat", 2000, 2,controller);
+        squares[38] = new ExtraordinaryTaxSquare("Ekstraordinær statsskat", 2000, controller);
         squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 2,controller);
 
     }
