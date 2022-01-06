@@ -1,18 +1,17 @@
 package fields;
 
 import GUI.GUIController;
-import fields.Square;
 import game.Player;
 
 import java.util.List;
 
-public class ChanceSquare extends Square { // This class extends the Square class and creates the ChanceCard
+public class ChanceField extends Field { // This class extends the Square class and creates the ChanceCard
 
     // int outcome;
     private List<Player> players;
     private GUIController controller;
 
-    public ChanceSquare(String fieldName, List<Player> players, GUIController controller){
+    public ChanceField(String fieldName, List<Player> players, GUIController controller){
         super(fieldName);
         this.controller = controller;
         this.players = players;

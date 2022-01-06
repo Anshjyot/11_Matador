@@ -2,6 +2,7 @@ package GUI;
 import java.awt.*;
 import java.util.List;
 import game.Board;
+
 import game.Dice;
 import game.Player;
 
@@ -12,9 +13,9 @@ import gui_main.GUI;
 public class GUIController {
 
     private GUI_Player[] guiPlayers;
-    private Dice dice1 = new Dice();
-    private Dice dice2 = new Dice();
     private GUI gui;
+    private Dice dice1 = new Dice(6);
+    private Dice dice2 = new Dice(6);
 
     Board board;
 
@@ -40,7 +41,6 @@ public class GUIController {
         dice2.ThrowDice();
         gui.setDice(dice1.getFaces(),dice2.getFaces()); // Only one dice visible on the board
         return dice1.getFaces() + dice2.getFaces();
-
     }
 
     public void addPlayers(List<Player> players) { // Creates different types of game-pieces

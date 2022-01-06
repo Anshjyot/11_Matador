@@ -14,6 +14,8 @@ public class Player { // This class creates the player which will be used in the
         this.index = index;
     }
 
+    public Player() { }
+
     public void setPlayerName(String PlayerName) {
         this.PlayerName = PlayerName;
     }

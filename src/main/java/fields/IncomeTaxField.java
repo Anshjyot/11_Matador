@@ -3,9 +3,9 @@ package fields;
 import GUI.GUIController;
 import game.Player;
 
-public class IncomeTaxSquare extends Square { // This class extends the Square class
+public class IncomeTaxField extends Field { // This class extends the Square class
 
-    public IncomeTaxSquare(String fieldname, int tax, GUIController controller) {
+    public IncomeTaxField(String fieldname, int tax, GUIController controller) {
         super(fieldname);
         this.tax = tax;
         this.controller = controller;
