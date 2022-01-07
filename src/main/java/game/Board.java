@@ -86,7 +86,7 @@ public class Board {
         squares[12] = new BreweryField("Tuborg Squash",3000, 100, 200,controller);
         squares[13] = new OwnedProperty("Bülowsvej", 2800, 2000,200,1000,3000,9000,12500,15000,controller);
         squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 2000,250,1250,3750,10000,14000,18000,controller);
-        squares[5] = new FerryField("Mols linien", 4000, 500,1000,2000, 4000,controller);
+        squares[15] = new FerryField("Mols linien", 4000, 500,1000,2000, 4000,controller);
         squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 2000,300,1400,4000,11000,15000,19000,controller);
         squares[17] = new ChanceField("Prøv Lykken", players,controller);
         squares[18] = new OwnedProperty("Hellerupvej", 3600, 2000,300,1400,4000,11000,15000,19000,controller);
@@ -96,7 +96,7 @@ public class Board {
         squares[22] = new ChanceField("Prøv Lykken", players,controller);
         squares[23] = new OwnedProperty("Østerbrogade", 4000, 3000,350,1800,5000,14000,17500,21000,controller);
         squares[24] = new OwnedProperty("Grønningen", 4600, 3000,400,2000,6000,15000,18500,22000,controller);
-        squares[5] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
+        squares[25] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000, controller);
         squares[26] = new OwnedProperty("Bredgade", 5200, 3000,450,2200,6600,16000,19500,23000,controller);
         squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 3000,450,2200,6600,16000,19500,23000,controller);
         squares[28] = new BreweryField("Coca Cola", 3000, 100, 200,controller);
@@ -108,7 +108,7 @@ public class Board {
         squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 4000,550,2600,7800,18000,22000,25000,controller);
         squares[33] = new ChanceField("Prøv Lykken", players,controller);
         squares[34] = new OwnedProperty("Nygade", 6400, 4000,600,3000,9000,20000,24000,28000,controller);
-        squares[5] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
+        squares[35] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
         squares[36] = new ChanceField("Prøv Lykken", players,controller);
         squares[37] = new OwnedProperty("Frederiksberggade", 7000, 4000,700,3500,10000,22000,26000,30000,controller);
         squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000, controller);
