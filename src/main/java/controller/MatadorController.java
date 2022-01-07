@@ -1,9 +1,10 @@
+
 package controller;
 
 import GUI.GUIController;
 import game.Board;
 
-import game.Dice;
+
 import game.Player;
 
 import java.util.*;
@@ -17,8 +18,7 @@ public class MatadorController {
     private boolean noWinner = true;
     List<Player> players = new ArrayList<>();
     Board board;
-    private Dice dice1 = new Dice(6);
-    private Dice dice2 = new Dice(6);
+
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
@@ -111,5 +111,3 @@ public class MatadorController {
     }
 
 }
-
-

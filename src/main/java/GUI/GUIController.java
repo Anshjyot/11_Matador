@@ -16,7 +16,6 @@ public class GUIController {
     private GUI gui;
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6);
-
     Board board;
 
     public GUIController() {

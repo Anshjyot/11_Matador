@@ -16,7 +16,6 @@ public class JailField extends Field { // This class extends the Square class an
         controller.RemoveCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 16);
         controller.AddCar(p.getPosition(), p.getIndex());
-
     }
 
 
