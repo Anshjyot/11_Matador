@@ -1,10 +1,14 @@
 package fields;
 
 import GUI.GUIController;
+import chance.ChanceCard;
+import chance.TypeMoneyCard;
 import fields.Square;
 import game.CardDeck;
 import game.Player;
+import org.w3c.dom.ls.LSOutput;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -16,6 +20,7 @@ public class ChanceSquare extends Square { // This class extends the Square clas
     private GUIController controller;
     CardDeck deck = new CardDeck();
     int i = 0;
+    private ChanceCard[] chanceCards;
 
     public ChanceSquare(String fieldName, List<Player> players, GUIController controller){
         super(fieldName);
@@ -23,16 +28,23 @@ public class ChanceSquare extends Square { // This class extends the Square clas
         this.players = players;
     }
 
+    private ChanceSquare(){
+        chanceCards = new ChanceCard[]{
+                new TypeMoneyCard(2,3),
+                new TypeMoneyCard(4,6)
+        };
+    }
+
     @Override
     public void Arrived(Player p) { // Creates different outcomes when landing on the Chance-fields
-
+        System.out.println(Arrays.toString(deck.getDeck()));
         super.Arrived(p);
-        int cardNumber = deck.getDeck()[1];
+        int cardNumber = deck.getDeck()[i];
         switch (cardNumber){
-            case 0: p.getAccount().setBalance(p.getAccount().getBalance()-300);
+            case 1: p.getAccount().setBalance(p.getAccount().getBalance()-300);
                 controller.showMessage("Pay for car wash and lubrication. 300 kr");
                 break;
-            case 1:
+            case 2:
                 controller.showMessage(".");
                 if (p.getAccount().getBalance() < 15000){
                     controller.showMessage("You'll recieve the 'Matador-grant' of 40.000 kr. but only if your values doesn't exceed 15.000 kr.\n" +
@@ -45,13 +57,13 @@ public class ChanceSquare extends Square { // This class extends the Square clas
                             "...which they do. You receive nothing.");
                 }
                 break;
-            case 2: p.getAccount().setBalance(p.getAccount().getBalance()+2);
+            case 3: p.getAccount().setBalance(p.getAccount().getBalance()+2);
                 controller.showMessage("Go to Start");
                 controller.RemoveCar(p.getPosition(),p.getIndex());
                 p.setPosition(0);
                 controller.AddCar(p.getPosition(),p.getIndex());
                 break;
-            case 3:
+            case 4:
                 int sum = 0;
                 for (Player otherPlayer : players) {
                     if(otherPlayer != p) {
@@ -64,7 +76,13 @@ public class ChanceSquare extends Square { // This class extends the Square clas
                 break;
             default: System.out.println(cardNumber);
         }
+        //i + 1 to draw the next card in the deck.
         i++;
+
+        //resets i if its gone over the length of the deck.
+        if (i > deck.getDeck().length){
+            i = i % deck.getDeck().length;
+        }
     }
 
 

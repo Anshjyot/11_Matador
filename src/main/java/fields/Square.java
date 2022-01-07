@@ -10,6 +10,9 @@ public abstract class Square { // This class creates the different special types
         this.fieldName = fieldName;
     }
 
+    public Square() {
+    }
+
     public void Arrived(Player p) {
 
     }
