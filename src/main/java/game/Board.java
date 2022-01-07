@@ -70,9 +70,9 @@ public class Board {
 
     public void CreateStreets(List<Player> players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
         squares[0] = new StartField("START");
-        squares[1] = new OwnedProperty("Rødovrevej",1200, 1,1,1,1,1,1,1,controller);
+        squares[1] = new OwnedProperty("Rødovrevej",1200, 1000,50,250,750,2250,4000,6000,controller);
         squares[2] = new ChanceField("Prøv Lykken", players, controller);
-        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1,1,1,1,1,1,1,controller);
+        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1000,50,250,400,750,2250,6000,controller);
         squares[4] = new IncomeTaxField("Betal Indkomst-skat", 4000, controller);
         squares[5] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
         squares[6] = new OwnedProperty("Roskildevej", 2000, 1,1,1,1,1,1,1,controller);
