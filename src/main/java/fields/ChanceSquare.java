@@ -4,15 +4,12 @@ import GUI.GUIController;
 import chance.ChanceCard;
 import chance.TypeMoneyCard;
 import chance.TypeMoveCard;
-import fields.Square;
+import chance.TypeMoveToCard;
 import game.CardDeck;
 import game.Player;
-import org.w3c.dom.ls.LSOutput;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class ChanceSquare extends Square { // This class extends the Square class and creates the ChanceCard
 
@@ -30,13 +27,18 @@ public class ChanceSquare extends Square { // This class extends the Square clas
         chanceCards = new ChanceCard[]{
                 new TypeMoneyCard(-300,"Pay for car wash and lubrication. 300 kr"),
                 new TypeMoneyCard(6,"en eller anden besked"),
-                new TypeMoveCard(3,"Ryk tre felter frem")
-
+                new TypeMoveCard(3,"Ryk tre felter frem"),
+                new TypeMoveToCard(0,"Move to START")
         };
+        Random rand = new Random();
+        for(int i = 0; i<5;i++) {
+            int randomIndexToSwap = rand.nextInt(chanceCards.length);
+            ChanceCard temp = chanceCards[randomIndexToSwap];
+            chanceCards[randomIndexToSwap] = chanceCards[i];
+            chanceCards[i] = temp;
     }
 
-
-    public ChanceCard draw(Player p) {
+    public ChanceCard draw (Player p) {
 
         ChanceCard topCard = chanceCards[0];
         for (int i = 0; i < chanceCards.length - 1; i++) {
@@ -56,8 +58,16 @@ public class ChanceSquare extends Square { // This class extends the Square clas
 
             //Spillers position skal rykkes nofelter frem.
             controller.RemoveCar(p.getPosition(),p.getIndex());
+            System.out.println("Spiller rykkes fra " + p.getPosition());
             p.setPosition(p.getPosition()+card.getCardValue());
             controller.AddCar(p.getPosition(),p.getIndex());
+            System.out.println(" til " + p.getPosition());
+        }
+        else if (topCard instanceof TypeMoveToCard){
+            TypeMoveToCard card = ((TypeMoveToCard)topCard);
+            System.out.println("Spiller rykker til start");
+            System.out.println(p.getAccount().getBalance());
+            p.setPosition(card.getCardValue());
         }
         return topCard;
     }
@@ -115,6 +125,4 @@ public class ChanceSquare extends Square { // This class extends the Square clas
 
          */
     }
-
-
 }
