@@ -5,7 +5,6 @@ import chance.ChanceCard;
 import chance.TypeMoneyCard;
 import chance.TypeMoveCard;
 import chance.TypeMoveToCard;
-import game.CardDeck;
 import game.Player;
 
 import java.util.List;
@@ -16,8 +15,6 @@ public class ChanceSquare extends Square { // This class extends the Square clas
     // int outcome;
     private List<Player> players;
     private GUIController controller;
-    CardDeck deck = new CardDeck();
-    int i = 0;
     private ChanceCard[] chanceCards;
 
     public ChanceSquare(String fieldName, List<Player> players, GUIController controller){
@@ -30,12 +27,17 @@ public class ChanceSquare extends Square { // This class extends the Square clas
                 new TypeMoveCard(3,"Ryk tre felter frem"),
                 new TypeMoveToCard(0,"Move to START")
         };
+        shuffle();
+
+    }
+    public ChanceCard[] shuffle (){
         Random rand = new Random();
-        for(int i = 0; i<5;i++) {
-            int randomIndexToSwap = rand.nextInt(chanceCards.length);
-            ChanceCard temp = chanceCards[randomIndexToSwap];
-            chanceCards[randomIndexToSwap] = chanceCards[i];
-            chanceCards[i] = temp;
+        for(int i = 0; i<chanceCards.length;i++) {
+        int randomIndexToSwap = rand.nextInt(chanceCards.length);
+        ChanceCard temp = chanceCards[randomIndexToSwap];
+        chanceCards[randomIndexToSwap] = chanceCards[i];
+        chanceCards[i] = temp;}
+        return chanceCards;
     }
 
     public ChanceCard draw (Player p) {
