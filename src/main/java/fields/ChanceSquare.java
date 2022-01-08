@@ -3,6 +3,7 @@ package fields;
 import GUI.GUIController;
 import chance.ChanceCard;
 import chance.TypeMoneyCard;
+import chance.TypeMoveCard;
 import fields.Square;
 import game.CardDeck;
 import game.Player;
@@ -26,18 +27,41 @@ public class ChanceSquare extends Square { // This class extends the Square clas
         super(fieldName);
         this.controller = controller;
         this.players = players;
+        chanceCards = new ChanceCard[]{
+                new TypeMoneyCard(-300,"Pay for car wash and lubrication. 300 kr"),
+                new TypeMoneyCard(6,"en eller anden besked"),
+                new TypeMoveCard(3,"Ryk tre felter frem")
+
+        };
     }
 
-    private ChanceSquare(){
-        chanceCards = new ChanceCard[]{
-                new TypeMoneyCard(2,3),
-                new TypeMoneyCard(4,6)
-        };
+
+    public ChanceCard draw(Player p) {
+
+        ChanceCard topCard = chanceCards[0];
+        for (int i = 0; i < chanceCards.length - 1; i++) {
+            chanceCards[i] = chanceCards[i + 1];
+        }
+        chanceCards[chanceCards.length - 1] = topCard;
+
+        if(topCard instanceof TypeMoneyCard){
+            TypeMoneyCard card = ((TypeMoneyCard)topCard);
+            p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardValue());
+            System.out.println(card.getCardValue());
+            controller.showMessage(card.getCardMessage());
+        }
+        else if (topCard instanceof TypeMoveCard){
+            TypeMoveCard card = ((TypeMoveCard)topCard);
+
+        }
+        return topCard;
     }
 
     @Override
     public void Arrived(Player p) { // Creates different outcomes when landing on the Chance-fields
-        System.out.println(Arrays.toString(deck.getDeck()));
+        draw(p);
+
+        /* System.out.println(Arrays.toString(deck.getDeck()));
         super.Arrived(p);
         int cardNumber = deck.getDeck()[i];
         switch (cardNumber){
@@ -83,6 +107,8 @@ public class ChanceSquare extends Square { // This class extends the Square clas
         if (i > deck.getDeck().length){
             i = i % deck.getDeck().length;
         }
+
+         */
     }
 
 
