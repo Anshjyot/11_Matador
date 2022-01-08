@@ -52,7 +52,12 @@ public class ChanceSquare extends Square { // This class extends the Square clas
         }
         else if (topCard instanceof TypeMoveCard){
             TypeMoveCard card = ((TypeMoveCard)topCard);
+            controller.showMessage(card.getCardMessage());
 
+            //Spillers position skal rykkes nofelter frem.
+            controller.RemoveCar(p.getPosition(),p.getIndex());
+            p.setPosition(p.getPosition()+card.getCardValue());
+            controller.AddCar(p.getPosition(),p.getIndex());
         }
         return topCard;
     }
