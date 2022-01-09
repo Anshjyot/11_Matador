@@ -1,12 +1,10 @@
 package fields;
 
 import GUI.GUIController;
-import chance.ChanceCard;
-import chance.TypeMoneyCard;
-import chance.TypeMoveCard;
-import chance.TypeMoveToCard;
+import chance.*;
 import game.Player;
 
+import javax.lang.model.element.TypeParameterElement;
 import java.util.List;
 import java.util.Random;
 
@@ -16,6 +14,7 @@ public class ChanceSquare extends Square { // This class extends the Square clas
     private List<Player> players;
     private GUIController controller;
     private ChanceCard[] chanceCards;
+    private Player otherPlayers;
 
     public ChanceSquare(String fieldName, List<Player> players, GUIController controller){
         super(fieldName);
@@ -25,7 +24,8 @@ public class ChanceSquare extends Square { // This class extends the Square clas
                 new TypeMoneyCard(-300,"Pay for car wash and lubrication. 300 kr"),
                 new TypeMoneyCard(6,"en eller anden besked"),
                 new TypeMoveCard(3,"Ryk tre felter frem"),
-                new TypeMoveToCard(0,"Move to START")
+                new TypeMoveToCard(0,"Move to START"),
+                new TypePayPlayerCard(400,"Receive 400kr from every player")
         };
         shuffle();
 
@@ -58,7 +58,6 @@ public class ChanceSquare extends Square { // This class extends the Square clas
             TypeMoveCard card = ((TypeMoveCard)topCard);
             controller.showMessage(card.getCardMessage());
 
-            //Spillers position skal rykkes nofelter frem.
             controller.RemoveCar(p.getPosition(),p.getIndex());
             System.out.println("Spiller rykkes fra " + p.getPosition());
             p.setPosition(p.getPosition()+card.getCardValue());
@@ -72,6 +71,22 @@ public class ChanceSquare extends Square { // This class extends the Square clas
             controller.RemoveCar(p.getPosition(),p.getIndex());
             p.setPosition(card.getCardDestination());
             controller.AddCar(p.getPosition(),p.getIndex());
+        }
+        //this does not work. Will be fixed monday.
+        else if(topCard instanceof TypePayPlayerCard){
+            TypePayPlayerCard card = ((TypePayPlayerCard)topCard);
+            System.out.println("Pay player");
+            System.out.println(p.getAccount().getBalance());
+            for (Player player : players){
+                if (player == p) {
+                    continue;
+                }
+                else {
+                    otherPlayers = player;
+                }
+            }
+            otherPlayers.getAccount().setBalance(otherPlayers.getAccount().getBalance()-card.getCardTotal());
+            p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardTotal());
         }
         return topCard;
     }
