@@ -83,7 +83,7 @@ public class Board {
         squares[10] = new VisitJailField("På fængsels-besøg");
 
         squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 2000,200,1000,3000,9000,12500,15000,controller);
-        squares[12] = new BreweryField("Tuborg Squash",3000, 100, 200,controller);
+        squares[12] = new BreweryField("Tuborg",3000, 100, 200,controller);
         squares[13] = new OwnedProperty("Bülowsvej", 2800, 2000,200,1000,3000,9000,12500,15000,controller);
         squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 2000,250,1250,3750,10000,14000,18000,controller);
         squares[15] = new FerryField("Mols linien", 4000, 500,1000,2000, 4000,controller);
@@ -99,7 +99,7 @@ public class Board {
         squares[25] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000, controller);
         squares[26] = new OwnedProperty("Bredgade", 5200, 3000,450,2200,6600,16000,19500,23000,controller);
         squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 3000,450,2200,6600,16000,19500,23000,controller);
-        squares[28] = new BreweryField("Coca Cola", 3000, 100, 200,controller);
+        squares[28] = new BreweryField("Carlsberg", 3000, 100, 200,controller);
         squares[29] = new OwnedProperty("Østergade", 5600, 3000,500,2400,7200,17000,20500,24000,controller);
 
         squares[30] = new JailField("JAIL",controller);

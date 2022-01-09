@@ -29,12 +29,12 @@ public class FerryField extends Field { // This class extends the Square class
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);
             owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + "$" + price);
+            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
 
         } else {
             player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + "$" + rent0);
+            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
         }
     }
 }

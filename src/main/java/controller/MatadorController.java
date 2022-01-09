@@ -2,10 +2,12 @@
 package controller;
 
 import GUI.GUIController;
+import fields.Field;
 import game.Board;
 
 
 import game.Player;
+import gui_main.GUI;
 
 import java.util.*;
 import java.util.List;
@@ -18,7 +20,9 @@ public class MatadorController {
     private boolean noWinner = true;
     List<Player> players = new ArrayList<>();
     Board board;
-
+    protected int[] ages = new int [0];
+    protected String[] names = new String[0];
+    protected GUI gui;
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
@@ -30,6 +34,8 @@ public class MatadorController {
 
 
     private void gameLoop() {
+        Field[] squares = new Field[40];
+
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
                 int faceValue = guiController.setDice();
@@ -52,6 +58,13 @@ public class MatadorController {
                     guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
                 }
                 Winner(i); // Checking if the winner is found.
+            }
+
+            int i;
+            Field everyPos = null;
+            for(i = 0; i < squares.length-1; i++){
+                squares[i] = squares[i+1];
+                squares[squares.length - 1] = everyPos;
             }
         }
     }
@@ -94,10 +107,32 @@ public class MatadorController {
 
 
         for (int i = 0; i < playerList; i++) {
+            String[] temporayName = new String[names.length + 1];
+            int[] temporaryAge = new int[ages.length+1];
+            for (int j = 0; j < names.length; j++) {
+                temporayName[j]=names[j];
+                temporaryAge[j]=ages[j];
+            }
+            names = temporayName;
+            ages = temporaryAge;
             String name = guiController.getPlayerName(i);
-            players.add(new Player(name, startBalance, StartField, i));
+            int age = 0;
+            boolean ageIsInt;
+            do {
+                try {
+                    age = guiController.getPlayerAge(i);
+                    ageIsInt = age >= 10 && age <= 150;
+                } catch (NumberFormatException e) {
+                    ageIsInt = false;
+                }
+            } while (!ageIsInt);
+
+            ages[i] = age;
+            players.add(new Player(name, age, startBalance, StartField, i));
         }
+
         guiController.addPlayers(players); // Adds players to the GUI
+
     }
 
     private void FieldOutcome(int i) { // The field outcome method

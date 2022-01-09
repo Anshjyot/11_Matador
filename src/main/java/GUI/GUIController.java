@@ -17,7 +17,7 @@ public class GUIController {
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6);
     Board board;
-
+    
     public GUIController() {
     }
     public void initializeBoard(Board board) { // Initializing the board
@@ -33,6 +33,12 @@ public class GUIController {
         String name = gui.getUserString("Enter the name of Player"+ (i + 1));
         return name;
     }
+
+    public int getPlayerAge(int i) { // Entering the names of the players in the GUI
+            int age = gui.getUserInteger("Enter the age of Player"+ (i + 1));
+            return age;
+        }
+    
 
     public int setDice() { // Creates the dice in the GUI
         gui.getUserButtonPressed("Throw Dice", "Throw");
