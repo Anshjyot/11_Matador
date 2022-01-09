@@ -69,7 +69,9 @@ public class ChanceSquare extends Square { // This class extends the Square clas
             TypeMoveToCard card = ((TypeMoveToCard)topCard);
             System.out.println("Spiller rykker til start");
             System.out.println(p.getAccount().getBalance());
-            p.setPosition(card.getCardValue());
+            controller.RemoveCar(p.getPosition(),p.getIndex());
+            p.setPosition(card.getCardDestination());
+            controller.AddCar(p.getPosition(),p.getIndex());
         }
         return topCard;
     }
