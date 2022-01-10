@@ -35,10 +35,10 @@ public class Board {
         fields[8] = new GUI_Street("Valby\nLanggade", "kr. 2.000", "Valby Langgade", "Leje:  40", new Color(255, 135, 120), Color.BLACK);
         fields[9] = new GUI_Street("Allégade", "kr. 2.400", "Allégade", "Leje:  45", new Color(255, 135, 120), Color.BLACK);
         fields[10] = new GUI_Jail("default", "Fængsel", "Fængsel", "På besøg i fængslet", new Color(125, 125, 125), Color.BLACK);
-        fields[11] = new GUI_Street("Frederiks-\nberg Allé", "kr. 2.800", "Frederiksberg Allé", "Leje:  50", new Color(255, 255, 50), Color.BLACK);
+        fields[11] = new GUI_Street("Frederiks-\nberg Allé", "kr. 2.800", "Frederiksberg Allé", "Leje:  50", new Color(18, 253, 0), Color.BLACK);
         fields[12] = new GUI_Brewery("default", "Tuborg", "kr. 3.000", "Tuborg øl", "10 x [Terningslag]", Color.BLACK, Color.WHITE);
-        fields[13] = new GUI_Street("Bülowsvej", "kr. 2.800", "Bülowsvej", "Leje:  50", new Color(255, 255, 50), Color.BLACK);
-        fields[14] = new GUI_Street("Gammel Kongevej", "kr. 3.200", "Gammel Kongevej", "Leje:  50", new Color(255, 255, 50), Color.BLACK);
+        fields[13] = new GUI_Street("Bülowsvej", "kr. 2.800", "Bülowsvej", "Leje:  50", new Color(18, 253, 0), Color.BLACK);
+        fields[14] = new GUI_Street("Gammel Kongevej", "kr. 3.200", "Gammel Kongevej", "Leje:  50", new Color(18, 253, 0), Color.BLACK);
         fields[15] = new GUI_Shipping("default", "Scandlines", "kr. 4.000", "Scandlines", "Leje:  75", Color.WHITE, Color.BLACK);
         fields[16] = new GUI_Street("Bernstorffsvej", "kr. 3.600", "Bernstorffsvej", "Leje:  60", new Color(153, 153, 153), Color.BLACK);
         fields[17] = new GUI_Chance("?", "Prøv lykken", "Ta' et chancekort.", new Color(0, 0, 0), Color.WHITE);
@@ -83,14 +83,14 @@ public class Board {
 
         squares[10] = new VisitJailField("På fængsels-besøg");
 
-        squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 2000,new int[]{200,1000,3000,9000,12500,15000},controller);
+        squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 2000,new int[]{200,1000,3000,9000,12500,15000},new Color(18, 253, 0),controller);
         squares[12] = new BreweryField("Tuborg",3000, 100, 200,controller);
-        squares[13] = new OwnedProperty("Bülowsvej", 2800, 2000, new int[]{200,1000,3000,9000,12500,15000},controller);
-        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 2000,new int[]{250,1250,3750,10000,14000,18000},new Color(153, 153, 153),controller);
+        squares[13] = new OwnedProperty("Bülowsvej", 2800, 2000, new int[]{200,1000,3000,9000,12500,15000},new Color(18, 253, 0),controller);
+        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 2000,new int[]{250,1250,3750,10000,14000,18000},new Color(18, 253, 0),controller);
         squares[15] = new FerryField("Mols linien", 4000, 500,1000,2000, 4000,controller);
-        squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 2000,new int[]{300,1400,4000,11000,15000,19000},controller);
+        squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 2000,new int[]{300,1400,4000,11000,15000,19000},new Color(153, 153, 153),controller);
         squares[17] = new ChanceField("Prøv Lykken", players,controller);
-        squares[18] = new OwnedProperty("Hellerupvej", 3600, 2000,new int[]{300,1400,4000,11000,15000,19000},controller);
+        squares[18] = new OwnedProperty("Hellerupvej", 3600, 2000,new int[]{300,1400,4000,11000,15000,19000},new Color(153, 153, 153),controller);
         squares[19] = new OwnedProperty("Strandvejen", 4000, 2000,new int[]{350,1600,4400,12000,16000,20000}, new Color(153, 153, 153),controller);
         squares[20] = new ParkingField("Parkering");
         squares[21] = new OwnedProperty("Trianglen", 4000, 3000,new int[]{350,1800,5000,14000,17500,21000},Color.RED,controller);
