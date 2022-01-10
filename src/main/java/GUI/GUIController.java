@@ -46,7 +46,7 @@ public class GUIController {
             int age = gui.getUserInteger("Enter the age of Player" + (i + 1) + " (10+) ");
             return age;
         }
-    
+
 
     public int setDice() { // Creates the dice in the GUI
         gui.getUserButtonPressed("Throw Dice", "Throw");
@@ -97,10 +97,22 @@ public class GUIController {
     } // Shows the Chance card outcome message
 
 
-    public void AddHouse(OwnedProperty property) {
+    public void addHouse(OwnedProperty property) {
         if(board.SameOwnerColor(property)) {
             property.addHouse();
             GUI_Street.
         }
     }
+
+    //choose if you wanna buy the property
+  public boolean wannaBuy(){
+    boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no")
+    if (yes==true){
+    board.getField();
+    }
+    else {
+        return false;
+    }
+  }
+
 }

@@ -50,8 +50,21 @@ public class OwnedProperty extends Field { // This class extends the Field class
         return owner.getPlayerName();
 
     }
+//check if there is an owner
+    public boolean isThereAnOwner(){
+        if (owner==null) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public void buyDeed(Player player){
+         player.getAccount().setBalance(player.getAccount().getBalance() - price);
+         owner = player;
+         controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
 
-
+     }
     public Color getColor() {
         return color;
     }
