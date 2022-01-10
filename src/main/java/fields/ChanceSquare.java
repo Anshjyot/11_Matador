@@ -26,7 +26,7 @@ public class ChanceSquare extends Square { // This class extends the Square clas
                 new TypeMoneyCard(-200,"Pay 200kr for 2 boxes of beer."),
                 new TypeMoneyCard(-3000, "Pay 3000kr in reperation costs on your viechle."),
                 new TypeMoneyCard(-3000, "Pay 3000kr in reperation costs on your viechle."),
-                new TypeMoneyCard(-1000, "You have purchased 4 new wheels for your viechle, pay 1000kr.")
+                new TypeMoneyCard(-1000, "You have purchased 4 new wheels for your viechle, pay 1000kr."),
                 new TypeMoveCard(3,"Ryk tre felter frem"),
                 new TypeMoveToCard(0,"Move to START"),
                 new TypePayPlayerCard(400,"Receive 400kr from every player")
@@ -98,7 +98,7 @@ public class ChanceSquare extends Square { // This class extends the Square clas
             TypeConditionCard card = ((TypeConditionCard) topCard);
             if (p.getAccount().getBalance() < 15000){
                 controller.showMessage(card.getMessage1());
-                p.getAccount().setBalance(p.getAccount().getBalance() + 40000);
+                p.getAccount().setBalance(p.getAccount().getBalance() + card.getCardValue());
             }
             else {controller.showMessage(card.getMessage2());
             }
