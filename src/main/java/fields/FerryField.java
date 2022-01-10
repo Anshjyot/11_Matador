@@ -3,7 +3,7 @@ package fields;
 import GUI.GUIController;
 import game.Player;
 
-public class FerryField extends Field { // This class extends the Square class
+public class FerryField extends Field { // This class extends the Field class
 
     public FerryField(String fieldname, int price, int rent0, int rent1, int rent2, int rent3, GUIController controller) {
         super(fieldname);

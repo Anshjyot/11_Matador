@@ -6,7 +6,7 @@ import gui_main.GUI;
 
 import java.awt.*;
 
-public class OwnedProperty extends Field { // This class extends the Square class
+public class OwnedProperty extends Field { // This class extends the Field class
 
     protected GUI gui;
 

@@ -3,7 +3,7 @@ package fields;
 import GUI.GUIController;
 import game.Player;
 
-public class JailField extends Field { // This class extends the Square class and creates JailSquare.
+public class JailField extends Field { // This class extends the Field class and creates JailSquare.
     private GUIController controller;
     public JailField(String fieldName, GUIController controller) {
         super(fieldName);

@@ -3,7 +3,7 @@ package fields;
 import GUI.GUIController;
 import game.Player;
 
-public class BreweryField extends Field { // This class extends the Square class
+public class BreweryField extends Field { // This class extends the Field class
 
     public BreweryField(String fieldname, int price, int rent0, int rent1, GUIController controller) {
         super(fieldname);
