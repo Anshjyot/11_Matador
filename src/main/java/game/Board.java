@@ -105,15 +105,15 @@ public class Board {
 
         squares[30] = new JailField("JAIL",controller);
 
-        squares[31] = new OwnedProperty("Amagertorv", 6000, 4000,new int[]{550,2600,7800,18000,22000,25000},new Color(255, 255, 50)controller);
-        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 4000,new int[]{550,2600,7800,18000,22000,25000},new Color(255, 255, 50)controller);
+        squares[31] = new OwnedProperty("Amagertorv", 6000, 4000,new int[]{550,2600,7800,18000,22000,25000},new Color(255, 255, 50),controller);
+        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 4000,new int[]{550,2600,7800,18000,22000,25000},new Color(255, 255, 50),controller);
         squares[33] = new ChanceField("Prøv Lykken", players,controller);
-        squares[34] = new OwnedProperty("Nygade", 6400, 4000,new int[]{600,3000,9000,20000,24000,28000},new Color(255, 255, 50)controller);
+        squares[34] = new OwnedProperty("Nygade", 6400, 4000,new int[]{600,3000,9000,20000,24000,28000},new Color(255, 255, 50),controller);
         squares[35] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
         squares[36] = new ChanceField("Prøv Lykken", players,controller);
-        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 4000,new int[]{700,3500,10000,22000,26000,30000},new Color(150, 60, 150)controller);
+        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 4000,new int[]{700,3500,10000,22000,26000,30000},new Color(150, 60, 150),controller);
         squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000, controller);
-        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 4000,new int[]{1000,4000,12000,28000,34000,40000},new Color(150, 60, 150)controller);
+        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 4000,new int[]{1000,4000,12000,28000,34000,40000},new Color(150, 60, 150),controller);
 
     }
 
