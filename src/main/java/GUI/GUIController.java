@@ -23,6 +23,7 @@ public class GUIController {
     private Color[] playercolors;
     private GUI_Player[] players;
     Field[] squares = new Field[40];
+    GUI_Field[] fields = new GUI_Field[40];
 
     public GUIController() {
     }
@@ -104,18 +105,15 @@ public class GUIController {
     }
 
     //choose if you wanna buy the property
-  public boolean wannaBuy(OwnedProperty property){
-    boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
-    if (yes == true){
-        if(OwnedProperty.isThereAnOwner) {
-            GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+  public void WannaBuy(OwnedProperty property, Player player) {
+      boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
+      if (yes == true) {
+          if (OwnedProperty.isThereAnOwner) {
+              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+              property.buyDeed(player);
+          }
+      } else {
 
-        }
-    }
-    else {
-        return false;
-    }
-      return yes;
-  }
-
+  } }
 }
+
