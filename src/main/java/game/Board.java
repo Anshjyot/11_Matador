@@ -86,22 +86,22 @@ public class Board {
         squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 2000,new int[]{200,1000,3000,9000,12500,15000},controller);
         squares[12] = new BreweryField("Tuborg",3000, 100, 200,controller);
         squares[13] = new OwnedProperty("Bülowsvej", 2800, 2000, new int[]{200,1000,3000,9000,12500,15000},controller);
-        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 2000,new int[]{250,1250,3750,10000,14000,18000},controller);
+        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 2000,new int[]{250,1250,3750,10000,14000,18000},new Color(153, 153, 153),controller);
         squares[15] = new FerryField("Mols linien", 4000, 500,1000,2000, 4000,controller);
         squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 2000,new int[]{300,1400,4000,11000,15000,19000},controller);
         squares[17] = new ChanceField("Prøv Lykken", players,controller);
         squares[18] = new OwnedProperty("Hellerupvej", 3600, 2000,new int[]{300,1400,4000,11000,15000,19000},controller);
-        squares[19] = new OwnedProperty("Strandvejen", 4000, 2000,new int[]{350,1600,4400,12000,16000,20000},controller);
+        squares[19] = new OwnedProperty("Strandvejen", 4000, 2000,new int[]{350,1600,4400,12000,16000,20000}, new Color(153, 153, 153),controller);
         squares[20] = new ParkingField("Parkering");
-        squares[21] = new OwnedProperty("Trianglen", 4000, 3000,new int[]{350,1800,5000,14000,17500,21000},controller);
+        squares[21] = new OwnedProperty("Trianglen", 4000, 3000,new int[]{350,1800,5000,14000,17500,21000},Color.RED,controller);
         squares[22] = new ChanceField("Prøv Lykken", players,controller);
-        squares[23] = new OwnedProperty("Østerbrogade", 4000, 3000,new int[]{350,1800,5000,14000,17500,21000},controller);
-        squares[24] = new OwnedProperty("Grønningen", 4600, 3000,new int[]{400,2000,6000,15000,18500,22000},controller);
+        squares[23] = new OwnedProperty("Østerbrogade", 4000, 3000,new int[]{350,1800,5000,14000,17500,21000},Color.RED,controller);
+        squares[24] = new OwnedProperty("Grønningen", 4600, 3000,new int[]{400,2000,6000,15000,18500,22000},Color.RED,controller);
         squares[25] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000, controller);
-        squares[26] = new OwnedProperty("Bredgade", 5200, 3000,new int[]{450,2200,6600,16000,19500,23000},controller);
-        squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 3000,new int[]{450,2200,6600,16000,19500,23000},controller);
+        squares[26] = new OwnedProperty("Bredgade", 5200, 3000,new int[]{450,2200,6600,16000,19500,23000},Color.WHITE,controller);
+        squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 3000,new int[]{450,2200,6600,16000,19500,23000},Color.WHITE,controller);
         squares[28] = new BreweryField("Carlsberg", 3000, 100, 200,controller);
-        squares[29] = new OwnedProperty("Østergade", 5600, 3000,new int[]{500,2400,7200,17000,20500,24000},controller);
+        squares[29] = new OwnedProperty("Østergade", 5600, 3000,new int[]{500,2400,7200,17000,20500,24000},Color.WHITE,controller);
 
         squares[30] = new JailField("JAIL",controller);
 
