@@ -1,14 +1,20 @@
 package GUI;
 import java.awt.*;
 import java.util.List;
+
+import fields.OwnedProperty;
 import game.Board;
 
 import game.Dice;
 import game.Player;
 
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Player;
+import gui_codebehind.GUI_Center;
+import gui_codebehind.SwingComponentFactory;
+import gui_fields.*;
 import gui_main.GUI;
+
+import javax.swing.*;
+import javax.swing.border.Border;
 
 public class GUIController {
 
@@ -17,7 +23,9 @@ public class GUIController {
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6);
     Board board;
-    
+    private Color[] playercolors;
+    private GUI_Player[] players;
+
     public GUIController() {
     }
     public void initializeBoard(Board board) { // Initializing the board
@@ -35,7 +43,7 @@ public class GUIController {
     }
 
     public int getPlayerAge(int i) { // Entering the names of the players in the GUI
-            int age = gui.getUserInteger("Enter the age of Player"+ (i + 1));
+            int age = gui.getUserInteger("Enter the age of Player" + (i + 1) + " (10+) ");
             return age;
         }
     
@@ -55,16 +63,17 @@ public class GUIController {
                 new GUI_Car(Color.BLACK, Color.WHITE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED),
                 new GUI_Car(Color.BLUE, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED),
                 new GUI_Car(Color.YELLOW, Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA),
-                new GUI_Car(Color.GREEN,Color.DARK_GRAY,GUI_Car.Type.TRACTOR,GUI_Car.Pattern.HORIZONTAL_LINE),
-                new GUI_Car(Color.RED,Color.ORANGE,GUI_Car.Type.UFO,GUI_Car.Pattern.FILL)
+                new GUI_Car(Color.GREEN, Color.DARK_GRAY, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_LINE),
+                new GUI_Car(Color.RED, Color.ORANGE, GUI_Car.Type.UFO, GUI_Car.Pattern.FILL)
         };
+
         for (int i = 0; i < players.size(); i++) { // Array of players in the GUI
             this.guiPlayers[i] = new GUI_Player(players.get(i).getPlayerName(), players.get(i).getAccount().getBalance(), car_choices[i]);
             AddCar(0, i);
             gui.addPlayer(this.guiPlayers[i]);
         }
-    }
 
+    }
 
     public void AddCar(int position, int player) { //Adds car
         board.getField(position).setCar(guiPlayers[player], true);
@@ -72,6 +81,7 @@ public class GUIController {
     public void RemoveCar(int position2, int player2) {
         board.getField(position2).setCar(guiPlayers[player2], false);
     } // Removes the car from the GUI
+
 
     public void setNewBalance(int player, int newBalance) {
         this.guiPlayers[player].setBalance(newBalance);
@@ -86,4 +96,11 @@ public class GUIController {
         gui.displayChanceCard(message);
     } // Shows the Chance card outcome message
 
+
+    public void AddHouse(OwnedProperty property) {
+        if(board.SameOwnerColor(property)) {
+            property.addHouse();
+            GUI_Street.
+        }
+    }
 }

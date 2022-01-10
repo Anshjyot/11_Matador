@@ -2,85 +2,63 @@ package fields;
 
 import GUI.GUIController;
 import game.Player;
+import gui_main.GUI;
+
+import java.awt.*;
 
 public class OwnedProperty extends Field { // This class extends the Square class
 
-    public OwnedProperty(String fieldname, int price, int houseprice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5, GUIController controller) {
+    protected GUI gui;
+
+    public OwnedProperty(String fieldname, int price, int houseprice, int[] rent, Color color, GUIController controller) {
         super(fieldname);
         this.price = price;
         this.houseprice = houseprice;
-        this.rent0 = rent0;
-        this.rent1 = rent1;
-        this.rent2 = rent2;
-        this.rent3 = rent3;
-        this.rent4 = rent4;
-        this.rent5 = rent5;
+        this.rent = rent;
         this.controller = controller;
+        this.color = color;
+        this.house = 0;
     }
 
     int price;
     int houseprice;
-    int rent0;
-    int rent1;
-    int rent2;
-    int rent3;
-    int rent4;
-    int rent5;
+    int[] rent;
     int house;
     Player owner;
     GUIController controller;
+    Color color;
 
     @Override
     public void Arrived(Player player) { // This class creates the ownership for the fields, you can buy and rent fields.
-        if (owner == null){
+        if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);
             owner = player;
             controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-        }
+        } else {
+            player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
+            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
+            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
 
-        else {
-            switch (house) {
-                case 0:
-                    player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
-                    owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-                    controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
-                case 1:
-                    if (house == 1) {
-                        player.getAccount().setBalance(player.getAccount().getBalance() - rent1);
-                        owner.getAccount().setBalance(owner.getAccount().getBalance() + rent1);
-                        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent1 + " dkk ");
-                    }
-                case 2:
-                    if (house == 2) {
-                        player.getAccount().setBalance(player.getAccount().getBalance() - rent2);
-                        owner.getAccount().setBalance(owner.getAccount().getBalance() + rent2);
-                        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent2 + " dkk ");
-                    }
-                case 3:
-                    if (house == 3) {
-                        player.getAccount().setBalance(player.getAccount().getBalance() - rent3);
-                        owner.getAccount().setBalance(owner.getAccount().getBalance() + rent3);
-                        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent3 + " dkk ");
-                    }
-                case 4:
-                    if (house == 4) {
-                        player.getAccount().setBalance(player.getAccount().getBalance() - rent4);
-                        owner.getAccount().setBalance(owner.getAccount().getBalance() + rent4);
-                        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent4 + " dkk ");
-                    }
-                case 5:
-                    if (house == 5) {
-                        player.getAccount().setBalance(player.getAccount().getBalance() - rent5);
-                        owner.getAccount().setBalance(owner.getAccount().getBalance() + rent5);
-                        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent5 + " dkk ");
-                    }
-            }
 
         }
     }
 
+    public String getOwner() {
+        if(owner == null) {
+            return "";
+        }
+        return owner.getPlayerName();
+
+    }
 
 
+    public Color getColor() {
+        return color;
+    }
+
+    public void addHouse() {
+        house = house+1;
+    }
 
 
 }

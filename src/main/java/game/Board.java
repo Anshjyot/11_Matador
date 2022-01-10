@@ -70,9 +70,10 @@ public class Board {
 
     public void CreateStreets(List<Player> players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
         squares[0] = new StartField("START");
-        squares[1] = new OwnedProperty("Rødovrevej",1200, 1000,50,250,750,2250,4000,6000,controller);
+        //squares[1] = new OwnedProperty("Rødovrevej",1200, 1000,50,250,750,2250,4000,6000,controller);
+        squares[1] = new OwnedProperty("Rødovrevej",1200,1000,new int[]{50,250,750,2250,4000,6000}, new Color(75, 155, 225), controller);
         squares[2] = new ChanceField("Prøv Lykken", players, controller);
-        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1000,50,250,400,750,2250,6000,controller);
+        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1000,new int[]{50,250,400,750,2250,6000},new Color(75, 155, 225),controller);
         squares[4] = new IncomeTaxField("Betal Indkomst-skat", 4000, controller);
         squares[5] = new FerryField("Scandlines", 4000, 500,1000,2000, 4000,controller);
         squares[6] = new OwnedProperty("Roskildevej", 2000, 1000,100,600,1800,5400,8000,11000,controller);
@@ -113,6 +114,40 @@ public class Board {
         squares[37] = new OwnedProperty("Frederiksberggade", 7000, 4000,700,3500,10000,22000,26000,30000,controller);
         squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000, controller);
         squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 4000,1000,4000,12000,28000,34000,40000,controller);
+
+    }
+
+    public boolean SameOwnerColor(OwnedProperty property) {
+        int colorAmount = 0;
+        for (Field squares: squares) {
+            if (squares instanceof OwnedProperty) {
+                OwnedProperty currentSquare = (OwnedProperty) squares;
+                if (currentSquare.getColor().equals(property.getColor()) && currentSquare.getOwner().equals(property.getOwner())) {
+                    colorAmount++;
+                }
+
+
+            }
+        }
+
+        if(property.getColor().equals(new Color(150, 60, 150))) {
+            if (colorAmount == 2) {
+                return true;
+            }
+        }
+
+        if(property.getColor().equals(new Color(75, 155, 225))) {
+            if (colorAmount == 2) {
+                return true;
+            }
+        }
+
+        if(colorAmount == 3) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
     }
 }

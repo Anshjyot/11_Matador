@@ -7,8 +7,12 @@ import game.Board;
 
 
 import game.Player;
+import gui_fields.GUI_Field;
+import gui_fields.GUI_Player;
+import gui_fields.GUI_Street;
 import gui_main.GUI;
 
+import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -23,6 +27,9 @@ public class MatadorController {
     protected int[] ages = new int [0];
     protected String[] names = new String[0];
     protected GUI gui;
+    private final int Everyfield = 40;
+    protected GUI_Field[] fields;
+
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
@@ -34,40 +41,37 @@ public class MatadorController {
 
 
     private void gameLoop() {
-        Field[] squares = new Field[40];
-
+        fields = new GUI_Street[Everyfield];
+        for (int i = 0; i < Everyfield; i++) {
+            fields[i] = new GUI_Street();
+        }
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
-                int faceValue = guiController.setDice();
+                    int faceValue = guiController.setDice();
 
-                guiController.RemoveCar(players.get(i).getPosition(), i);
+                    guiController.RemoveCar(players.get(i).getPosition(), i);
 
-                if (players.get(i).getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
+                    if (players.get(i).getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
 
-                    StartField(i);
-                    players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
+                        StartField(i);
+                        players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
 
-                } else {
-                    players.get(i).setPosition(players.get(i).getPosition() + faceValue);
+                    } else {
+                        players.get(i).setPosition(players.get(i).getPosition() + faceValue);
+                    }
+
+                    guiController.AddCar(players.get(i).getPosition(), i);
+                    FieldOutcome(i); // The field outcome for the specific field
+
+                    for (Player player : players) {
+                        guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
+                    }
+                    Winner(i); // Checking if the winner is found.
                 }
 
-                guiController.AddCar(players.get(i).getPosition(), i);
-                FieldOutcome(i); // The field outcome for the specific field
-
-                for (Player player : players) {
-                    guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
-                }
-                Winner(i); // Checking if the winner is found.
-            }
-
-            int i;
-            Field everyPos = null;
-            for(i = 0; i < squares.length-1; i++){
-                squares[i] = squares[i+1];
-                squares[squares.length - 1] = everyPos;
             }
         }
-    }
+
 
     private void Winner(int player) { // The last person to have a balance >0 wins
         int loserBalance = 0;
