@@ -3,6 +3,7 @@ package controller;
 
 import GUI.GUIController;
 import fields.Field;
+import fields.OwnedProperty;
 import game.Board;
 
 
@@ -31,7 +32,6 @@ public class MatadorController {
     protected GUI_Field[] fields;
 
 
-
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new Board(players, guiController);
         this.guiController.initializeBoard(board);
@@ -41,10 +41,9 @@ public class MatadorController {
 
 
     private void gameLoop() {
-        fields = new GUI_Street[Everyfield];
-        for (int i = 0; i < Everyfield; i++) {
-            fields[i] = new GUI_Street();
-        }
+        fields = new GUI_Field[Everyfield];
+        // Løbe igennem for hvert felt
+
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
                     int faceValue = guiController.setDice();
@@ -65,6 +64,7 @@ public class MatadorController {
 
                     for (Player player : players) {
                         guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
+
                     }
                     Winner(i); // Checking if the winner is found.
                 }

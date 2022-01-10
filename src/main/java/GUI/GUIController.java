@@ -2,29 +2,27 @@ package GUI;
 import java.awt.*;
 import java.util.List;
 
+import fields.Field;
 import fields.OwnedProperty;
 import game.Board;
 
 import game.Dice;
 import game.Player;
 
-import gui_codebehind.GUI_Center;
-import gui_codebehind.SwingComponentFactory;
 import gui_fields.*;
 import gui_main.GUI;
-
-import javax.swing.*;
-import javax.swing.border.Border;
 
 public class GUIController {
 
     private GUI_Player[] guiPlayers;
+    GUIController controller;
     private GUI gui;
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6);
     Board board;
     private Color[] playercolors;
     private GUI_Player[] players;
+    Field[] squares = new Field[40];
 
     public GUIController() {
     }
@@ -100,19 +98,24 @@ public class GUIController {
     public void addHouse(OwnedProperty property) {
         if(board.SameOwnerColor(property)) {
             property.addHouse();
-            GUI_Street.
+            GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+            field.setHouses(1);
         }
     }
 
     //choose if you wanna buy the property
-  public boolean wannaBuy(){
-    boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no")
-    if (yes==true){
-    board.getField();
+  public boolean wannaBuy(OwnedProperty property){
+    boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
+    if (yes == true){
+        if(OwnedProperty.isThereAnOwner) {
+            GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+
+        }
     }
     else {
         return false;
     }
+      return yes;
   }
 
 }

@@ -6,11 +6,12 @@ import gui_main.GUI;
 
 import java.awt.*;
 
-public class OwnedProperty extends Field { // This class extends the Field class
+public class OwnedProperty extends Field {
+    public static boolean isThereAnOwner; // This class extends the Field class
 
     protected GUI gui;
 
-    public OwnedProperty(String fieldname, int price, int houseprice, int[] rent, Color color, GUIController controller) {
+    public OwnedProperty(String fieldname, int price, int houseprice, int[] rent, Color color, int index, GUIController controller) {
         super(fieldname);
         this.price = price;
         this.houseprice = houseprice;
@@ -18,12 +19,14 @@ public class OwnedProperty extends Field { // This class extends the Field class
         this.controller = controller;
         this.color = color;
         this.house = 0;
+        this.index = index;
     }
 
     int price;
     int houseprice;
     int[] rent;
     int house;
+    int index;
     Player owner;
     GUIController controller;
     Color color;
@@ -50,13 +53,14 @@ public class OwnedProperty extends Field { // This class extends the Field class
         return owner.getPlayerName();
 
     }
-//check if there is an owner
+
+    //check if there is an owner
     public boolean isThereAnOwner(){
         if (owner==null) {
-            return false;
+            return true;
         }
         else {
-            return true;
+            return false;
         }
     }
     public void buyDeed(Player player){
@@ -67,6 +71,10 @@ public class OwnedProperty extends Field { // This class extends the Field class
      }
     public Color getColor() {
         return color;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     public void addHouse() {
