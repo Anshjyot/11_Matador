@@ -13,8 +13,8 @@ public class PlayerPositionTest {
     Player player = new Player();
     @Test
     public void test() {
-        int expectingResult = 32;
-        player.setPosition(32);
+        int expectingResult = 40;
+        player.setPosition(40);
         int actualResult = player.getPosition();
         assertEquals(expectingResult, actualResult);
         System.out.println("SetPosition virker korrekt");
