@@ -21,8 +21,9 @@ public class ChanceSquare extends Square { // This class extends the Square clas
         this.controller = controller;
         this.players = players;
         chanceCards = new ChanceCard[]{
-                new TypeMoneyCard(-300,"Pay for a car wash and oil. 300 kr"),
-                new TypeMoneyCard(6,"en eller anden besked"),
+                new TypeMoneyCard(-300,"Pay 300kr for a car wash and oil change."),
+                new TypeMoneyCard(-200,"Pay 200kr for 2 boxes of beer-"),
+                new TypeMoneyCard(-300, "hej"),
                 new TypeMoveCard(3,"Ryk tre felter frem"),
                 new TypeMoveToCard(0,"Move to START"),
                 new TypePayPlayerCard(400,"Receive 400kr from every player")
