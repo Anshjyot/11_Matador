@@ -62,12 +62,10 @@ public class MatadorController {
 
                 }
             }
-
             if (winnerName.size() == 1) {
                 guiController.getWinnerMessage(winnerName);
                 System.exit(0); // Games finishes when the winner is announced
             }
-
         }
     }
 

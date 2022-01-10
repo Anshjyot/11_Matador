@@ -66,6 +66,8 @@ public class ChanceSquare extends Square { // This class extends the Square clas
         }
         else if (topCard instanceof TypeMoveToCard){
             TypeMoveToCard card = ((TypeMoveToCard)topCard);
+            controller.showMessage(card.getCardMessage());
+
             System.out.println("Spiller rykker til start");
             System.out.println(p.getAccount().getBalance());
             controller.RemoveCar(p.getPosition(),p.getIndex());
@@ -87,6 +89,15 @@ public class ChanceSquare extends Square { // This class extends the Square clas
             }
             otherPlayers.getAccount().setBalance(otherPlayers.getAccount().getBalance()-card.getCardTotal());
             p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardTotal());
+        }
+        else if (topCard instanceof TypeConditionCard) {
+            TypeConditionCard card = ((TypeConditionCard) topCard);
+            if (p.getAccount().getBalance() < 15000){
+                controller.showMessage(card.getMessage1());
+                p.getAccount().setBalance(p.getAccount().getBalance() + 40000);
+            }
+            else {controller.showMessage(card.getMessage2());
+            }
         }
         return topCard;
     }
