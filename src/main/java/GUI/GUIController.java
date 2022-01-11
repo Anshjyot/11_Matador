@@ -17,8 +17,8 @@ public class GUIController {
     private GUI_Player[] guiPlayers;
     GUIController controller;
     private GUI gui;
-    private Dice dice1 = new Dice(6);
-    private Dice dice2 = new Dice(6);
+    public Dice dice1 = new Dice(6);
+    public Dice dice2 = new Dice(6);
     FieldController board;
     private Color[] playercolors;
     private GUI_Player[] players;
@@ -114,6 +114,12 @@ public class GUIController {
           }
       } else {
 
-  } }
+  }
+    }
+
+    public String getOutOfJail() {
+        String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
+        return jailChoice;
+    }
 }
 

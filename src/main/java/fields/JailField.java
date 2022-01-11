@@ -16,7 +16,29 @@ public class JailField extends Field { // This class extends the Field class and
         controller.RemoveCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 16);
         controller.AddCar(p.getPosition(), p.getIndex());
+
     }
+    //skal springes over hvis der ikke bliver gjort en af de 3 muligheder
 
+public void GetOutOfJail (Player player){
+//The Player can only get out of Jail, if one of three methods has happened
+    switch (controller.getOutOfJail()){
+        case "Pay1000$":
+            //Pay1000$, check if account>1000
+            if (player.getAccount().getBalance()>=1000){ player.getAccount().setBalance(player.getAccount().getBalance() -1000);}
+            break;
+        case "Roll the Dice":
+             //Roll the dice
+            if (controller.dice1.getFaces()==controller.dice2.getFaces())
+            //else if (controller.dice1 != controller.dice2)
+                break;
+      }
+            //stay in jail... max=3 rounds
+        /*case 3 "Use a Get-Out-Of-Jail Card":
+             //check if you have a card, when card is made
+            if ()
 
+            break; */
+//boolean "yes" or "no" at last - to see if the players has made their choice.
+    }
 }
