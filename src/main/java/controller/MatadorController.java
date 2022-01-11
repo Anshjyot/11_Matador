@@ -108,36 +108,10 @@ public class MatadorController {
     private void NumberOfPlayers() { // Start money declaration
         int playerList = guiController.getPlayerList();
 
-        /**
-        //det her kan slettes?
-        if (playerList == 3) {
-            STARTBALANCE = 30000;
-        }
-        if (playerList == 4) {
-            STARTBALANCE = 30000;
-        }
-        if (playerList == 5) {
-            STARTBALANCE = 30000;
-        }
-        if (playerList == 6) {
-            STARTBALANCE = 30000;
-        }
-        */
         players = new Player[playerList];
         playerNames = new String[playerList];
 
         for (int i = 0; i < playerList; i++) {
-            /**
-            //opretter navne og alder array med længde af antal spillere.
-            String[] temporaryName = new String[names.length + 1];
-            int[] temporaryAge = new int[ages.length+1];
-            for (int j = 0; j < names.length; j++) {
-                temporaryName[j]=names[j];
-                temporaryAge[j]=ages[j];
-            }
-            names = temporaryName;
-            ages = temporaryAge;
-            */
 
             //Indtast navn
             String name = guiController.getPlayerName(i);

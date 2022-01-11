@@ -19,7 +19,7 @@ public class ChanceField extends Field { // This class extends the Field class a
 
     @Override
     public void Arrived(Player p) { // Creates different outcomes when landing on the Chance-fields
-
+        /**
         super.Arrived(p);
         int cards = (int) (Math.random()*4);
         switch (cards){
@@ -48,6 +48,7 @@ public class ChanceField extends Field { // This class extends the Field class a
                 break;
             default: System.out.println(cards);
         }
+         */
 
 
     }
