@@ -29,7 +29,7 @@ public class GUIController {
     }
     public void initializeBoard(FieldController board) { // Initializing the board
         this.board = board;
-        this.gui = new GUI(board.BoardCreator(),new Color(87, 167, 26)); // Change game-board color
+        this.gui = new GUI(board.BoardCreator(),new Color(14, 162, 124)); // Change game-board color
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI

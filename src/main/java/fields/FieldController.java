@@ -25,8 +25,6 @@ public class FieldController {
     }
     protected GUI gui;
 
-
-
     public GUI_Field[] BoardCreator() {
 
         fields[0] = new GUI_Start("Start", "Modtag: 4.000", "Modtag kr. 4.000,-\nnår de passerer start", Color.RED, Color.BLACK);
