@@ -2,6 +2,8 @@ package chance;
 
 import GUI.GUIController;
 import game.Player;
+
+import java.lang.reflect.Array;
 import java.util.Random;
 
 public class ChanceCardController {
