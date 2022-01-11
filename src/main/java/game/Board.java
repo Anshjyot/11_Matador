@@ -9,7 +9,7 @@ import gui_fields.*;
 public class Board {
     GUI_Field[] fields = new GUI_Field[40];
     Field[] squares = new Field[40];
-    public Board(List<Player> players, GUIController controller) {
+    public Board(Player[] players, GUIController controller) {
         CreateStreets(players, controller);
     }
 
@@ -68,7 +68,7 @@ public class Board {
     }
 
 
-    public void CreateStreets(List<Player> players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
+    public void CreateStreets(Player[] players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
         squares[0] = new StartField("START");
         //squares[1] = new OwnedProperty("Rødovrevej",1200, 1000,50,250,750,2250,4000,6000,controller);
         squares[1] = new OwnedProperty("Rødovrevej",1200,1000,new int[]{50,250,750,2250,4000,6000}, new Color(75, 155, 225),1,controller);

@@ -8,10 +8,10 @@ import java.util.List;
 public class ChanceField extends Field { // This class extends the Field class and creates the ChanceCard
 
     // int outcome;
-    private List<Player> players;
+    private Player[] players;
     private GUIController controller;
 
-    public ChanceField(String fieldName, List<Player> players, GUIController controller){
+    public ChanceField(String fieldName, Player[] players, GUIController controller){
         super(fieldName);
         this.controller = controller;
         this.players = players;

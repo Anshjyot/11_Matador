@@ -2,18 +2,13 @@
 package controller;
 
 import GUI.GUIController;
-import fields.Field;
-import fields.OwnedProperty;
 import game.Board;
 
 
 import game.Player;
 import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
 import gui_main.GUI;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -21,9 +16,11 @@ public class MatadorController {
 
     private final int StartField = 0;
     private GUIController guiController = new GUIController();
-    private int startBalance;
+    private final int STARTBALANCE = 30000;
     private boolean noWinner = true;
-    List<Player> players = new ArrayList<>();
+    Player[] players;
+    String[] playerNames;
+    Player currentPlayer;
     Board board;
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
@@ -47,29 +44,29 @@ public class MatadorController {
 
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
-            for (int i = 0; i < players.size(); i++) {
+            for (int i = 0; i < players.length; i++) {
                 int faceValue = guiController.setDice();
+                currentPlayer = players[i];
+                guiController.RemoveCar(currentPlayer.getPosition(), i);
 
-                guiController.RemoveCar(players.get(i).getPosition(), i);
-
-                if (players.get(i).getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
+                if (currentPlayer.getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
                     StartField(i);
-                    players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
+                    currentPlayer.setPosition(currentPlayer.getPosition() + faceValue - 40);
 
                 } else {
-                    players.get(i).setPosition(players.get(i).getPosition() + faceValue);
+                    currentPlayer.setPosition(currentPlayer.getPosition() + faceValue);
                 }
 
                 // guiController.addHouse();
                 // guiController.WannaBuy();
-                if(players.get(i).getPosition()-faceValue > 0){
-                    guiController.AddCar(players.get(i).getPosition()-faceValue, i);
+                if(currentPlayer.getPosition()-faceValue > 0){
+                    guiController.AddCar(currentPlayer.getPosition()-faceValue, i);
                 }else{
-                    guiController.AddCar(players.get(i).getPosition(), i);
+                    guiController.AddCar(currentPlayer.getPosition(), i);
                 }
                 for(int j = 1; j <= faceValue; j++) {
                     System.out.println(j);
-                    int newPos = (players.get(i).getPosition()-faceValue)+j;
+                    int newPos = (currentPlayer.getPosition()-faceValue)+j;
                     guiController.AddCar(newPos, i);
                     Thread.sleep(100);
                     guiController.RemoveCar(newPos-1, i);
@@ -90,10 +87,10 @@ public class MatadorController {
         int loserBalance = 0;
         List<String> winnerName = new ArrayList<String>();
 
-        if (players.get(player).getAccount().getBalance() < 0) {
-            for (int i = 0; i < players.size(); i++) {
-                if (players.get(i).getAccount().getBalance() > loserBalance) {
-                    winnerName.add(players.get(i).getPlayerName());
+        if (players[player].getAccount().getBalance() < 0) {
+            for (int i = 0; i < players.length; i++) {
+                if (currentPlayer.getAccount().getBalance() > loserBalance) {
+                    winnerName.add(currentPlayer.getPlayerName());
 
                 }
             }
@@ -111,43 +108,53 @@ public class MatadorController {
     private void NumberOfPlayers() { // Start money declaration
         int playerList = guiController.getPlayerList();
 
+        /**
+        //det her kan slettes?
         if (playerList == 3) {
-            startBalance = 30000;
+            STARTBALANCE = 30000;
         }
         if (playerList == 4) {
-            startBalance = 30000;
+            STARTBALANCE = 30000;
         }
         if (playerList == 5) {
-            startBalance = 30000;
+            STARTBALANCE = 30000;
         }
         if (playerList == 6) {
-            startBalance = 30000;
+            STARTBALANCE = 30000;
         }
-
+        */
+        players = new Player[playerList];
+        playerNames = new String[playerList];
 
         for (int i = 0; i < playerList; i++) {
-            String[] temporayName = new String[names.length + 1];
+            /**
+            //opretter navne og alder array med længde af antal spillere.
+            String[] temporaryName = new String[names.length + 1];
             int[] temporaryAge = new int[ages.length+1];
             for (int j = 0; j < names.length; j++) {
-                temporayName[j]=names[j];
+                temporaryName[j]=names[j];
                 temporaryAge[j]=ages[j];
             }
-            names = temporayName;
+            names = temporaryName;
             ages = temporaryAge;
+            */
+
+            //Indtast navn
             String name = guiController.getPlayerName(i);
             int age = 0;
             boolean ageIsInt;
             do {
                 try {
+                    //indtast alder
                     age = guiController.getPlayerAge(i);
                     ageIsInt = age >= 10 && age <= 150;
                 } catch (NumberFormatException e) {
                     ageIsInt = false;
                 }
             } while (!ageIsInt);
-
-            ages[i] = age;
-            players.add(new Player(name, age, startBalance, StartField, i));
+            players[i] = new Player(name,age, STARTBALANCE,StartField,i);
+            //ages[i] = age;
+            //players.add(new Player(name, age, startBalance, StartField, i));
         }
 
         guiController.addPlayers(players); // Adds players to the GUI
@@ -155,12 +162,12 @@ public class MatadorController {
     }
 
     private void FieldOutcome(int i) { // The field outcome method
-        board.getSquare(players.get(i).getPosition()).Arrived(players.get(i));
+        board.getSquare(currentPlayer.getPosition()).Arrived(currentPlayer);
 
     }
 
     private void StartField(int i) { // You get 4.000 dkk when you pass the Start-field
-        players.get(i).getAccount().setBalance(players.get(i).getAccount().getBalance() + 4000);
+        currentPlayer.getAccount().setBalance(currentPlayer.getAccount().getBalance() + 4000);
     }
 
 }

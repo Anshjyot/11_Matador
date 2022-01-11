@@ -55,8 +55,8 @@ public class GUIController {
         return dice1.getFaces() + dice2.getFaces();
     }
 
-    public void addPlayers(List<Player> players) { // Creates different types of game-pieces
-        this.guiPlayers = new GUI_Player[players.size()];
+    public void addPlayers(Player[] players) { // Creates different types of game-pieces
+        this.guiPlayers = new GUI_Player[players.length];
         GUI_Car[] car_choices = {
                 new GUI_Car(Color.PINK, Color.RED, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_GRADIANT),
                 new GUI_Car(Color.BLACK, Color.WHITE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED),
@@ -66,8 +66,8 @@ public class GUIController {
                 new GUI_Car(Color.RED, Color.ORANGE, GUI_Car.Type.UFO, GUI_Car.Pattern.FILL)
         };
 
-        for (int i = 0; i < players.size(); i++) { // Array of players in the GUI
-            this.guiPlayers[i] = new GUI_Player(players.get(i).getPlayerName(), players.get(i).getAccount().getBalance(), car_choices[i]);
+        for (int i = 0; i < players.length; i++) { // Array of players in the GUI
+            this.guiPlayers[i] = new GUI_Player(players[i].getPlayerName(), players[i].getAccount().getBalance(), car_choices[i]);
             AddCar(0, i);
             gui.addPlayer(this.guiPlayers[i]);
         }
