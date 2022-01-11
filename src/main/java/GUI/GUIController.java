@@ -107,13 +107,9 @@ public class GUIController {
     //choose if you wanna buy the property
   public void WannaBuy(OwnedProperty property, Player player) {
       boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
-      if (yes == true) {
-          if (OwnedProperty.isThereAnOwner) {
-              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
-              property.buyDeed(player);
+      if (yes) {
+          property.buyDeed(player);
           }
-      } else {
-
   } }
-}
+
 

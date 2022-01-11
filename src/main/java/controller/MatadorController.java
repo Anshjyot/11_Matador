@@ -30,6 +30,8 @@ public class MatadorController {
     protected GUI gui;
     private final int Everyfield = 40;
     private GUI_Field[] fields;
+    private OwnedProperty property;
+    private Player player;
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
@@ -52,27 +54,33 @@ public class MatadorController {
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);
 
-                if (players.get(i).getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
+                //guiController.addHouse(property);
+                //guiController.WannaBuy(property,player);
+
+
+                /*if (players.get(i).getPosition() - faceValue > 0) {
+                    guiController.AddCar(players.get(i).getPosition() - faceValue, i);
+                } else {
+                    guiController.AddCar(players.get(i).getPosition(), i);
+                }*/
+
+                for (int j = 0; j < faceValue; j++) {
+                    int newPos = (players.get(i).getPosition() + j)%39;
+                    System.out.println(j+ " + " + faceValue+ " + " + players.get(i).getPosition()+" = "+ newPos);
+                    System.out.println();
+
+                    guiController.RemoveCar(newPos, i);
+                    guiController.AddCar((newPos+1)%39, i);
+                    Thread.sleep(100);
+
+                }
+                 // Updating player position
+                if (players.get(i).getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
                     StartField(i);
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
 
                 } else {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
-                }
-
-                // guiController.addHouse();
-                // guiController.WannaBuy();
-                if(players.get(i).getPosition()-faceValue > 0){
-                    guiController.AddCar(players.get(i).getPosition()-faceValue, i);
-                }else{
-                    guiController.AddCar(players.get(i).getPosition(), i);
-                }
-                for(int j = 1; j <= faceValue; j++) {
-                    System.out.println(j);
-                    int newPos = (players.get(i).getPosition()-faceValue)+j;
-                    guiController.AddCar(newPos, i);
-                    Thread.sleep(100);
-                    guiController.RemoveCar(newPos-1, i);
                 }
                 FieldOutcome(i); // The field outcome for the specific field
 
@@ -126,13 +134,13 @@ public class MatadorController {
 
 
         for (int i = 0; i < playerList; i++) {
-            String[] temporayName = new String[names.length + 1];
+            String[] temporaryName = new String[names.length + 1];
             int[] temporaryAge = new int[ages.length+1];
             for (int j = 0; j < names.length; j++) {
-                temporayName[j]=names[j];
+                temporaryName[j]=names[j];
                 temporaryAge[j]=ages[j];
             }
-            names = temporayName;
+            names = temporaryName;
             ages = temporaryAge;
             String name = guiController.getPlayerName(i);
             int age = 0;
