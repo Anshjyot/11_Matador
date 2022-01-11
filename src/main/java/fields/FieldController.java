@@ -1,15 +1,17 @@
-package game;
+package fields;
 
 import java.awt.Color;
 import java.util.List;
 import GUI.GUIController;
 import fields.*;
+import game.Player;
 import gui_fields.*;
+import gui_main.GUI;
 
-public class Board {
+public class FieldController {
     GUI_Field[] fields = new GUI_Field[40];
     Field[] squares = new Field[40];
-    public Board(List<Player> players, GUIController controller) {
+    public FieldController(List<Player> players, GUIController controller) {
         CreateStreets(players, controller);
     }
 
@@ -21,6 +23,7 @@ public class Board {
         return squares[i];
 
     }
+    protected GUI gui;
 
     public GUI_Field[] BoardCreator() {
 

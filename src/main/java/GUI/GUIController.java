@@ -4,7 +4,7 @@ import java.util.List;
 
 import fields.Field;
 import fields.OwnedProperty;
-import game.Board;
+import fields.FieldController;
 
 import game.Dice;
 import game.Player;
@@ -19,7 +19,7 @@ public class GUIController {
     private GUI gui;
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6);
-    Board board;
+    FieldController board;
     private Color[] playercolors;
     private GUI_Player[] players;
     Field[] squares = new Field[40];
@@ -27,9 +27,9 @@ public class GUIController {
 
     public GUIController() {
     }
-    public void initializeBoard(Board board) { // Initializing the board
+    public void initializeBoard(FieldController board) { // Initializing the board
         this.board = board;
-        this.gui = new GUI(board.BoardCreator(),new Color(87, 167, 26)); // Change game-board color
+        this.gui = new GUI(board.BoardCreator(),new Color(14, 162, 124)); // Change game-board color
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI
