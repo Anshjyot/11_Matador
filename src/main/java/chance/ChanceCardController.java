@@ -9,6 +9,7 @@ public class ChanceCardController {
         private ChanceCard[] chanceCards;
         private Player[] players; //works when we've made players as an array instead of a list.
         private Player otherPlayer;
+
     public ChanceCard[] makeChanceCards(){
             chanceCards = new ChanceCard[]{
                     new TypeMoneyCard(-1000, "You have driven over a 'full stop'. Pay a 1000kr fine."),
@@ -68,7 +69,7 @@ public class ChanceCardController {
                 p.setPosition(card.getCardDestination());
                 controller.AddCar(p.getPosition(),p.getIndex());
             }
-            //this does not work. Will be fixed monday.
+            //will work when players is an array instead of a List.
             else if(topCard instanceof TypePayPlayerCard){
                 TypePayPlayerCard card = ((TypePayPlayerCard)topCard);
                 System.out.println("Pay player");
@@ -104,6 +105,4 @@ public class ChanceCardController {
             }
             return topCard;
         }
-
-    private Player otherPlayers;
 }
