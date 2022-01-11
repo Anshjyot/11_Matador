@@ -2,18 +2,13 @@
 package controller;
 
 import GUI.GUIController;
-import fields.Field;
-import fields.OwnedProperty;
-import game.Board;
+import fields.FieldController;
 
 
 import game.Player;
 import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
 import gui_main.GUI;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -24,7 +19,7 @@ public class MatadorController {
     private int startBalance;
     private boolean noWinner = true;
     List<Player> players = new ArrayList<>();
-    Board board;
+    FieldController board;
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
     protected GUI gui;
@@ -33,7 +28,7 @@ public class MatadorController {
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
-        board = new Board(players, guiController);
+        board = new FieldController(players, guiController);
         this.guiController.initializeBoard(board);
         NumberOfPlayers();
         try {
@@ -54,10 +49,10 @@ public class MatadorController {
 
                 if (players.get(i).getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
                     StartField(i);
-                    players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
+                    players.get(i).setPosition((players.get(i).getPosition() + faceValue - 40)%40);
 
                 } else {
-                    players.get(i).setPosition(players.get(i).getPosition() + faceValue);
+                    players.get(i).setPosition((players.get(i).getPosition() + faceValue)%40);
                 }
 
                 // guiController.addHouse();
@@ -67,9 +62,10 @@ public class MatadorController {
                 }else{
                     guiController.AddCar(players.get(i).getPosition(), i);
                 }
+
                 for(int j = 1; j <= faceValue; j++) {
                     System.out.println(j);
-                    int newPos = (players.get(i).getPosition()-faceValue)+j;
+                    int newPos = ((players.get(i).getPosition()-faceValue)+j);
                     guiController.AddCar(newPos, i);
                     Thread.sleep(100);
                     guiController.RemoveCar(newPos-1, i);
