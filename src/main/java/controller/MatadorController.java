@@ -3,8 +3,9 @@ package controller;
 
 import GUI.GUIController;
 import fields.Field;
+import fields.FieldController;
 import fields.OwnedProperty;
-import game.Board;
+import fields.FieldController;
 
 
 import game.Player;
@@ -24,7 +25,7 @@ public class MatadorController {
     private int startBalance;
     private boolean noWinner = true;
     List<Player> players = new ArrayList<>();
-    Board board;
+    FieldController board;
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
     protected GUI gui;
@@ -35,7 +36,7 @@ public class MatadorController {
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
-        board = new Board(players, guiController);
+        board = new FieldController(players, guiController);
         this.guiController.initializeBoard(board);
         NumberOfPlayers();
         try {
