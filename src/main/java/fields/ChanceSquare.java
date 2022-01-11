@@ -4,7 +4,6 @@ import GUI.GUIController;
 import chance.*;
 import game.Player;
 
-import javax.lang.model.element.TypeParameterElement;
 import java.util.List;
 import java.util.Random;
 
@@ -14,12 +13,18 @@ public class ChanceSquare extends Square { // This class extends the Square clas
     private List<Player> players;
     private GUIController controller;
     private ChanceCard[] chanceCards;
-    private Player otherPlayers;
+    private Player otherPlayer;
 
     public ChanceSquare(String fieldName, List<Player> players, GUIController controller){
         super(fieldName);
         this.controller = controller;
         this.players = players;
+
+        for (Player p : players) {
+            System.out.println("Spillers navn : " + p.getPlayerName());
+
+        }
+
         chanceCards = new ChanceCard[]{
                 new TypeMoneyCard(-1000, "You have driven over a 'full stop'. Pay a 1000kr fine."),
                 new TypeMoneyCard(-300,"Pay 300kr for a car wash and oil change."),
@@ -83,16 +88,25 @@ public class ChanceSquare extends Square { // This class extends the Square clas
             TypePayPlayerCard card = ((TypePayPlayerCard)topCard);
             System.out.println("Pay player");
             System.out.println(p.getAccount().getBalance());
+
+            int noOtherPlayers = 0;
+
             for (Player player : players){
+                System.out.println("Nuværende spillers balance: " + player.getAccount().getBalance());
                 if (player == p) {
-                    continue;
                 }
                 else {
-                    otherPlayers = player;
+                    otherPlayer = player;
+                    noOtherPlayers++;
                 }
             }
-            otherPlayers.getAccount().setBalance(otherPlayers.getAccount().getBalance()-card.getCardTotal());
-            p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardTotal());
+            otherPlayer.getAccount().setBalance(otherPlayer.getAccount().getBalance()-card.getCardTotal());
+            p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardTotal() * noOtherPlayers);
+            //for (Player player : players) {
+            //    switch (player) {
+            //        case p:
+            //    }
+            //}
         }
         else if (topCard instanceof TypeConditionCard) {
             TypeConditionCard card = ((TypeConditionCard) topCard);
