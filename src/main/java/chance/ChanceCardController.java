@@ -80,19 +80,15 @@ public class ChanceCardController {
                 for (Player player : players){
                     System.out.println("Nuværende spillers balance: " + player.getAccount().getBalance());
                     if (player == p) {
+                        p = player;
                     }
                     else {
                         otherPlayer = player;
                         noOtherPlayers++;
                     }
+                    otherPlayer.getAccount().setBalance(otherPlayer.getAccount().getBalance()-card.getCardTotal());
                 }
-                otherPlayer.getAccount().setBalance(otherPlayer.getAccount().getBalance()-card.getCardTotal());
                 p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardTotal() * noOtherPlayers);
-                //for (Player player : players) {
-                //    switch (player) {
-                //        case p:
-                //    }
-                //}
             }
             else if (topCard instanceof TypeConditionCard) {
                 TypeConditionCard card = ((TypeConditionCard) topCard);
