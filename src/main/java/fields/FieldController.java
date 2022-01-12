@@ -220,16 +220,7 @@ public class FieldController {
 
         }
     }
-    public ChanceCard[] shuffle (){
-        Random rand = new Random();
-        for(int i = 0; i<chanceField.getChanceCards().length;i++) {
-            int randomIndexToSwap = rand.nextInt(chanceField.getChanceCards().length);
-            ChanceCard temp = chanceField.getChanceCards()[randomIndexToSwap];
-            chanceField.getChanceCards()[randomIndexToSwap] = chanceField.getChanceCards()[i];
-            chanceField.getChanceCards()[i] = temp;}
-        return chanceField.getChanceCards();
-    }
-
+   
     public String getOwner() {
         if (owner == null) {
             return "";
