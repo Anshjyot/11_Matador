@@ -2,6 +2,7 @@
 package controller;
 
 import GUI.GUIController;
+import chance.ChanceCard;
 import fields.FieldController;
 import fields.OwnedProperty;
 import game.Cup;

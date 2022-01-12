@@ -2,7 +2,10 @@ package fields;
 
 import java.awt.Color;
 import java.util.List;
+import java.util.Random;
+
 import GUI.GUIController;
+import chance.ChanceCard;
 import fields.*;
 import game.Player;
 import gui_fields.*;
@@ -11,6 +14,7 @@ import gui_main.GUI;
 public class FieldController {
     GUI_Field[] fields = new GUI_Field[40];
     Field[] squares = new Field[40];
+    ChanceField chanceField = new ChanceField();
 
     public FieldController(List<Player> players, GUIController controller) {
         CreateStreets(players, controller);
@@ -215,6 +219,15 @@ public class FieldController {
             controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
 
         }
+    }
+    public ChanceCard[] shuffle (){
+        Random rand = new Random();
+        for(int i = 0; i<chanceField.getChanceCards().length;i++) {
+            int randomIndexToSwap = rand.nextInt(chanceField.getChanceCards().length);
+            ChanceCard temp = chanceField.getChanceCards()[randomIndexToSwap];
+            chanceField.getChanceCards()[randomIndexToSwap] = chanceField.getChanceCards()[i];
+            chanceField.getChanceCards()[i] = temp;}
+        return chanceField.getChanceCards();
     }
 
     public String getOwner() {
