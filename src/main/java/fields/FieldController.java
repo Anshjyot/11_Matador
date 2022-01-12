@@ -151,6 +151,39 @@ public class FieldController {
         }
 
     }
+    int price;
+    int rent0;
+    int rent1;
+    int rent2;
+    int rent3;
+    Player owner;
+    GUIController controller;
+
+    public void ArrivedFerry (Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
+        if (owner == null) {
+            player.getAccount().setBalance(player.getAccount().getBalance() - price);
+            owner = player;
+            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+
+        } else {
+            player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
+            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
+            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
+        }
+    }
+
+    public void ArrivedBrewery(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
+        if (owner == null) {
+            player.getAccount().setBalance(player.getAccount().getBalance() - price);
+            owner = player;
+            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+
+        } else {
+            player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
+            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
+            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
+        }
+    }
 
 }
 
