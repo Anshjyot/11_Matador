@@ -111,15 +111,18 @@ public class GUIController {
           if (OwnedProperty.isThereAnOwner) {
               GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
               property.buyDeed(player);
+         // field.setBorder(Color.RED,Color.RED);
+              //  gui.showMessage("You now own this field");
           }
       } else {
 
-  }
     }
-
+  }
     public String getOutOfJail() {
         String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
         return jailChoice;
     }
+
 }
+
 

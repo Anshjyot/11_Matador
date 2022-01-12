@@ -51,6 +51,7 @@ public class MatadorController {
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
+                //int faceValue=30;
                 int faceValue = guiController.setDice();
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);
