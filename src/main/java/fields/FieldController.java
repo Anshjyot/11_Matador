@@ -214,7 +214,6 @@ public class FieldController {
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
             controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
 
-
         }
     }
 
