@@ -4,8 +4,8 @@ public class TypeMoveToCard extends ChanceCard {
     int cardDestination;
 
     public TypeMoveToCard(int destination, String message) {
-        super(destination, message);
-        cardDestination = destination;
+        this.cardMessage = message;
+        this.cardDestination = destination;
     }
 
 

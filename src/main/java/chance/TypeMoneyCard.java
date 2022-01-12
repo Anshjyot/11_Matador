@@ -1,14 +1,15 @@
 package chance;
 
 public class TypeMoneyCard extends ChanceCard {
+    private int cardTotal;
 
     public TypeMoneyCard(int total, String message) {
-        super(total, message);
+        this.cardTotal = total;
+        this.cardMessage = message;
     }
 
-    @Override
-    public int getCardValue() {
-        return super.getCardValue();
+    public int getCardTotal() {
+        return cardTotal;
     }
 
     @Override

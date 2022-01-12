@@ -6,7 +6,8 @@ public class TypeConditionCard extends ChanceCard{
     protected String message2;
 
     public TypeConditionCard(int total, String message1, String message2) {
-        super(total, message1);
+        this.total = total;
+        this.message1 = message1;
         this.message2 = message2;
     }
 
