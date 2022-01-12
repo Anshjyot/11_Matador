@@ -1,40 +1,75 @@
+
 package controller;
 
 import GUI.GUIController;
-import chance.ChanceCardController;
-import game.Board;
+import fields.FieldController;
+import fields.OwnedProperty;
+import game.Cup;
+import game.Dice;
 import game.Player;
-
+import gui_main.GUI;
 import java.util.*;
 import java.util.List;
 
 public class MatadorController {
 
     private final int StartField = 0;
-    private GUIController guiController;
+    private GUIController guiController = new GUIController();
     private int startBalance;
     private boolean noWinner = true;
     List<Player> players = new ArrayList<>();
-    Board board;
-    ChanceCardController cardController = new ChanceCardController();
+    FieldController board;
+    protected int[] ages = new int[0];
+    protected String[] names = new String[0];
+    protected GUI gui;
+    private Player player;
+    private OwnedProperty property;
+    private Cup cup = new Cup();
+
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
-        this.guiController = new GUIController(players);
-        this.board = guiController.board; //DÅRLIGT
+        board = new FieldController(players, guiController);
         this.guiController.initializeBoard(board);
         NumberOfPlayers();
-        gameLoop();
+        try {
+            gameLoop();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private void gameLoop() {
+
+    private void gameLoop() throws InterruptedException {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
-                int faceValue = guiController.setDice();
+                //int faceValue=30;
+                guiController.AskForDice();
+                int faceValue = cup.CupRoll();
+                guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
+
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);
 
-                if (players.get(i).getPosition() + faceValue > 39) { // When you exceed the last field, you get to a new round
+                //guiController.addHouse(property);
 
+
+                /*if (players.get(i).getPosition() - faceValue > 0) {
+                    guiController.AddCar(players.get(i).getPosition() - faceValue, i);
+                } else {
+                    guiController.AddCar(players.get(i).getPosition(), i);
+                }*/
+
+                for (int j = 0; j < faceValue; j++) {
+                    int newPos = (players.get(i).getPosition() + j)%40;
+
+                    guiController.RemoveCar(newPos, i);
+                    guiController.AddCar((newPos+1)%40, i);
+                    Thread.sleep(150);
+
+                }
+                 // Updating player position
+                if (players.get(i).getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
                     StartField(i);
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
 
@@ -42,14 +77,18 @@ public class MatadorController {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
                 }
 
-                guiController.AddCar(players.get(i).getPosition(), i);
+               // guiController.WannaBuy(property,player);
+
                 FieldOutcome(i); // The field outcome for the specific field
 
                 for (Player player : players) {
                     guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
+
                 }
+
                 Winner(i); // Checking if the winner is found.
             }
+
         }
     }
 
@@ -64,39 +103,54 @@ public class MatadorController {
 
                 }
             }
+
             if (winnerName.size() == 1) {
                 guiController.getWinnerMessage(winnerName);
                 System.exit(0); // Games finishes when the winner is announced
             }
+
         }
     }
 
+
+
     private void NumberOfPlayers() { // Start money declaration
         int playerList = guiController.getPlayerList();
-
-        if (playerList == 3) {
-            startBalance = 30000;
-        }
-        if (playerList == 4) {
-            startBalance = 30000;
-        }
-        if (playerList == 5) {
-            startBalance = 30000;
-        }
-        if (playerList == 6) {
-            startBalance = 30000;
-        }
+        startBalance = 30000;
 
 
         for (int i = 0; i < playerList; i++) {
+            String[] temporaryName = new String[names.length + 1];
+            int[] temporaryAge = new int[ages.length+1];
+            for (int j = 0; j < names.length; j++) {
+                temporaryName[j]=names[j];
+                temporaryAge[j]=ages[j];
+            }
+            names = temporaryName;
+            ages = temporaryAge;
             String name = guiController.getPlayerName(i);
-            players.add(new Player(name, startBalance, StartField, i));
+            int age = 0;
+            boolean ageIsInt;
+            do {
+                try {
+                    age = guiController.getPlayerAge(i);
+                    ageIsInt = age >= 10 && age <= 150;
+                } catch (NumberFormatException e) {
+                    ageIsInt = false;
+                }
+            } while (!ageIsInt);
+
+            ages[i] = age;
+            players.add(new Player(name, age, startBalance, StartField, i));
         }
+
         guiController.addPlayers(players); // Adds players to the GUI
+
     }
 
     private void FieldOutcome(int i) { // The field outcome method
         board.getSquare(players.get(i).getPosition()).Arrived(players.get(i));
+
     }
 
     private void StartField(int i) { // You get 4.000 dkk when you pass the Start-field
@@ -104,5 +158,3 @@ public class MatadorController {
     }
 
 }
-
-

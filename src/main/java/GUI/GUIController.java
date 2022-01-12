@@ -1,30 +1,34 @@
 package GUI;
 import java.awt.*;
 import java.util.List;
-import game.Board;
-import game.Dice;
+
+import fields.Field;
+import fields.OwnedProperty;
+import fields.FieldController;
+
+import game.Cup;
 import game.Player;
 
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Player;
+import gui_fields.*;
 import gui_main.GUI;
 
 public class GUIController {
 
+    public Cup cup;
     private GUI_Player[] guiPlayers;
-    private Dice dice1 = new Dice();
-    private Dice dice2 = new Dice();
+    GUIController controller;
     private GUI gui;
+    FieldController board;
+    private Color[] playercolors;
+    private GUI_Player[] players;
+    Field[] squares = new Field[40];
+    GUI_Field[] fields = new GUI_Field[40];
 
-    public Board board;
-
-    public GUIController(List<Player> players) {
-        this.board = new Board(players, this);
-        this.gui = new GUI(board.BoardCreator(),new Color(87, 167, 26));
+    public GUIController() {
     }
-    public void initializeBoard(Board board) { // Initializing the board
-
-         // Change game-board color
+    public void initializeBoard(FieldController board) { // Initializing the board
+        this.board = board;
+        this.gui = new GUI(board.BoardCreator(),new Color(14, 162, 124)); // Change game-board color
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI
@@ -36,15 +40,18 @@ public class GUIController {
         return name;
     }
 
-    public int setDice() { // Creates the dice in the GUI
-        gui.getUserButtonPressed("Throw Dice", "Throw");
-        dice1.ThrowDice();
-        dice2.ThrowDice();
-        gui.setDice(dice1.getDice(),dice2.getDice()); // Only one dice visible on the board
-        return dice1.getDice() + dice2.getDice();
+    public int getPlayerAge(int i) { // Entering the names of the players in the GUI
+            int age = gui.getUserInteger("Enter the age of Player" + (i + 1) + " (10+) ");
+            return age;
+        }
 
+    public void AskForDice() {
+        gui.getUserButtonPressed("Throw Dice", "Throw");
     }
 
+    public void setDice(int die1, int die2) { // Creates the dice in the GUI
+        gui.setDice(die1, die2); // two dice visible on the board
+    }
     public void addPlayers(List<Player> players) { // Creates different types of game-pieces
         this.guiPlayers = new GUI_Player[players.size()];
         GUI_Car[] car_choices = {
@@ -52,23 +59,25 @@ public class GUIController {
                 new GUI_Car(Color.BLACK, Color.WHITE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED),
                 new GUI_Car(Color.BLUE, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED),
                 new GUI_Car(Color.YELLOW, Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA),
-                new GUI_Car(Color.GREEN,Color.DARK_GRAY,GUI_Car.Type.TRACTOR,GUI_Car.Pattern.HORIZONTAL_LINE),
-                new GUI_Car(Color.RED,Color.ORANGE,GUI_Car.Type.UFO,GUI_Car.Pattern.FILL)
+                new GUI_Car(Color.GREEN, Color.DARK_GRAY, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_LINE),
+                new GUI_Car(Color.PINK, new Color(117, 15, 255), GUI_Car.Type.UFO, GUI_Car.Pattern.FILL)
         };
+
         for (int i = 0; i < players.size(); i++) { // Array of players in the GUI
             this.guiPlayers[i] = new GUI_Player(players.get(i).getPlayerName(), players.get(i).getAccount().getBalance(), car_choices[i]);
             AddCar(0, i);
             gui.addPlayer(this.guiPlayers[i]);
         }
+
     }
 
-        //Add to field controller.
     public void AddCar(int position, int player) { //Adds car
         board.getField(position).setCar(guiPlayers[player], true);
     } // Adds the car to the GUI
     public void RemoveCar(int position2, int player2) {
         board.getField(position2).setCar(guiPlayers[player2], false);
     } // Removes the car from the GUI
+
 
     public void setNewBalance(int player, int newBalance) {
         this.guiPlayers[player].setBalance(newBalance);
@@ -82,4 +91,35 @@ public class GUIController {
     public void showMessage(String message) {
         gui.displayChanceCard(message);
     } // Shows the Chance card outcome message
+
+
+    public void addHouse(OwnedProperty property) {
+        if(board.SameOwnerColor(property)) {
+            property.addHouse();
+            GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+            field.setHouses(1);
+        }
+    }
+
+    //choose if you wanna buy the property
+  public void WannaBuy(OwnedProperty property, Player player) {
+      boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
+      if (yes == true) {
+          if (OwnedProperty.isThereAnOwner) {
+              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+              property.buyDeed(player);
+         // field.setBorder(Color.RED,Color.RED);
+              //  gui.showMessage("You now own this field");
+          }
+      } else {
+
+    }
+  }
+    public String getOutOfJail() {
+        String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
+        return jailChoice;
+    }
+
 }
+
+
