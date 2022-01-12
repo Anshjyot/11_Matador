@@ -25,12 +25,15 @@ public class JailField extends Field { // This class extends the Field class and
     }
 
     public void GetOutOfJail(Player player) {
+        String option=controller.getOutOfJail();
 //The Player can only get out of Jail, if one of three methods has happened
-        switch (controller.getOutOfJail()) {
-            case "Pay1000$":
+        switch (option) {
+            case "Pay 1000$":
                 //Pay1000$, check if account>=1000
                 if (player.getAccount().getBalance() >= 1000) {
                     player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
+                    // + throwthedice
+                    //controller.setDice();
                 }
 
                 break;
@@ -38,7 +41,10 @@ public class JailField extends Field { // This class extends the Field class and
                 //Roll the dice
                 if (controller.dice1.getFaces() == controller.dice2.getFaces())
                     //else if (controller.dice1 != controller.dice2)
+
                     break;
+            default:
+                System.out.println(option);
         }
         player.printStatus();
         // if (=3, case "Pay1000$" happens) stay in jail... max=3 rounds
