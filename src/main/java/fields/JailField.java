@@ -3,11 +3,14 @@ package fields;
 import GUI.GUIController;
 import game.Dice;
 import game.Player;
+import game.Cup;
 
 public class JailField extends Field { // This class extends the Field class and creates JailSquare.
     private GUIController controller;
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6);
+    private Cup cup = new Cup();
+
 
     public JailField(String fieldName, GUIController controller) {
         super(fieldName);
@@ -32,17 +35,22 @@ public class JailField extends Field { // This class extends the Field class and
                 //Pay1000$, check if account>=1000
                 if (player.getAccount().getBalance() >= 1000) {
                     player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
-                    // + throwthedice
-                    //controller.setDice();
+                    cup.CupRoll();
+
                 }
 
                 break;
             case "Roll the Dice":
-                //Roll the dice
-               // if (controller.dice1.getFaces() == controller.dice2.getFaces())
+
+               // controller.setDice();
+                //Roll the dice, and have a chance to get out of jail for free
+                if (cup.GetDice1Value() == cup.GetDice2Value())
+                {
+                    System.out.println("You got a pair, you get an extra throw");
+                    cup.CupRoll();
                     //else if (controller.dice1 != controller.dice2)
 
-                    break;
+                    break;}
             default:
                 System.out.println(option);
         }
