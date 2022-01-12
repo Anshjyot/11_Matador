@@ -39,7 +39,7 @@ public class JailField extends Field { // This class extends the Field class and
                 break;
             case "Roll the Dice":
                 //Roll the dice
-                if (controller.dice1.getFaces() == controller.dice2.getFaces())
+               // if (controller.dice1.getFaces() == controller.dice2.getFaces())
                     //else if (controller.dice1 != controller.dice2)
 
                     break;
