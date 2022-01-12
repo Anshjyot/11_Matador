@@ -1,6 +1,8 @@
 package controller;
 
 import GUI.GUIController;
+import chance.ChanceCardController;
+import chance.ChanceDeck;
 import game.Board;
 import game.Player;
 
@@ -15,11 +17,13 @@ public class MatadorController {
     private boolean noWinner = true;
     List<Player> players = new ArrayList<>();
     Board board;
+    private ChanceCardController chanceCardControllers = new ChanceCardController();
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new Board(players, guiController);
         this.guiController.initializeBoard(board);
+        chanceCardControllers.makeChanceCards();
         NumberOfPlayers();
         gameLoop();
     }

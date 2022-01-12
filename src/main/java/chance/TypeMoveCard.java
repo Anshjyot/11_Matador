@@ -3,7 +3,8 @@ package chance;
 public class TypeMoveCard extends ChanceCard{
 
     public TypeMoveCard(int noFields, String message) {
-        super(noFields, message);
+        this.cardValue = noFields;
+        this.cardMessage= message;
     }
 
     @Override

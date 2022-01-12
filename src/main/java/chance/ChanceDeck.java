@@ -1,13 +1,13 @@
 package chance;
+import java.util.Arrays;
 
 public class ChanceDeck {
-    static ChanceCard[] createDuplicateCards(int value,String message, int times, String type) {
+    static ChanceCard[] createDuplicateTests(ChanceCard test, int times) {
         ChanceCard[] out = new ChanceCard[times];
-        for (int i = 0; i < out.length; i++) {
-           // out[i] = new ChanceCard(value, message, type);
-        }
+        Arrays.fill(out, test);
         return out;
     }
+    private ChanceCard[] chanceCards;
 
     static ChanceCard[] merge(ChanceCard[]... tss) {
         int length = 0;
@@ -24,4 +24,6 @@ public class ChanceDeck {
         }
         return out;
     }
+
 }
+

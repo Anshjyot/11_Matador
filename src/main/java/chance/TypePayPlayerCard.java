@@ -4,7 +4,8 @@ public class TypePayPlayerCard extends ChanceCard{
     int cardTotal;
 
     public TypePayPlayerCard(int total, String message) {
-        super(total, message);
+        this.cardValue = total;
+        this.cardMessage= message;
     }
 
     public int getCardTotal() {

@@ -6,12 +6,18 @@ public abstract class ChanceCard {
     protected int cardTimes;
     protected String cardType;
 
+    @Override
+    public String toString() {
+        return "ChanceCard{" +
+                "cardValue=" + cardValue +
+                ", cardMessage='" + cardMessage + '\'' +
+                ", cardTimes=" + cardTimes +
+                ", cardType='" + cardType + '\'' +
+                '}';
+    }
 
     public int getCardValue(){return cardValue;}
 
     public String getCardMessage(){return cardMessage;}
 
-    public int getCardTimes(){return cardTimes;}
-
-    public String getCardType(){return cardType;}
 }
