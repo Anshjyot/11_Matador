@@ -17,8 +17,8 @@ public class GUIController {
     private GUI_Player[] guiPlayers;
     GUIController controller;
     private GUI gui;
-    private Dice dice1 = new Dice(6);
-    private Dice dice2 = new Dice(6);
+    public Dice dice1 = new Dice(6);
+    public Dice dice2 = new Dice(6);
     FieldController board;
     private Color[] playercolors;
     private GUI_Player[] players;
@@ -107,9 +107,19 @@ public class GUIController {
     //choose if you wanna buy the property
   public void WannaBuy(OwnedProperty property, Player player) {
       boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
-      if (yes) {
-          property.buyDeed(player);
+      if (yes == true) {
+          if (OwnedProperty.isThereAnOwner) {
+              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+              property.buyDeed(player);
           }
-  } }
+      } else {
 
+  }
+    }
+
+    public String getOutOfJail() {
+        String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
+        return jailChoice;
+    }
+}
 
