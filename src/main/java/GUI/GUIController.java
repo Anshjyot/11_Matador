@@ -16,13 +16,15 @@ public class GUIController {
     private Dice dice2 = new Dice();
     private GUI gui;
 
-    Board board;
+    public Board board;
 
-    public GUIController() {
+    public GUIController(List<Player> players) {
+        this.board = new Board(players, this);
+        this.gui = new GUI(board.BoardCreator(),new Color(87, 167, 26));
     }
     public void initializeBoard(Board board) { // Initializing the board
-        this.board = board;
-        this.gui = new GUI(board.BoardCreator(),new Color(87, 167, 26)); // Change game-board color
+
+         // Change game-board color
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI
@@ -60,7 +62,7 @@ public class GUIController {
         }
     }
 
-
+        //Add to field controller.
     public void AddCar(int position, int player) { //Adds car
         board.getField(position).setCar(guiPlayers[player], true);
     } // Adds the car to the GUI
@@ -80,5 +82,4 @@ public class GUIController {
     public void showMessage(String message) {
         gui.displayChanceCard(message);
     } // Shows the Chance card outcome message
-
 }

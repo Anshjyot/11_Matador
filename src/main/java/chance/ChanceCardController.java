@@ -6,12 +6,16 @@ import java.util.Random;
 
 public class ChanceCardController {
         private GUIController controller;
-        private ChanceCard[] chanceCards;
         private Player[] players; //works when we've made players as an array instead of a list.
         private Player otherPlayer;
+        public ChanceCard[] chanceCards;
+
+        public ChanceCardController(){
+            this.chanceCards = makeChanceCards();
+        }
 
     public ChanceCard[] makeChanceCards(){
-            chanceCards = new ChanceCard[]{
+            return new ChanceCard[]{
                     new TypeMoneyCard(-1000, "You have driven over a 'full stop'. Pay a 1000kr fine."),
                     new TypeMoneyCard(-300,"Pay 300kr for a car wash and oil change."),
                     new TypeMoneyCard(-200,"Pay 200kr for 2 boxes of beer."),
@@ -22,7 +26,6 @@ public class ChanceCardController {
                     new TypeMoveToCard(0,"Move to START"),
                     new TypePayPlayerCard(400,"Receive 400kr from every player")
                     };
-            return chanceCards;
         }
 
         public ChanceCard[] shuffle (){

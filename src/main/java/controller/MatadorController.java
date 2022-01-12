@@ -1,6 +1,7 @@
 package controller;
 
 import GUI.GUIController;
+import chance.ChanceCardController;
 import game.Board;
 import game.Player;
 
@@ -10,15 +11,16 @@ import java.util.List;
 public class MatadorController {
 
     private final int StartField = 0;
-    private GUIController guiController = new GUIController();
+    private GUIController guiController;
     private int startBalance;
     private boolean noWinner = true;
     List<Player> players = new ArrayList<>();
     Board board;
-
+    ChanceCardController cardController = new ChanceCardController();
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
-        board = new Board(players, guiController);
+        this.guiController = new GUIController(players);
+        this.board = guiController.board; //DÅRLIGT
         this.guiController.initializeBoard(board);
         NumberOfPlayers();
         gameLoop();
@@ -95,8 +97,6 @@ public class MatadorController {
 
     private void FieldOutcome(int i) { // The field outcome method
         board.getSquare(players.get(i).getPosition()).Arrived(players.get(i));
-
-
     }
 
     private void StartField(int i) { // You get 4.000 dkk when you pass the Start-field

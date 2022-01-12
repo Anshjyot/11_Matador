@@ -1,6 +1,8 @@
 package fields;
 
 import GUI.GUIController;
+import chance.ChanceCard;
+import chance.ChanceCardController;
 import game.Player;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class ChanceSquare extends Square { // This class extends the Square clas
     // int outcome;
     private List<Player> players;
     private GUIController controller;
+    private ChanceCardController cardController = new ChanceCardController();
 
     public ChanceSquare(String fieldName, List<Player> players, GUIController controller) {
         super(fieldName);
@@ -17,7 +20,7 @@ public class ChanceSquare extends Square { // This class extends the Square clas
     }
     @Override
     public void Arrived(Player p) { // Creates different outcomes when landing on the Chance-fields
-
+        cardController.draw(p);
         /* System.out.println(Arrays.toString(deck.getDeck()));
         super.Arrived(p);
         int cardNumber = deck.getDeck()[i];
