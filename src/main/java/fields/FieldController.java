@@ -187,17 +187,76 @@ public class FieldController {
         }
     }
 
-    public void ArrivedIncomeTax(Player p) { // This field places the player back to VisitJailSquare field.
+    public void ArrivedIncomeTax(Player p) { // This field places makes the player pay 4000.
         controller.showMessage("Betal Indkomst-skat");
         p.getAccount().setBalance(p.getAccount().getBalance() - 4000);
 
     }
-    public void ArrivedExtraordinaryTax(Player p) { // This field places the player back to VisitJailSquare field.
+
+    public void ArrivedExtraordinaryTax(Player p) { // This field makes the player pay 2000
         controller.showMessage("Betal Extraordinær-skat");
         p.getAccount().setBalance(p.getAccount().getBalance() - 2000);
     }
-}
 
+
+    int[] rent;
+    int house;
+    int index;
+    Color color;
+
+    public void ArrivedOwnedProperty(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
+        if (owner == null) {
+            player.getAccount().setBalance(player.getAccount().getBalance() - price);
+            owner = player;
+            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+        } else {
+            player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
+            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
+            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
+
+
+        }
+    }
+
+    public String getOwner() {
+        if (owner == null) {
+            return "";
+        }
+        return owner.getPlayerName();
+
+    }
+
+    //check if there is an owner
+    public boolean isThereAnOwner() {
+        if (owner == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void buyDeed(Player player, String fieldName) {
+        player.getAccount().setBalance(player.getAccount().getBalance() - price);
+        owner = player;
+        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void ArrivedJail(Player p) { // This field places the player back to VisitJailSquare field.
+        controller.showMessage("JAIL TIME");
+        controller.RemoveCar(p.getPosition(), p.getIndex());
+        p.setPosition(p.getPosition() - 16);
+        controller.AddCar(p.getPosition(), p.getIndex());
+    }
+}
 
 
 
