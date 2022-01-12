@@ -57,6 +57,7 @@ public class OwnedProperty extends Field {
     //check if there is an owner
     public boolean isThereAnOwner(){
         if (owner==null) {
+
             return true;
         }
         else {
@@ -82,4 +83,4 @@ public class OwnedProperty extends Field {
     }
 
 
-}
+    }
