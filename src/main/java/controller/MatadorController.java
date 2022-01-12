@@ -3,6 +3,9 @@ package controller;
 
 import GUI.GUIController;
 import fields.FieldController;
+import fields.OwnedProperty;
+import game.Cup;
+import game.Dice;
 import game.Player;
 import gui_main.GUI;
 import java.util.*;
@@ -19,6 +22,11 @@ public class MatadorController {
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
     protected GUI gui;
+    private Player player;
+    private OwnedProperty property;
+    private Dice dice1 = new Dice(6);
+    private Dice dice2 = new Dice(6);
+    private Cup cup = new Cup();
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
@@ -38,12 +46,15 @@ public class MatadorController {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
                 //int faceValue=30;
-                int faceValue = guiController.setDice();
+                guiController.AskForDice();
+                cup.Cup();
+                int faceValue = dice1.getFaces() + dice2.getFaces();
+                guiController.setDice(dice1.getFaces(),dice2.getFaces());
+
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);
 
                 //guiController.addHouse(property);
-                //guiController.WannaBuy(property,player);
 
 
                 /*if (players.get(i).getPosition() - faceValue > 0) {
@@ -68,12 +79,16 @@ public class MatadorController {
                 } else {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
                 }
+
+               // guiController.WannaBuy(property,player);
+
                 FieldOutcome(i); // The field outcome for the specific field
 
                 for (Player player : players) {
                     guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
 
                 }
+
                 Winner(i); // Checking if the winner is found.
             }
 

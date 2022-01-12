@@ -1,10 +1,13 @@
 package fields;
 
 import GUI.GUIController;
+import game.Dice;
 import game.Player;
 
 public class JailField extends Field { // This class extends the Field class and creates JailSquare.
     private GUIController controller;
+    private Dice dice1 = new Dice(6);
+    private Dice dice2 = new Dice(6);
 
     public JailField(String fieldName, GUIController controller) {
         super(fieldName);

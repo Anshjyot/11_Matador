@@ -68,7 +68,6 @@ public class OwnedProperty extends Field {
          player.getAccount().setBalance(player.getAccount().getBalance() - price);
          owner = player;
          controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-
      }
     public Color getColor() {
         return color;

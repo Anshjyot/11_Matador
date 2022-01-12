@@ -1,20 +1,12 @@
-/*package game;
+package game;
 
 public class Cup {
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6);
 
-    public void Cup() {
+    public int Cup() {
         dice1.ThrowDice();
         dice2.ThrowDice();
-    }
-
-    public int Dice1() {
-        return dice1.getFaces();
-    }
-
-    public int Dice2() {
-        return dice2.getFaces();
+        return dice1.getFaces() + dice2.getFaces();
     }
 }
-*/

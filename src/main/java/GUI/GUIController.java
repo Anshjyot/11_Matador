@@ -6,6 +6,7 @@ import fields.Field;
 import fields.OwnedProperty;
 import fields.FieldController;
 
+import game.Cup;
 import game.Dice;
 import game.Player;
 
@@ -14,11 +15,10 @@ import gui_main.GUI;
 
 public class GUIController {
 
+    public Cup cup;
     private GUI_Player[] guiPlayers;
     GUIController controller;
     private GUI gui;
-    public Dice dice1 = new Dice(6);
-    public Dice dice2 = new Dice(6);
     FieldController board;
     private Color[] playercolors;
     private GUI_Player[] players;
@@ -46,15 +46,13 @@ public class GUIController {
             return age;
         }
 
-
-    public int setDice() { // Creates the dice in the GUI
+    public void AskForDice() {
         gui.getUserButtonPressed("Throw Dice", "Throw");
-        dice1.ThrowDice();
-        dice2.ThrowDice();
-        gui.setDice(dice1.getFaces(),dice2.getFaces()); // Only one dice visible on the board
-        return dice1.getFaces() + dice2.getFaces();
     }
 
+    public void setDice(int die1, int die2) { // Creates the dice in the GUI
+        gui.setDice(die1,die2); // Only one dice visible on the board
+    }
     public void addPlayers(List<Player> players) { // Creates different types of game-pieces
         this.guiPlayers = new GUI_Player[players.size()];
         GUI_Car[] car_choices = {
