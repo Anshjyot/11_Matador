@@ -63,7 +63,7 @@ public class GUIController {
                 new GUI_Car(Color.BLUE, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED),
                 new GUI_Car(Color.YELLOW, Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA),
                 new GUI_Car(Color.GREEN, Color.DARK_GRAY, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_LINE),
-                new GUI_Car(Color.RED, Color.ORANGE, GUI_Car.Type.UFO, GUI_Car.Pattern.FILL)
+                new GUI_Car(Color.PINK, new Color(117, 15, 255), GUI_Car.Type.UFO, GUI_Car.Pattern.FILL)
         };
 
         for (int i = 0; i < players.size(); i++) { // Array of players in the GUI

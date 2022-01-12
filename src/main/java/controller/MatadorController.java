@@ -2,19 +2,9 @@
 package controller;
 
 import GUI.GUIController;
-import fields.Field;
 import fields.FieldController;
-import fields.OwnedProperty;
-import fields.FieldController;
-
-
 import game.Player;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
 import gui_main.GUI;
-
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -29,10 +19,6 @@ public class MatadorController {
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
     protected GUI gui;
-    private final int Everyfield = 40;
-    private GUI_Field[] fields;
-    private OwnedProperty property;
-    private Player player;
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
@@ -67,12 +53,10 @@ public class MatadorController {
 
                 for (int j = 0; j < faceValue; j++) {
                     int newPos = (players.get(i).getPosition() + j)%39;
-                    System.out.println(j+ " + " + faceValue+ " + " + players.get(i).getPosition()+" = "+ newPos);
-                    System.out.println();
 
                     guiController.RemoveCar(newPos, i);
                     guiController.AddCar((newPos+1)%39, i);
-                    Thread.sleep(100);
+                    Thread.sleep(150);
 
                 }
                  // Updating player position
@@ -119,19 +103,7 @@ public class MatadorController {
 
     private void NumberOfPlayers() { // Start money declaration
         int playerList = guiController.getPlayerList();
-
-        if (playerList == 3) {
-            startBalance = 30000;
-        }
-        if (playerList == 4) {
-            startBalance = 30000;
-        }
-        if (playerList == 5) {
-            startBalance = 30000;
-        }
-        if (playerList == 6) {
-            startBalance = 30000;
-        }
+        startBalance = 30000;
 
 
         for (int i = 0; i < playerList; i++) {
