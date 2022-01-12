@@ -17,16 +17,13 @@ public class ChanceField extends Field { // This class extends the Square class 
     public ChanceField() {
     }
 
-    public ChanceCard[] getChanceCards() {
-        return this.chanceCards;
-    }
-
     public ChanceField(String fieldName, List<Player> players, GUIController controller) {
         super(fieldName);
         this.controller = controller;
         this.players = players;
 
         chanceCards = new ChanceCard[]{
+                new TypePayPlayerCard(400,"Receive 400kr from every player"),
                 new TypeMoneyCard(-1000, "You have driven over a 'full stop'. Pay a 1000kr fine."),
                 new TypeMoneyCard(-300,"Pay 300kr for a car wash and oil change."),
                 new TypeMoneyCard(-200,"Pay 200kr for 2 boxes of beer."),
@@ -34,8 +31,7 @@ public class ChanceField extends Field { // This class extends the Square class 
                 new TypeMoneyCard(-3000, "Pay 3000kr in reperation costs on your viechle."),
                 new TypeMoneyCard(-1000, "You have purchased 4 new wheels for your viechle, pay 1000kr."),
                 new TypeMoveCard(3,"Ryk tre felter frem"),
-                new TypeMoveToCard(0,"Move to START"),
-                new TypePayPlayerCard(400,"Receive 400kr from every player")
+                new TypeMoveToCard(0,"Move to START")
         };
     }
     @Override
@@ -77,9 +73,10 @@ public class ChanceField extends Field { // This class extends the Square class 
             p.setPosition(card.getCardDestination());
             controller.AddCar(p.getPosition(),p.getIndex());
         }
-
+        //Virker ikke..
         else if(topCard instanceof TypePayPlayerCard){
             TypePayPlayerCard card = ((TypePayPlayerCard)topCard);
+            controller.showMessage(card.getCardMessage());
             System.out.println("Pay player");
             System.out.println(p.getAccount().getBalance());
 
@@ -87,15 +84,14 @@ public class ChanceField extends Field { // This class extends the Square class 
 
             for (Player player : players){
                 System.out.println("Nuværende spillers balance: " + player.getAccount().getBalance());
-                if (player == p) {
-                }
-                else {
-                    otherPlayer = player;
+                if (player != p) {
+                    System.out.println("Anden spillers balance: " + player.getAccount().getBalance());
                     noOtherPlayers++;
+                    player.getAccount().setBalance(player.getAccount().getBalance()-card.getCardTotal());
+                    System.out.println("Balance efter: " + player.getAccount().getBalance());
                 }
+                p.getAccount().setBalance(p.getAccount().getBalance() + card.getCardTotal() * noOtherPlayers);
             }
-            otherPlayer.getAccount().setBalance(otherPlayer.getAccount().getBalance()-card.getCardTotal());
-            p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardTotal() * noOtherPlayers);
 
         }
         else if (topCard instanceof TypeConditionCard) {
