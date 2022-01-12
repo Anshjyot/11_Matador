@@ -1,13 +1,15 @@
 package fields;
 
 import GUI.GUIController;
+import game.DieCup;
 import game.Dice;
+import game.DieCup;
 import game.Player;
 
 public class JailField extends Field { // This class extends the Field class and creates JailSquare.
     private GUIController controller;
-    private Dice dice1 = new Dice(6);
-    private Dice dice2 = new Dice(6);
+    private DieCup dieCup = new DieCup(2);
+    private Dice dice = new Dice();
 
     public JailField(String fieldName, GUIController controller) {
         super(fieldName);
@@ -16,7 +18,7 @@ public class JailField extends Field { // This class extends the Field class and
 
     @Override
     public void Arrived(Player p) { // This field places the player back to VisitJailSquare field.
-        controller.showMessage("JAIL TIME");
+        controller.showMessage("JAIL TIME, You have been moved to prison");
         controller.RemoveCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 20);
         controller.AddCar(p.getPosition(), p.getIndex());
@@ -32,15 +34,14 @@ public class JailField extends Field { // This class extends the Field class and
                 //Pay1000$, check if account>=1000
                 if (player.getAccount().getBalance() >= 1000) {
                     player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
-                    // + throwthedice
-                    //controller.setDice();
+                    dieCup.rollDice();
                 }
 
                 break;
             case "Roll the Dice":
                 //Roll the dice
-                if (controller.dice1.getFaces() == controller.dice2.getFaces())
-                    //else if (controller.dice1 != controller.dice2)
+                if (dice.getEyes() == dice.getEyes())
+                    dieCup.rollDice();
 
                     break;
             default:

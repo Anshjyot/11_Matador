@@ -4,8 +4,9 @@ package controller;
 import GUI.GUIController;
 import fields.FieldController;
 import fields.OwnedProperty;
-import game.Cup;
+
 import game.Dice;
+import game.DieCup;
 import game.Player;
 import gui_main.GUI;
 import java.util.*;
@@ -24,9 +25,7 @@ public class MatadorController {
     protected GUI gui;
     private Player player;
     private OwnedProperty property;
-    private Dice dice1 = new Dice(6);
-    private Dice dice2 = new Dice(6);
-    private Cup cup = new Cup();
+    private DieCup cup = new DieCup(2);
 
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
@@ -45,11 +44,11 @@ public class MatadorController {
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
-                //int faceValue=30;
+                int faceValue=30;
                 guiController.AskForDice();
-                cup.Cup();
-                int faceValue = dice1.getFaces() + dice2.getFaces();
-                guiController.setDice(dice1.getFaces(),dice2.getFaces());
+                cup.rollDice();
+                //int faceValue = dice1.getFaces() + dice2.getFaces();
+                //guiController.setDice(dice1.getFaces(),dice2.getFaces());
 
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);

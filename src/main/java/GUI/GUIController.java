@@ -6,7 +6,7 @@ import fields.Field;
 import fields.OwnedProperty;
 import fields.FieldController;
 
-import game.Cup;
+import game.DieCup;
 import game.Dice;
 import game.Player;
 
@@ -15,7 +15,7 @@ import gui_main.GUI;
 
 public class GUIController {
 
-    public Cup cup;
+    public DieCup dieCup;
     private GUI_Player[] guiPlayers;
     GUIController controller;
     private GUI gui;
