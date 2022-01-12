@@ -24,8 +24,6 @@ public class MatadorController {
     protected GUI gui;
     private Player player;
     private OwnedProperty property;
-    private Dice dice1 = new Dice(6);
-    private Dice dice2 = new Dice(6);
     private Cup cup = new Cup();
 
 
@@ -47,9 +45,8 @@ public class MatadorController {
             for (int i = 0; i < players.size(); i++) {
                 //int faceValue=30;
                 guiController.AskForDice();
-                cup.Cup();
-                int faceValue = dice1.getFaces() + dice2.getFaces();
-                guiController.setDice(dice1.getFaces(),dice2.getFaces());
+                int faceValue = cup.CupRoll();
+                guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);

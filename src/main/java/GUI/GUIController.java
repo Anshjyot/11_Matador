@@ -7,7 +7,6 @@ import fields.OwnedProperty;
 import fields.FieldController;
 
 import game.Cup;
-import game.Dice;
 import game.Player;
 
 import gui_fields.*;
@@ -51,7 +50,7 @@ public class GUIController {
     }
 
     public void setDice(int die1, int die2) { // Creates the dice in the GUI
-        gui.setDice(die1,die2); // Only one dice visible on the board
+        gui.setDice(die1, die2); // two dice visible on the board
     }
     public void addPlayers(List<Player> players) { // Creates different types of game-pieces
         this.guiPlayers = new GUI_Player[players.size()];
