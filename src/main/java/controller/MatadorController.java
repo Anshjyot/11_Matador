@@ -52,10 +52,10 @@ public class MatadorController {
                 }*/
 
                 for (int j = 0; j < faceValue; j++) {
-                    int newPos = (players.get(i).getPosition() + j)%39;
+                    int newPos = (players.get(i).getPosition() + j)%40;
 
                     guiController.RemoveCar(newPos, i);
-                    guiController.AddCar((newPos+1)%39, i);
+                    guiController.AddCar((newPos+1)%40, i);
                     Thread.sleep(150);
 
                 }
