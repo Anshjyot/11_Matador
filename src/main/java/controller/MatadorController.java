@@ -79,7 +79,6 @@ public class MatadorController {
                 }
                 Winner(i); // Checking if the winner is found.
             }
-
         }
     }
 
