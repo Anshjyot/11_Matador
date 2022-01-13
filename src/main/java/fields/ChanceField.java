@@ -61,6 +61,7 @@ public class ChanceField extends Field { // This class extends the Square class 
                 new TypeMoveCard(-3, "Move 3 places backwards!"),
 
 
+
         };
     }
     @Override
