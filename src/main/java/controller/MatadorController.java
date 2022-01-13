@@ -2,6 +2,7 @@
 package controller;
 
 import GUI.GUIController;
+import fields.Field;
 import fields.FieldController;
 import fields.JailField;
 import fields.OwnedProperty;
@@ -23,9 +24,16 @@ public class MatadorController {
     protected String[] names = new String[0];
     protected GUI gui;
     private Player player;
-    private OwnedProperty property;
     private Cup cup = new Cup();
+    Field[] squares = new Field[40];
+    GUIController controller;
+    public OwnedProperty property;
 
+
+    public Field getSquare(int i) {
+        return squares[i];
+
+    }
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new FieldController(players, guiController);
@@ -43,14 +51,15 @@ public class MatadorController {
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
-                //tester for inJail
-                //int faceValue=30;
-                if(players.get(i).isInJail){
-                JailField jailField = board.getJailField();
-                jailField.GetOutOfJail(players.get(i));
-                if(players.get(i).isInJail)
+                //tester for specifikke felter
+                //int faceValue = 30;
 
-                    continue;
+                if(players.get(i).isInJail) {
+                    JailField jailField = board.getJailField();
+                    jailField.GetOutOfJail(players.get(i));
+                    if (players.get(i).isInJail)
+
+                        continue;
                 }
                 guiController.askForDice();
                 int faceValue = cup.CupRoll();
@@ -59,7 +68,7 @@ public class MatadorController {
 
                 guiController.removeCar(players.get(i).getPosition(), i);
 
-                //guiController.addHouse(property);
+
 
 
                 /*if (players.get(i).getPosition() - faceValue > 0) {
@@ -85,7 +94,7 @@ public class MatadorController {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
                 }
 
-               // guiController.WannaBuy(property,player);
+               guiController.wannaBuy(board.getSquare(players.get(i).getPosition()), players.get(i));
 
                 FieldOutcome(i); // The field outcome for the specific field
 
@@ -93,6 +102,7 @@ public class MatadorController {
                     guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
 
                 }
+                guiController.addHouse(board.getSquare(players.get(i).getPosition()));
 
                 Winner(i); // Checking if the winner is found.
             }
