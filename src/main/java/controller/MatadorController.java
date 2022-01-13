@@ -44,11 +44,8 @@ public class MatadorController {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
                 //tester for inJail
-                int faceValue=30;
-               // int roundsInJail=0;
+                //int faceValue=30;
                 if(players.get(i).isInJail){
-                //    roundsInJail++;
-                //    if(roundsInJail>=3){player.isInJail=false;}
                 JailField jailField = board.getJailField();
                 jailField.GetOutOfJail(players.get(i));
                 if(players.get(i).isInJail)
@@ -56,7 +53,7 @@ public class MatadorController {
                     continue;
                 }
                 guiController.askForDice();
-                //int faceValue = cup.CupRoll();
+                int faceValue = cup.CupRoll();
                 guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
 
