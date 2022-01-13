@@ -4,17 +4,18 @@ import GUI.GUIController;
 import game.Player;
 import java.util.List;
 
-public class ChanceSquare extends Square { // This class extends the Square class and creates the ChanceCard
+public class ChanceField extends Field { // This class extends the Field class and creates the ChanceCard
 
     // int outcome;
     private List<Player> players;
     private GUIController controller;
 
-    public ChanceSquare(String fieldName, List<Player> players, GUIController controller) {
+    public ChanceField(String fieldName, List<Player> players, GUIController controller){
         super(fieldName);
         this.controller = controller;
         this.players = players;
     }
+
     @Override
     public void Arrived(Player p) { // Creates different outcomes when landing on the Chance-fields
 
@@ -40,9 +41,9 @@ public class ChanceSquare extends Square { // This class extends the Square clas
                 break;
             case 3: p.getAccount().setBalance(p.getAccount().getBalance()+2);
                 controller.showMessage("Go to Start");
-                controller.RemoveCar(p.getPosition(),p.getIndex());
+                controller.removeCar(p.getPosition(),p.getIndex());
                 p.setPosition(0);
-                controller.AddCar(p.getPosition(),p.getIndex());
+                controller.addCar(p.getPosition(),p.getIndex());
                 break;
             case 4:
                 int sum = 0;

@@ -1,16 +1,21 @@
 package game;
 
 public class Dice { // Creates a dice throw method for one dice only
-    private int dice;
+    private int faces;
+    private int numOfSides;
 
-    public Dice() {
+    public Dice(int numberOfSides)
+    {
+        numOfSides = numberOfSides;
+
+        faces = (int)(Math.random()*numOfSides) + 1;
+
     }
-
     public void ThrowDice() {
-        dice = (int) (Math.random() * 6) + 1;
+        faces = (int) (Math.random() * numOfSides) + 1;
     }
 
-    public int getDice() {
-        return dice;
+    public int getFaces() {
+        return faces;
     }
 }
