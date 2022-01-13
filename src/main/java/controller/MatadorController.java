@@ -3,9 +3,9 @@ package controller;
 
 import GUI.GUIController;
 import fields.FieldController;
+import fields.JailField;
 import fields.OwnedProperty;
 import game.Cup;
-import game.Dice;
 import game.Player;
 import gui_main.GUI;
 import java.util.*;
@@ -43,13 +43,24 @@ public class MatadorController {
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
-                //int faceValue=30;
-                guiController.AskForDice();
-                int faceValue = cup.CupRoll();
+                //tester for inJail
+                int faceValue=30;
+               // int roundsInJail=0;
+                if(players.get(i).isInJail){
+                //    roundsInJail++;
+                //    if(roundsInJail>=3){player.isInJail=false;}
+                JailField jailField = board.getJailField();
+                jailField.GetOutOfJail(players.get(i));
+                if(players.get(i).isInJail)
+
+                    continue;
+                }
+                guiController.askForDice();
+                //int faceValue = cup.CupRoll();
                 guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
 
-                guiController.RemoveCar(players.get(i).getPosition(), i);
+                guiController.removeCar(players.get(i).getPosition(), i);
 
                 //guiController.addHouse(property);
 
@@ -63,8 +74,8 @@ public class MatadorController {
                 for (int j = 0; j < faceValue; j++) {
                     int newPos = (players.get(i).getPosition() + j)%40;
 
-                    guiController.RemoveCar(newPos, i);
-                    guiController.AddCar((newPos+1)%40, i);
+                    guiController.removeCar(newPos, i);
+                    guiController.addCar((newPos+1)%40, i);
                     Thread.sleep(150);
 
                 }
