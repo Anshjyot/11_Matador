@@ -13,6 +13,7 @@ public class ChanceField extends Field { // This class extends the Square class 
     private GUIController controller;
     private ChanceCard[] chanceCards;
     private Player otherPlayer;
+    Random rand = new Random();
 
     public ChanceField() {
     }
@@ -105,7 +106,7 @@ public class ChanceField extends Field { // This class extends the Square class 
             controller.AddCar(p.getPosition(),p.getIndex());
         }
         //Virker ikke..
-        else if(topCard instanceof TypePayPlayerCard){
+        /* else if(topCard instanceof TypePayPlayerCard){
             TypePayPlayerCard card = ((TypePayPlayerCard)topCard);
             controller.showMessage(card.getCardMessage());
             System.out.println("Pay player");
@@ -123,8 +124,7 @@ public class ChanceField extends Field { // This class extends the Square class 
                 }
                 p.getAccount().setBalance(p.getAccount().getBalance() + card.getCardTotal() * noOtherPlayers);
             }
-
-        }
+        } */
         else if (topCard instanceof TypeConditionCard) {
             TypeConditionCard card = ((TypeConditionCard) topCard);
             if (p.getAccount().getBalance() < card.getTotal()){
@@ -137,7 +137,6 @@ public class ChanceField extends Field { // This class extends the Square class 
         return topCard;
     }
     public ChanceCard[] shuffle (){
-        Random rand = new Random();
         for(int i = 0; i<chanceCards.length;i++) {
             int randomIndexToSwap = rand.nextInt(chanceCards.length);
             ChanceCard temp = chanceCards[randomIndexToSwap];
