@@ -10,6 +10,9 @@ public class Field { // This class creates the different special types of fields
         this.fieldName = fieldName;
     }
 
+    public Field() {
+    }
+
     public void Arrived(Player p) {
 
     }
