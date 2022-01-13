@@ -54,6 +54,11 @@ public class OwnedProperty extends Field {
 
     }
 
+  //  public boolean inJail() {}
+        //if players current position is jailfield 30.
+       // if (inJail(30)
+
+
     //check if there is an owner
     public boolean isThereAnOwner(){
         if (owner==null) {
