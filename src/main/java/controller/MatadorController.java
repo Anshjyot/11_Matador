@@ -38,7 +38,7 @@ public class MatadorController {
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new FieldController(players, guiController);
         this.guiController.initializeBoard(board);
-        NumberOfPlayers();
+        numberOfPlayers();
         try {
             gameLoop();
         } catch (InterruptedException e) {
@@ -87,7 +87,7 @@ public class MatadorController {
                 }
                  // Updating player position
                 if (players.get(i).getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
-                    StartField(i);
+                    startField(i);
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue - 40);
 
                 } else {
@@ -96,7 +96,7 @@ public class MatadorController {
 
                guiController.wannaBuy(board.getSquare(players.get(i).getPosition()), players.get(i));
 
-                FieldOutcome(i); // The field outcome for the specific field
+                fieldOutcome(i); // The field outcome for the specific field
 
                 for (Player player : players) {
                     guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
@@ -104,13 +104,13 @@ public class MatadorController {
                 }
                 guiController.addHouse(board.getSquare(players.get(i).getPosition()));
 
-                Winner(i); // Checking if the winner is found.
+                winner(i); // Checking if the winner is found.
             }
 
         }
     }
 
-    private void Winner(int player) { // The last person to have a balance >0 wins
+    private void winner(int player) { // The last person to have a balance >0 wins
         int loserBalance = 0;
         List<String> winnerName = new ArrayList<String>();
 
@@ -132,7 +132,7 @@ public class MatadorController {
 
 
 
-    private void NumberOfPlayers() { // Start money declaration
+    private void numberOfPlayers() { // Start money declaration
         int playerList = guiController.getPlayerList();
         startBalance = 30000;
 
@@ -166,12 +166,12 @@ public class MatadorController {
 
     }
 
-    private void FieldOutcome(int i) { // The field outcome method
+    private void fieldOutcome(int i) { // The field outcome method
         board.getSquare(players.get(i).getPosition()).Arrived(players.get(i));
 
     }
 
-    private void StartField(int i) { // You get 4.000 dkk when you pass the Start-field
+    private void startField(int i) { // You get 4.000 dkk when you pass the Start-field
         players.get(i).getAccount().setBalance(players.get(i).getAccount().getBalance() + 4000);
     }
 

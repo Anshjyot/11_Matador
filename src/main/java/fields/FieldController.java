@@ -159,7 +159,7 @@ public class FieldController {
     Player owner;
     GUIController controller;
 
-    public void ArrivedFerry(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
+    public void arrivedFerry(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);
             owner = player;
@@ -172,7 +172,7 @@ public class FieldController {
         }
     }
 
-    public void ArrivedBrewery(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
+    public void arrivedBrewery(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);
             owner = player;
@@ -185,13 +185,13 @@ public class FieldController {
         }
     }
 
-    public void ArrivedIncomeTax(Player p) { // This field places makes the player pay 4000.
+    public void arrivedIncomeTax(Player p) { // This field places makes the player pay 4000.
         controller.showMessage("Betal Indkomst-skat");
         p.getAccount().setBalance(p.getAccount().getBalance() - 4000);
 
     }
 
-    public void ArrivedExtraordinaryTax(Player p) { // This field makes the player pay 2000
+    public void arrivedExtraordinaryTax(Player p) { // This field makes the player pay 2000
         controller.showMessage("Betal Extraordinær-skat");
         p.getAccount().setBalance(p.getAccount().getBalance() - 2000);
     }
@@ -202,7 +202,7 @@ public class FieldController {
     int index;
     Color color;
 
-    public void ArrivedOwnedProperty(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
+    public void arrivedOwnedProperty(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);
             owner = player;
