@@ -2,10 +2,10 @@
 package controller;
 
 import GUI.GUIController;
+import fields.Field;
 import fields.FieldController;
 import fields.OwnedProperty;
 import game.Cup;
-import game.Dice;
 import game.Player;
 import gui_main.GUI;
 import java.util.*;
@@ -23,9 +23,16 @@ public class MatadorController {
     protected String[] names = new String[0];
     protected GUI gui;
     private Player player;
-    private OwnedProperty property;
     private Cup cup = new Cup();
+    Field[] squares = new Field[40];
+    GUIController controller;
+    public OwnedProperty property;
 
+
+    public Field getSquare(int i) {
+        return squares[i];
+
+    }
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new FieldController(players, guiController);
@@ -43,15 +50,16 @@ public class MatadorController {
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
-                //int faceValue=30;
+                int faceValue = 6;
+
                 guiController.AskForDice();
-                int faceValue = cup.CupRoll();
+                //int faceValue = cup.CupRoll();
                 guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
 
                 guiController.RemoveCar(players.get(i).getPosition(), i);
 
-                //guiController.addHouse(property);
+
 
 
                 /*if (players.get(i).getPosition() - faceValue > 0) {
@@ -77,7 +85,7 @@ public class MatadorController {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
                 }
 
-               // guiController.WannaBuy(property,player);
+               guiController.WannaBuy(board.getSquare(players.get(i).getPosition()), players.get(i));
 
                 FieldOutcome(i); // The field outcome for the specific field
 
@@ -85,6 +93,7 @@ public class MatadorController {
                     guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
 
                 }
+                guiController.addHouse(board.getSquare(players.get(i).getPosition()));
 
                 Winner(i); // Checking if the winner is found.
             }
