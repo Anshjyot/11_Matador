@@ -50,10 +50,9 @@ public class MatadorController {
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
-                int faceValue = 6;
-
+                //int faceValue= 30;
                 guiController.AskForDice();
-                //int faceValue = cup.CupRoll();
+                int faceValue = cup.CupRoll();
                 guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
 
