@@ -59,10 +59,8 @@ public class ChanceField extends Field { // This class extends the Square class 
                 new TypeMoveCard(3, "Move 3 places forward!"),
                 new TypeMoveCard(-3, "Move 3 places backwards!"),
                 new TypeMoveCard(-3, "Move 3 places backwards!"),
-
-
-
         };
+
     }
     @Override
     public void Arrived(Player p) { // Creates different outcomes when landing on the Chance-fields
@@ -70,6 +68,7 @@ public class ChanceField extends Field { // This class extends the Square class 
     }
 
     public ChanceCard draw (Player p) {
+        shuffle();
         controller.showMessage("You landed on Chance! Draw a chance card.");
         controller.pressChanceButton();
 
@@ -136,5 +135,14 @@ public class ChanceField extends Field { // This class extends the Square class 
             }
         }
         return topCard;
+    }
+    public ChanceCard[] shuffle (){
+        Random rand = new Random();
+        for(int i = 0; i<chanceCards.length;i++) {
+            int randomIndexToSwap = rand.nextInt(chanceCards.length);
+            ChanceCard temp = chanceCards[randomIndexToSwap];
+            chanceCards[randomIndexToSwap] = chanceCards[i];
+            chanceCards[i] = temp;}
+        return chanceCards;
     }
 }
