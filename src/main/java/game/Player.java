@@ -7,6 +7,8 @@ public class Player { // This class creates the player which will be used in the
     private int PlayerAge;
     private int currentposition;
     int index;
+    public boolean isInJail=false;
+    public int roundsInJail = 0;
 
     public Player(String PlayerName, int PlayerAge, int balance, int Startfield, int index) {
         this.setPlayerName(PlayerName);
@@ -47,9 +49,10 @@ public class Player { // This class creates the player which will be used in the
         return index;
     }
 
-    public void printStatus(){
+    //Bruges ikke lige nu, bruges til test af JailField
+     /*public void printStatus(){
         System.out.println(this.PlayerName);
         System.out.println(this.currentposition);
-        System.out.println(this.account.getBalance());
+        System.out.println(this.account.getBalance()); } */
     }
-}
+

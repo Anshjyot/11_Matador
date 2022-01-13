@@ -3,7 +3,6 @@ package fields;
 import java.awt.Color;
 import java.util.List;
 import GUI.GUIController;
-import fields.*;
 import game.Player;
 import gui_fields.*;
 import gui_main.GUI;
@@ -248,13 +247,17 @@ public class FieldController {
         return index;
     }
 
-    public void ArrivedJail(Player p) { // This field places the player back to VisitJailSquare field.
+    /*public void ArrivedJail(Player p) { // This field places the player back to VisitJailSquare field.
         controller.showMessage("JAIL TIME");
-        controller.RemoveCar(p.getPosition(), p.getIndex());
+        controller.removeCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 16);
-        controller.AddCar(p.getPosition(), p.getIndex());
+        controller.addCar(p.getPosition(), p.getIndex()); */
+
+    public JailField getJailField(){
+        return (JailField) squares[30];
     }
-}
+    }
+
 
 
 

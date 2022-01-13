@@ -31,9 +31,9 @@ public class ChanceField extends Field { // This class extends the Field class a
                 break;
             case 2: p.getAccount().setBalance(p.getAccount().getBalance()+2);
                 controller.showMessage("Go to Start");
-                controller.RemoveCar(p.getPosition(),p.getIndex());
+                controller.removeCar(p.getPosition(),p.getIndex());
                 p.setPosition(0);
-                controller.AddCar(p.getPosition(),p.getIndex());
+                controller.addCar(p.getPosition(),p.getIndex());
                 break;
             case 3:
                 int sum = 0;

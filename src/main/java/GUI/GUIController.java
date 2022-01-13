@@ -45,7 +45,7 @@ public class GUIController {
             return age;
         }
 
-    public void AskForDice() {
+    public void askForDice() {
         gui.getUserButtonPressed("Throw Dice", "Throw");
     }
 
@@ -65,16 +65,16 @@ public class GUIController {
 
         for (int i = 0; i < players.size(); i++) { // Array of players in the GUI
             this.guiPlayers[i] = new GUI_Player(players.get(i).getPlayerName(), players.get(i).getAccount().getBalance(), car_choices[i]);
-            AddCar(0, i);
+            addCar(0, i);
             gui.addPlayer(this.guiPlayers[i]);
         }
 
     }
 
-    public void AddCar(int position, int player) { //Adds car
+    public void addCar(int position, int player) { //Adds car
         board.getField(position).setCar(guiPlayers[player], true);
     } // Adds the car to the GUI
-    public void RemoveCar(int position2, int player2) {
+    public void removeCar(int position2, int player2) {
         board.getField(position2).setCar(guiPlayers[player2], false);
     } // Removes the car from the GUI
 
@@ -93,31 +93,27 @@ public class GUIController {
     } // Shows the Chance card outcome message
 
 
-    public void addHouse(Field property) {
-        if (property instanceof OwnedProperty) {
-            if (board.SameOwnerColor((OwnedProperty)property)) {
-                ((OwnedProperty)property).addHouse();
-                GUI_Street field = (GUI_Street) gui.getFields()[((OwnedProperty)property).getIndex()];
-                field.setHouses(1);
-            }
+    public void addHouse(OwnedProperty property) {
+        if(board.SameOwnerColor(property)) {
+            property.addHouse();
+            GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+            field.setHouses(1);
         }
     }
 
     //choose if you wanna buy the property
-  public void WannaBuy(Field property, Player player) {
-      if (property instanceof OwnedProperty) {
-          if (!OwnedProperty.isThereAnOwner) {
-              boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
-              if (yes) {
-//              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
-                  ((OwnedProperty)property).buyDeed(player);
-                  // field.setBorder(Color.RED,Color.RED);
-                  //  gui.showMessage("You now own this field");
-              }
-          } else {
-
+  public void wannaBuy(OwnedProperty property, Player player) {
+      boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
+      if (yes == true) {
+          if (OwnedProperty.isThereAnOwner) {
+              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+              property.buyDeed(player);
+         // field.setBorder(Color.RED,Color.RED);
+              //  gui.showMessage("You now own this field");
           }
-      }
+      } else {
+
+    }
   }
     public String getOutOfJail() {
         String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
