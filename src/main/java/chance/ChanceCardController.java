@@ -53,10 +53,10 @@ public class ChanceCardController {
                 TypeMoveCard card = ((TypeMoveCard)topCard);
                 controller.showMessage(card.getCardMessage());
 
-                controller.RemoveCar(p.getPosition(),p.getIndex());
+                controller.removeCar(p.getPosition(),p.getIndex());
                 System.out.println("Spiller rykkes fra " + p.getPosition());
                 p.setPosition(p.getPosition()+card.getCardValue());
-                controller.AddCar(p.getPosition(),p.getIndex());
+                controller.addCar(p.getPosition(),p.getIndex());
                 System.out.println(" til " + p.getPosition());
             }
             else if (topCard instanceof TypeMoveToCard){
@@ -65,9 +65,9 @@ public class ChanceCardController {
 
                 System.out.println("Spiller rykker til start");
                 System.out.println(p.getAccount().getBalance());
-                controller.RemoveCar(p.getPosition(),p.getIndex());
+                controller.removeCar(p.getPosition(),p.getIndex());
                 p.setPosition(card.getCardDestination());
-                controller.AddCar(p.getPosition(),p.getIndex());
+                controller.addCar(p.getPosition(),p.getIndex());
             }
             //will work when players is an array instead of a List.
             else if(topCard instanceof TypePayPlayerCard){
