@@ -119,6 +119,12 @@ public class GUIController {
         String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
         return jailChoice;
     }
+    public void pressChanceButton() {
+        gui.getUserButtonPressed(
+                "Press the button to try your luck!",
+                "Draw card"
+        );
+    }
 
 }
 

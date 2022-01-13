@@ -70,6 +70,8 @@ public class ChanceField extends Field { // This class extends the Square class 
     }
 
     public ChanceCard draw (Player p) {
+        controller.showMessage("You landed on Chance! Draw a chance card.");
+        controller.pressChanceButton();
 
         ChanceCard topCard = chanceCards[0];
         for (int i = 0; i < chanceCards.length - 1; i++) {
@@ -126,7 +128,7 @@ public class ChanceField extends Field { // This class extends the Square class 
         }
         else if (topCard instanceof TypeConditionCard) {
             TypeConditionCard card = ((TypeConditionCard) topCard);
-            if (p.getAccount().getBalance() < 15000){
+            if (p.getAccount().getBalance() < card.getTotal()){
                 controller.showMessage(card.getMessage1());
                 p.getAccount().setBalance(p.getAccount().getBalance() + card.getCardValue());
             }
