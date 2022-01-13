@@ -4,6 +4,7 @@ package controller;
 import GUI.GUIController;
 import fields.Field;
 import fields.FieldController;
+import fields.JailField;
 import fields.OwnedProperty;
 import game.Cup;
 import game.Player;
@@ -50,14 +51,22 @@ public class MatadorController {
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
-                int faceValue = 6;
+                //tester for specifikke felter
+                //int faceValue = 30;
 
-                guiController.AskForDice();
-                //int faceValue = cup.CupRoll();
+                if(players.get(i).isInJail) {
+                    JailField jailField = board.getJailField();
+                    jailField.GetOutOfJail(players.get(i));
+                    if (players.get(i).isInJail)
+
+                        continue;
+                }
+                guiController.askForDice();
+                int faceValue = cup.CupRoll();
                 guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
 
-                guiController.RemoveCar(players.get(i).getPosition(), i);
+                guiController.removeCar(players.get(i).getPosition(), i);
 
 
 
@@ -71,8 +80,8 @@ public class MatadorController {
                 for (int j = 0; j < faceValue; j++) {
                     int newPos = (players.get(i).getPosition() + j)%40;
 
-                    guiController.RemoveCar(newPos, i);
-                    guiController.AddCar((newPos+1)%40, i);
+                    guiController.removeCar(newPos, i);
+                    guiController.addCar((newPos+1)%40, i);
                     Thread.sleep(150);
 
                 }
@@ -85,7 +94,7 @@ public class MatadorController {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
                 }
 
-               guiController.WannaBuy(board.getSquare(players.get(i).getPosition()), players.get(i));
+               guiController.wannaBuy(board.getSquare(players.get(i).getPosition()), players.get(i));
 
                 FieldOutcome(i); // The field outcome for the specific field
 
