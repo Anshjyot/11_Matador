@@ -15,9 +15,6 @@ public class ChanceField extends Field { // This class extends the Square class 
     private Player otherPlayer;
     Random rand = new Random();
 
-    public ChanceField() {
-    }
-
     public ChanceField(String fieldName, List<Player> players, GUIController controller) {
         super(fieldName);
         this.controller = controller;
@@ -54,14 +51,12 @@ public class ChanceField extends Field { // This class extends the Square class 
                 new TypePayPlayerCard(500, "Payback time! You put money up front for a joint, receive 500kr from every player."),
                 new TypePayPlayerCard(500, "Its your Birthday party! Every player is invited and has to pay you 500kr!"),
                  */
-
                 new TypeMoveCard(3, "Move 3 places forward!"),
                 new TypeMoveCard(-3, "Move 3 places backwards!"),
                 new TypeMoveCard(-3, "Move 3 places backwards!"),
 
                 new TypeMoveToCard(0, "Move to start"),
                 new TypeMoveToCard(0, "Move to start")
-
         };
 
     }
@@ -70,7 +65,7 @@ public class ChanceField extends Field { // This class extends the Square class 
         draw(p);
     }
 
-    public ChanceCard draw (Player p) {
+    public void draw (Player p) {
         shuffle();
         controller.showMessage("You landed on Chance! Draw a chance card.");
         controller.pressChanceButton();
@@ -84,7 +79,6 @@ public class ChanceField extends Field { // This class extends the Square class 
         if(topCard instanceof TypeMoneyCard){
             TypeMoneyCard card = ((TypeMoneyCard)topCard);
             p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardValue());
-            System.out.println(card.getCardValue());
             controller.showMessage(card.getCardMessage());
         }
         else if (topCard instanceof TypeMoveCard){
@@ -92,35 +86,24 @@ public class ChanceField extends Field { // This class extends the Square class 
             controller.showMessage(card.getCardMessage());
 
             //moves car one step at a time.
-            for (int j = 0; j < card.getCardValue(); j++) {
-                controller.RemoveCar(p.getPosition(),p.getIndex());
-                controller.AddCar(p.getPosition()+1,p.getIndex());
-                p.setPosition(p.getPosition()+1);
 
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+            controller.removeCar(p.getPosition(),p.getIndex());
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            /*
-            controller.RemoveCar(p.getPosition(),p.getIndex());
-            System.out.println("Spiller rykkes fra " + p.getPosition());
             p.setPosition(p.getPosition()+card.getCardValue());
-            controller.AddCar(p.getPosition(),p.getIndex());
-            System.out.println(" til " + p.getPosition());
-             */
+            controller.addCar(p.getPosition(),p.getIndex());
+
         }
         else if (topCard instanceof TypeMoveToCard){
             TypeMoveToCard card = ((TypeMoveToCard)topCard);
             controller.showMessage(card.getCardMessage());
 
-            System.out.println("Spiller rykker til start");
-            System.out.println(p.getAccount().getBalance());
-            controller.RemoveCar(p.getPosition(),p.getIndex());
+            controller.removeCar(p.getPosition(),p.getIndex());
             p.setPosition(card.getCardDestination());
-            controller.AddCar(p.getPosition(),p.getIndex());
+            controller.addCar(p.getPosition(),p.getIndex());
         }
         //Virker ikke..
         /* else if(topCard instanceof TypePayPlayerCard){
@@ -151,14 +134,12 @@ public class ChanceField extends Field { // This class extends the Square class 
             else {controller.showMessage(card.getMessage2());
             }
         }
-        return topCard;
     }
-    public ChanceCard[] shuffle (){
+    public void shuffle (){
         for(int i = 0; i<chanceCards.length;i++) {
             int randomIndexToSwap = rand.nextInt(chanceCards.length);
             ChanceCard temp = chanceCards[randomIndexToSwap];
             chanceCards[randomIndexToSwap] = chanceCards[i];
             chanceCards[i] = temp;}
-        return chanceCards;
     }
 }
