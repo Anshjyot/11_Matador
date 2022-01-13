@@ -7,8 +7,9 @@ import game.Cup;
 
 public class JailField extends Field { // This class extends the Field class and creates JailSquare.
     private GUIController controller;
+    /* kan slettes
     private Dice dice1 = new Dice(6);
-    private Dice dice2 = new Dice(6);
+    private Dice dice2 = new Dice(6); */
     private Cup cup = new Cup();
 
 
@@ -36,7 +37,7 @@ public class JailField extends Field { // This class extends the Field class and
                 if (player.getAccount().getBalance() >= 1000) {
                     player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
                     cup.CupRoll();
-
+                    // The player in jail should roll again... Make a method InJail..
                 }
 
                 break;
