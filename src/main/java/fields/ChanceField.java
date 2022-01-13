@@ -49,17 +49,19 @@ public class ChanceField extends Field { // This class extends the Square class 
 
                 new TypeConditionCard(15000,40000,"Your lucky day! Your assets are under 15000! Pick up 40.000kr from the bank!",
                                       "Your assets are over 15.000kr. Your doing well enough already."),
-
+                /*
                 new TypePayPlayerCard(200, "Its your Birthday, receive 200kr from every Player."),
                 new TypePayPlayerCard(500, "Payback time! You put money up front for a joint, receive 500kr from every player."),
                 new TypePayPlayerCard(500, "Its your Birthday party! Every player is invited and has to pay you 500kr!"),
-
-                new TypeMoveToCard(0, "Move to start"),
-                new TypeMoveToCard(0, "Move to start"),
+                 */
 
                 new TypeMoveCard(3, "Move 3 places forward!"),
                 new TypeMoveCard(-3, "Move 3 places backwards!"),
                 new TypeMoveCard(-3, "Move 3 places backwards!"),
+
+                new TypeMoveToCard(0, "Move to start"),
+                new TypeMoveToCard(0, "Move to start")
+
         };
 
     }
@@ -89,11 +91,26 @@ public class ChanceField extends Field { // This class extends the Square class 
             TypeMoveCard card = ((TypeMoveCard)topCard);
             controller.showMessage(card.getCardMessage());
 
+            //moves car one step at a time.
+            for (int j = 0; j < card.getCardValue(); j++) {
+                controller.RemoveCar(p.getPosition(),p.getIndex());
+                controller.AddCar(p.getPosition()+1,p.getIndex());
+                p.setPosition(p.getPosition()+1);
+
+                try {
+                    Thread.sleep(150);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            /*
             controller.RemoveCar(p.getPosition(),p.getIndex());
             System.out.println("Spiller rykkes fra " + p.getPosition());
             p.setPosition(p.getPosition()+card.getCardValue());
             controller.AddCar(p.getPosition(),p.getIndex());
             System.out.println(" til " + p.getPosition());
+             */
         }
         else if (topCard instanceof TypeMoveToCard){
             TypeMoveToCard card = ((TypeMoveToCard)topCard);
