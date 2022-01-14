@@ -55,22 +55,22 @@ public class MatadorController {
                 //tester for specifikke felter
                 //int faceValue = 30;
                 currentPlayer = players[i];
-                if(currentPlayer.isInJail) {
+                if (currentPlayer.isInJail) {
 
 
-                if(players.get(i).isInJail) {
-                    JailField jailField = board.getJailField();
-                    jailField.GetOutOfJail(currentPlayer);
-                    if (currentPlayer.isInJail)
+                    if (currentPlayer.isInJail) {
+                        JailField jailField = board.getJailField();
+                        jailField.GetOutOfJail(currentPlayer);
+                        if (currentPlayer.isInJail)
 
-                        continue;
-                }
-                guiController.askForDice();
-                int faceValue = cup.CupRoll();
-                guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
+                            continue;
+                    }
+                    guiController.askForDice();
+                    int faceValue = cup.CupRoll();
+                    guiController.setDice(cup.GetDice1Value(), cup.GetDice2Value());
 
 
-                guiController.removeCar(currentPlayer.getPosition(), i);
+                    guiController.removeCar(currentPlayer.getPosition(), i);
 
 
 
@@ -81,38 +81,38 @@ public class MatadorController {
                     guiController.AddCar(players.get(i).getPosition(), i);
                 }*/
 
-                for (int j = 0; j < faceValue; j++) {
-                    int newPos = (currentPlayer.getPosition() + j)%40;
+                    for (int j = 0; j < faceValue; j++) {
+                        int newPos = (currentPlayer.getPosition() + j) % 40;
 
-                    guiController.removeCar(newPos, i);
-                    guiController.addCar((newPos+1)%40, i);
-                    Thread.sleep(150);
+                        guiController.removeCar(newPos, i);
+                        guiController.addCar((newPos + 1) % 40, i);
+                        Thread.sleep(150);
 
+                    }
+                    // Updating player position
+                    if (currentPlayer.getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
+                        startField(i);
+                        currentPlayer.setPosition(currentPlayer.getPosition() + faceValue - 40);
+
+                    } else {
+                        currentPlayer.setPosition(currentPlayer.getPosition() + faceValue);
+                    }
+
+                    guiController.wannaBuy(board.getSquare(currentPlayer.getPosition()), currentPlayer);
+
+                    fieldOutcome(i); // The field outcome for the specific field
+
+                    for (Player player : players) {
+                        guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
+
+                    }
+
+                    //if(board.SameOwnerColor(property)) {
+                    guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
+                    // }
+
+                    winner(i); // Checking if the winner is found.
                 }
-                 // Updating player position
-                if (currentPlayer.getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
-                    startField(i);
-                    currentPlayer.setPosition(currentPlayer.getPosition() + faceValue - 40);
-
-                } else {
-                    currentPlayer.setPosition(currentPlayer.getPosition() + faceValue);
-                }
-
-               guiController.wannaBuy(board.getSquare(currentPlayer.getPosition()), currentPlayer);
-
-                fieldOutcome(i); // The field outcome for the specific field
-
-                for (Player player : players) {
-                    guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
-
-                }
-                guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
-
-                //if(board.SameOwnerColor(property)) {
-                    guiController.addHouse(board.getSquare(players.get(i).getPosition()));
-               // }
-
-                winner(i); // Checking if the winner is found.
             }
 
         }

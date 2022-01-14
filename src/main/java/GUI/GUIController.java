@@ -120,9 +120,8 @@ public class GUIController {
                   gui.showMessage("You now own this field");
 
               }
-          } else {
+          }
 
-            }
         }
     }
 
