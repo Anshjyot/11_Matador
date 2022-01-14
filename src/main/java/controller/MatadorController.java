@@ -168,7 +168,7 @@ public class MatadorController {
     }
 
     private void fieldOutcome(int i) { // The field outcome method
-        board.getSquare(players[i].getPosition()).Arrived(players[i]);
+        board.getSquare(players[i].getPosition()).arrived(players[i]);
     }
 
     private void startField(int i) { // You get 4.000 dkk when you pass the Start-field

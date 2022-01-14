@@ -13,7 +13,6 @@ public class IncomeTaxField extends Field { // This class extends the Field clas
     int tax;
     GUIController controller;
 
-    @Override
     public void Arrived(Player p) {
         controller.showMessage("Betal Indkomst-skatten på 4000$");
         p.getAccount().setBalance(p.getAccount().getBalance()-4000);

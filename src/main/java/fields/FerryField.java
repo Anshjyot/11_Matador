@@ -24,7 +24,6 @@ public class FerryField extends Field { // This class extends the Field class
     Player owner;
     GUIController controller;
 
-    @Override
     public void Arrived(Player player) { // This class creates the ownership for the fields, you can buy and rent ferryfields.
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);

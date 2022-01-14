@@ -113,7 +113,7 @@ public class GUIController {
                 boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
                 if (yes) {
 //              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
-                    ((OwnedProperty) property).buyDeed(player);
+                    buyDeed(player);
                     // field.setBorder(Color.RED,Color.RED);
                     //  gui.showMessage("You now own this field");
                 }

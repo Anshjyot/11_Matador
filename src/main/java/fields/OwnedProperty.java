@@ -31,49 +31,12 @@ public class OwnedProperty extends Field {
     GUIController controller;
     Color color;
 
-    @Override
-    public void Arrived(Player player) { // This class creates the ownership for the fields, you can buy and rent fields.
-        if (owner == null) {
-            player.getAccount().setBalance(player.getAccount().getBalance() - price);
-            owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-        } else {
-            player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
-            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
-
-
-        }
-    }
-
-    public String getOwner() {
-        if(owner == null) {
-            return "";
-        }
-        return owner.getPlayerName();
-
-    }
-
+    public int getPrice(){return price;}
+    public String getFieldName(){return fieldName;}
   //  public boolean inJail() {}
         //if players current position is jailfield 30.
        // if (inJail(30)
 
-
-    //check if there is an owner
-    public boolean isThereAnOwner(){
-        if (owner==null) {
-
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    public void buyDeed(Player player){
-         player.getAccount().setBalance(player.getAccount().getBalance() - price);
-         owner = player;
-         controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-     }
     public Color getColor() {
         return color;
     }
@@ -85,6 +48,4 @@ public class OwnedProperty extends Field {
     public void addHouse() {
         house = house+1;
     }
-
-
-    }
+}
