@@ -61,6 +61,11 @@ public class JailField extends Field { // This class extends the Field class and
 
                     }
                     break;
+                /*case "Use a Get-Out-Of-Jail Card":
+                    if(chancecard==true) {
+                        player.isInJail = false;
+                    }
+                    break;
                /* default:
                     System.out.println(option);
             }
