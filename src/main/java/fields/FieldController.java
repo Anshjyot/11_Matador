@@ -160,29 +160,28 @@ public class FieldController {
     GUIController controller;
 
     public void arrivedFerry(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
+        arrivedAtProperty(player, fieldName);
+    }
+    public void buyProperty(Player player,String fieldName){
+        player.getAccount().setBalance(player.getAccount().getBalance() - price);
+        owner = player;
+        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+    }
+    public void rentProperty(Player player,String fieldName){
+        player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
+        owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
+        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
+    }
+    public void arrivedAtProperty(Player player, String fieldName){
         if (owner == null) {
-            player.getAccount().setBalance(player.getAccount().getBalance() - price);
-            owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-
+            buyProperty(player,fieldName);
         } else {
-            player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
-            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
+            rentProperty(player, fieldName);
         }
     }
 
     public void arrivedBrewery(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
-        if (owner == null) {
-            player.getAccount().setBalance(player.getAccount().getBalance() - price);
-            owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-
-        } else {
-            player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
-            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
-        }
+        arrivedAtProperty(player, fieldName);
     }
 
     public void arrivedIncomeTax(Player p) { // This field places makes the player pay 4000.
@@ -203,16 +202,7 @@ public class FieldController {
     Color color;
 
     public void arrivedOwnedProperty(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
-        if (owner == null) {
-            player.getAccount().setBalance(player.getAccount().getBalance() - price);
-            owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-        } else {
-            player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
-            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
-
-        }
+        arrivedAtProperty(player,fieldName);
     }
 
     public String getOwner() {
