@@ -73,7 +73,7 @@ public class FieldController {
 
 
     public void CreateStreets(Player[] players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
-        squares[0] = new StartField("START");
+        squares[0] = new StartField("START", controller);
         squares[1] = new OwnedProperty("Rødovrevej", 1200, 1000, new int[]{50, 250, 750, 2250, 4000, 6000}, new Color(75, 155, 225), 1, controller);
         squares[2] = new ChanceField("Prøv Lykken", players, controller);
         squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1000, new int[]{50, 250, 400, 750, 2250, 6000}, new Color(75, 155, 225), 3, controller);
@@ -95,7 +95,7 @@ public class FieldController {
         squares[17] = new ChanceField("Prøv Lykken", players, controller);
         squares[18] = new OwnedProperty("Hellerupvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 18, controller);
         squares[19] = new OwnedProperty("Strandvejen", 4000, 2000, new int[]{350, 1600, 4400, 12000, 16000, 20000}, new Color(153, 153, 153), 19, controller);
-        squares[20] = new ParkingField("Parkering");
+        squares[20] = new ParkingField("Parkering", controller);
         squares[21] = new OwnedProperty("Trianglen", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 21, controller);
         squares[22] = new ChanceField("Prøv Lykken", players, controller);
         squares[23] = new OwnedProperty("Østerbrogade", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 23, controller);

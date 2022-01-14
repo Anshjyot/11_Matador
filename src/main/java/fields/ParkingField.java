@@ -5,7 +5,7 @@ import game.Player;
 
 public class ParkingField extends Field { // Creates our Parking field, and which functionality wise doesn't do anything
     private GUIController controller;
-    public ParkingField(String fieldName) {
+    public ParkingField(String fieldName, GUIController controller) {
         super(fieldName);
         this.controller = controller;
     }

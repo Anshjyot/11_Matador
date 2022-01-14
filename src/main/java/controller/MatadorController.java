@@ -24,17 +24,7 @@ public class MatadorController {
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
     protected GUI gui;
-    private Player player;
     private Cup cup = new Cup();
-    Field[] squares = new Field[40];
-    GUIController controller;
-    public OwnedProperty property;
-
-
-    public Field getSquare(int i) {
-        return squares[i];
-
-    }
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new FieldController(players, guiController);
@@ -49,37 +39,23 @@ public class MatadorController {
     }
 
 
-    private void gameLoop() throws InterruptedException {
+    private void gameLoop() throws InterruptedException { // Our Game-loop system
         while (noWinner) {
             for (int i = 0; i < players.length; i++) {
-                //tester for specifikke felter
-                //int faceValue = 30;
                 currentPlayer = players[i];
-                if (currentPlayer.isInJail) {
-
-
-                    if (currentPlayer.isInJail) {
+                if (currentPlayer.isInJail) { // Jail system
                         JailField jailField = board.getJailField();
                         jailField.GetOutOfJail(currentPlayer);
                         if (currentPlayer.isInJail)
-
                             continue;
                     }
-                    guiController.askForDice();
+                    guiController.askForDice(); // Dice and Cup usage
                     int faceValue = cup.CupRoll();
                     guiController.setDice(cup.GetDice1Value(), cup.GetDice2Value());
 
 
                     guiController.removeCar(currentPlayer.getPosition(), i);
 
-
-
-
-                /*if (players.get(i).getPosition() - faceValue > 0) {
-                    guiController.AddCar(players.get(i).getPosition() - faceValue, i);
-                } else {
-                    guiController.AddCar(players.get(i).getPosition(), i);
-                }*/
 
                     for (int j = 0; j < faceValue; j++) {
                         int newPos = (currentPlayer.getPosition() + j) % 40;
@@ -116,7 +92,7 @@ public class MatadorController {
             }
 
         }
-    }
+
 
     private void winner(int player) { // The last person to have a balance >0 wins
         int loserBalance = 0;
@@ -124,6 +100,7 @@ public class MatadorController {
 
         if (players[player].getAccount().getBalance() < 0) {
             for (int i = 0; i < players.length; i++) {
+                //guiController.removeCar(currentPlayer.getPosition(),i);
                 if (players[i].getAccount().getBalance() > loserBalance) {
                     winnerName.add(players[i].getPlayerName());
                 }

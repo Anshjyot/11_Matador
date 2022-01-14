@@ -46,7 +46,7 @@ public class GUIController {
     }
 
     public void askForDice() {
-        gui.getUserButtonPressed("Throw Dice", "Throw");
+        gui.getUserButtonPressed("Roll The Dice", "Roll");
     }
 
     public void setDice(int die1, int die2) { // Creates the dice in the GUI
@@ -56,7 +56,7 @@ public class GUIController {
     public void addPlayers(Player[] players) { // Creates different types of game-pieces
         this.guiPlayers = new GUI_Player[players.length];
         GUI_Car[] car_choices = {
-                new GUI_Car(Color.PINK, Color.RED, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_GRADIANT),
+                new GUI_Car(Color.RED, Color.PINK, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_GRADIANT),
                 new GUI_Car(Color.ORANGE, Color.WHITE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED),
                 new GUI_Car(Color.BLUE, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED),
                 new GUI_Car(Color.YELLOW, Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA),
