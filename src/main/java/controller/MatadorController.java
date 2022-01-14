@@ -119,7 +119,6 @@ public class MatadorController {
             for (int i = 0; i < players.length; i++) {
                 if (players[i].getAccount().getBalance() > loserBalance) {
                     winnerName.add(players[i].getPlayerName());
-
                 }
             }
 
@@ -175,5 +174,4 @@ public class MatadorController {
     private void startField(int i) { // You get 4.000 dkk when you pass the Start-field
         players[i].getAccount().setBalance(players[i].getAccount().getBalance() + 4000);
     }
-
 }
