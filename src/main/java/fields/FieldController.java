@@ -11,7 +11,7 @@ public class FieldController {
     GUI_Field[] fields = new GUI_Field[40];
     Field[] squares = new Field[40];
 
-    public FieldController(List<Player> players, GUIController controller) {
+    public FieldController(Player[] players, GUIController controller) {
         CreateStreets(players, controller);
     }
 
@@ -72,7 +72,7 @@ public class FieldController {
     }
 
 
-    public void CreateStreets(List<Player> players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
+    public void CreateStreets(Player[] players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
         squares[0] = new StartField("START");
         squares[1] = new OwnedProperty("Rødovrevej", 1200, 1000, new int[]{50, 250, 750, 2250, 4000, 6000}, new Color(75, 155, 225), 1, controller);
         squares[2] = new ChanceField("Prøv Lykken", players, controller);
@@ -84,7 +84,7 @@ public class FieldController {
         squares[8] = new OwnedProperty("Valbylanggade", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 8, controller);
         squares[9] = new OwnedProperty("Allégade", 2400, 1000, new int[]{150, 800, 2000, 6000, 9000, 12000}, new Color(255, 135, 120), 9, controller);
 
-        squares[10] = new VisitJailField("På fængsels-besøg");
+        squares[10] = new VisitJailField("På fængsels-besøg",controller);
 
         squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 11, controller);
         squares[12] = new BreweryField("Tuborg", 3000, 100, 200, controller);

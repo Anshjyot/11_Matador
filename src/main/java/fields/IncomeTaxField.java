@@ -14,8 +14,8 @@ public class IncomeTaxField extends Field { // This class extends the Field clas
     GUIController controller;
 
     @Override
-    public void Arrived(Player p) { // This field places the player back to VisitJailSquare field.
-        controller.showMessage("Betal Indkomst-skat");
+    public void Arrived(Player p) {
+        controller.showMessage("Betal Indkomst-skatten på 4000$");
         p.getAccount().setBalance(p.getAccount().getBalance()-4000);
 
     }

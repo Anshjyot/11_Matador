@@ -14,8 +14,8 @@ public class ExtraordinaryTaxField extends Field { // This class extends the Fie
     GUIController controller;
 
     @Override
-    public void Arrived(Player p) { // This field places the player back to VisitJailSquare field.
-        controller.showMessage("Betal Extraordinær-skat");
+    public void Arrived(Player p) {
+        controller.showMessage("Betal Extraordinær-skat på 2000$");
         p.getAccount().setBalance(p.getAccount().getBalance()-2000);
 
     }
