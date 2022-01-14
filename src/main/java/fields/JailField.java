@@ -19,7 +19,7 @@ public class JailField extends Field { // This class extends the Field class and
 
     @Override
     public void Arrived(Player p) { // This field places the player back to VisitJailSquare field.
-        controller.showMessage("JAIL TIME, you have been moved to jail");
+        controller.showMessage("JAIL TIME! You have been moved to jail.");
         p.isInJail = true;
         controller.removeCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 20);
@@ -30,8 +30,10 @@ public class JailField extends Field { // This class extends the Field class and
     public void GetOutOfJail(Player player) {
         player.roundsInJail++;
         if (player.roundsInJail > 3) {
+            //The player should still pay 1000$ - dont know if this feature works totally correct?
+            player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
             player.isInJail = false;
-            controller.showMessage("You have been in jail for 3 rounds, get out of here!");
+            controller.showMessage("You have been in jail for 3 rounds, pay 1000$ and get out of here!");
             cup.CupRoll();
             controller.askForDice();
             controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
@@ -54,9 +56,14 @@ public class JailField extends Field { // This class extends the Field class and
                     controller.askForDice();
                     controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
                     if (cup.GetDice1Value() == cup.GetDice2Value()) {
-                        controller.showMessage("You got a pair, you get an extra throw");
+                        controller.showMessage("You got lucky, you got a pair and get an extra throw");
                         player.isInJail = false;
 
+                    }
+                    break;
+                /*case "Use a Get-Out-Of-Jail Card":
+                    if(chancecard==true) {
+                        player.isInJail = false;
                     }
                     break;
                /* default:
