@@ -9,7 +9,7 @@ import java.util.Random;
 public class ChanceField extends Field { // This class extends the Square class and creates the ChanceCard
 
     // int outcome;
-    private List<Player> players;
+    private Player[] players;
     private GUIController controller;
     private ChanceCard[] chanceCards;
     private Player otherPlayer;

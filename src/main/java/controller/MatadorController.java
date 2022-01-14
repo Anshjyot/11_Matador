@@ -16,7 +16,7 @@ public class MatadorController {
 
     private final int StartField = 0;
     private GUIController guiController = new GUIController();
-    private int startBalance;
+    private final int STARTBALANCE = 30000;
     private boolean noWinner = true;
     Player players[];
     Player currentPlayer;
@@ -131,11 +131,10 @@ public class MatadorController {
         }
     }
 
-
-
     private void numberOfPlayers() { // Start money declaration
         int playerList = guiController.getPlayerList();
-        startBalance = 30000;
+
+        players = new Player[playerList];
 
         for (int i = 0; i < playerList; i++) {
             String[] temporaryName = new String[names.length + 1];
@@ -146,20 +145,23 @@ public class MatadorController {
             }
             names = temporaryName;
             ages = temporaryAge;
+
+            //Insert name
             String name = guiController.getPlayerName(i);
             int age = 0;
             boolean ageIsInt;
             do {
                 try {
+                    //insert age
                     age = guiController.getPlayerAge(i);
                     ageIsInt = age >= 10 && age <= 150;
                 } catch (NumberFormatException e) {
                     ageIsInt = false;
                 }
             } while (!ageIsInt);
-
-            ages[i] = age;
-            players.add(new Player(name, age, startBalance, StartField, i));
+            players[i] = new Player(name,age, STARTBALANCE,StartField,i);
+            //ages[i] = age;
+            //players.add(new Player(name, age, startBalance, StartField, i));
         }
 
         guiController.addPlayers(players); // Adds players to the GUI
