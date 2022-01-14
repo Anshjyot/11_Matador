@@ -15,7 +15,7 @@ public class ChanceField extends Field { // This class extends the Square class 
     private Player otherPlayer;
     Random rand = new Random();
 
-    public ChanceField(String fieldName, List<Player> players, GUIController controller) {
+    public ChanceField(String fieldName, Player[] players, GUIController controller) {
         super(fieldName);
         this.controller = controller;
         this.players = players;
