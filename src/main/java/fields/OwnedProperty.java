@@ -35,13 +35,15 @@ public class OwnedProperty extends Field {
     public void Arrived(Player player) { // This class creates the ownership for the fields, you can buy and rent fields.
         if (owner == null) {
             controller.wannaBuy(this, player);
-        } else {
+        }
+
+        else if(owner != player){
             player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
             controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
 
-
         }
+
     }
 
     public String getOwner() {

@@ -44,54 +44,53 @@ public class MatadorController {
             for (int i = 0; i < players.length; i++) {
                 currentPlayer = players[i];
                 if (currentPlayer.isInJail) { // Jail system
-                        JailField jailField = board.getJailField();
-                        jailField.GetOutOfJail(currentPlayer);
-                        if (currentPlayer.isInJail)
-                            continue;
-                    }
-                    guiController.askForDice(); // Dice and Cup usage
-                    int faceValue = cup.CupRoll();
-                    guiController.setDice(cup.GetDice1Value(), cup.GetDice2Value());
-
-
-                    guiController.removeCar(currentPlayer.getPosition(), i);
-
-
-                    for (int j = 0; j < faceValue; j++) {
-                        int newPos = (currentPlayer.getPosition() + j) % 40;
-
-                        guiController.removeCar(newPos, i);
-                        guiController.addCar((newPos + 1) % 40, i);
-                        Thread.sleep(150);
-
-                    }
-                    // Updating player position
-                    if (currentPlayer.getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
-                        startField(i);
-                        currentPlayer.setPosition(currentPlayer.getPosition() + faceValue - 40);
-
-                    } else {
-                        currentPlayer.setPosition(currentPlayer.getPosition() + faceValue);
-                    }
-
-                    guiController.wannaBuy(board.getSquare(currentPlayer.getPosition()), currentPlayer);
-
-                    fieldOutcome(i); // The field outcome for the specific field
-
-                    for (Player player : players) {
-                        guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
-
-                    }
-
-                    //if(board.SameOwnerColor(property)) {
-                    guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
-                    // }
-
-                    winner(i); // Checking if the winner is found.
+                    JailField jailField = board.getJailField();
+                    jailField.GetOutOfJail(currentPlayer);
+                    if (currentPlayer.isInJail)
+                        continue;
                 }
-            }
+                guiController.askForDice(); // Dice and Cup usage
+                int faceValue = cup.CupRoll();
+                guiController.setDice(cup.GetDice1Value(), cup.GetDice2Value());
 
+
+                guiController.removeCar(currentPlayer.getPosition(), i);
+
+
+                for (int j = 0; j < faceValue; j++) {
+                    int newPos = (currentPlayer.getPosition() + j) % 40;
+
+                    guiController.removeCar(newPos, i);
+                    guiController.addCar((newPos + 1) % 40, i);
+                    Thread.sleep(150);
+
+                }
+                // Updating player position
+                if (currentPlayer.getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
+                    startField(i);
+                    currentPlayer.setPosition(currentPlayer.getPosition() + faceValue - 40);
+
+                } else {
+                    currentPlayer.setPosition(currentPlayer.getPosition() + faceValue);
+                }
+
+                guiController.wannaBuy(board.getSquare(currentPlayer.getPosition()), currentPlayer);
+
+                fieldOutcome(i); // The field outcome for the specific field
+
+                for (Player player : players) {
+                    guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
+
+                }
+
+                //if (){
+                guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
+                // }
+
+                winner(i); // Checking if the winner is found.
+            }
         }
+    }
 
 
     private void winner(int player) { // The last person to have a balance >0 wins
