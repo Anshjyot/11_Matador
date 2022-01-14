@@ -3,7 +3,7 @@ package fields;
 
 import game.Player;
 
-public class Field { // This class creates the different special types of fields/squares available
+public abstract class Field { // This class creates the different special types of fields/squares available
     protected String fieldName;
 
     public Field(String fieldName) {
@@ -13,7 +13,6 @@ public class Field { // This class creates the different special types of fields
     public Field() {
     }
 
-    public void Arrived(Player p) {
+    public abstract void Arrived(Player p);
 
-    }
 }

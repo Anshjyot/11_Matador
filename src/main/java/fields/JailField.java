@@ -30,8 +30,10 @@ public class JailField extends Field { // This class extends the Field class and
     public void GetOutOfJail(Player player) {
         player.roundsInJail++;
         if (player.roundsInJail > 3) {
+            //The player should still pay 1000$ - dont know if this feature works totally correct?
+            player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
             player.isInJail = false;
-            controller.showMessage("You have been in jail for 3 rounds, get out of here!");
+            controller.showMessage("You have been in jail for 3 rounds, pay 1000$ and get out of here!");
             cup.CupRoll();
             controller.askForDice();
             controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
@@ -54,7 +56,7 @@ public class JailField extends Field { // This class extends the Field class and
                     controller.askForDice();
                     controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
                     if (cup.GetDice1Value() == cup.GetDice2Value()) {
-                        controller.showMessage("You got a pair, you get an extra throw");
+                        controller.showMessage("You got lucky, you got a pair and get an extra throw");
                         player.isInJail = false;
 
                     }
