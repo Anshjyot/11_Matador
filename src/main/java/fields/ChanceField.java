@@ -19,7 +19,6 @@ public class ChanceField extends Field { // This class extends the Square class 
         super(fieldName);
         this.controller = controller;
         this.players = players;
-
         chanceCards = new ChanceCard[]{
                 /*new TypePayPerPropety(500, 2000, "Oil Prices have risen, Pay 500kr pr House and 2000pr Hotel you own!"),
                 new TypePayPerProperty(800,2300, "Property Tax has risen , Pay 800kr pr House and 2300kr pr hotel."),*/
@@ -49,7 +48,7 @@ public class ChanceField extends Field { // This class extends the Square class 
                 new TypeMoneyCard(200,"Pick up 200kr from the bank"),
 
                 new TypeConditionCard(15000,40000,"Your lucky day! Your assets are under 15000! Pick up 40.000kr from the bank!",
-                                      "Your assets are over 15.000kr. Your doing well enough already."),
+                        "Your assets are over 15.000kr. Your doing well enough already."),
                 /*
                 new TypePayPlayerCard(200, "Its your Birthday, receive 200kr from every Player."),
                 new TypePayPlayerCard(500, "Payback time! You put money up front for a joint, receive 500kr from every player."),
@@ -62,6 +61,7 @@ public class ChanceField extends Field { // This class extends the Square class 
                 new TypeMoveToCard(0, "Move to start"),
                 new TypeMoveToCard(0, "Move to start")
         };
+
 
     }
     @Override
