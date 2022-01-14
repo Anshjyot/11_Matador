@@ -33,7 +33,7 @@ public class JailField extends Field { // This class extends the Field class and
             //The player should still pay 1000$ - dont know if this feature works totally correct?
             player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
             player.isInJail = false;
-            controller.showMessage("You have been in jail for 3 rounds, pay 1000$ and get out of here!");
+            controller.showMessage("You have been in jail for 3 rounds, pay 1000kr and get out of here!");
             cup.CupRoll();
             controller.askForDice();
             controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
