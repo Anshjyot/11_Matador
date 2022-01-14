@@ -49,6 +49,9 @@ public class MatadorController {
                     if (currentPlayer.isInJail)
                         continue;
                 }
+                //if()
+                guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
+
                 guiController.askForDice(); // Dice and Cup usage
                 int faceValue = cup.CupRoll();
                 guiController.setDice(cup.GetDice1Value(), cup.GetDice2Value());
@@ -83,9 +86,6 @@ public class MatadorController {
 
                 }
 
-                //if (){
-                guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
-                // }
 
                 winner(i); // Checking if the winner is found.
             }

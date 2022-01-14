@@ -104,19 +104,19 @@ public class FieldController {
         squares[26] = new OwnedProperty("Bredgade", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 26, controller);
         squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 27, controller);
         squares[28] = new BreweryField("Carlsberg", 3000, 100, 200, controller);
-        squares[29] = new OwnedProperty("Østergade", 5600, 3000, new int[]{500, 2400, 7200, 17000, 20500, 24000}, Color.WHITE, 28, controller);
+        squares[29] = new OwnedProperty("Østergade", 5600, 3000, new int[]{500, 2400, 7200, 17000, 20500, 24000}, Color.WHITE, 29, controller);
 
         squares[30] = new JailField("JAIL", controller);
 
-        squares[31] = new OwnedProperty("Amagertorv", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 30, controller);
-        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 31, controller);
+        squares[31] = new OwnedProperty("Amagertorv", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 31, controller);
+        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 32, controller);
         squares[33] = new ChanceField("Prøv Lykken", players, controller);
-        squares[34] = new OwnedProperty("Nygade", 6400, 4000, new int[]{600, 3000, 9000, 20000, 24000, 28000}, new Color(255, 255, 50), 33, controller);
+        squares[34] = new OwnedProperty("Nygade", 6400, 4000, new int[]{600, 3000, 9000, 20000, 24000, 28000}, new Color(255, 255, 50), 34, controller);
         squares[35] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000, controller);
         squares[36] = new ChanceField("Prøv Lykken", players, controller);
-        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 4000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, new Color(150, 60, 150), 36, controller);
+        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 4000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, new Color(150, 60, 150), 37, controller);
         squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000, controller);
-        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 4000, new int[]{1000, 4000, 12000, 28000, 34000, 40000}, new Color(150, 60, 150), 38, controller);
+        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 4000, new int[]{1000, 4000, 12000, 28000, 34000, 40000}, new Color(150, 60, 150), 39, controller);
 
     }
 
