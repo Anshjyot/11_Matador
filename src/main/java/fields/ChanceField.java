@@ -21,6 +21,10 @@ public class ChanceField extends Field { // This class extends the Square class 
         this.players = players;
 
         chanceCards = new ChanceCard[]{
+                new TypePayPerPropety(500, 2000, "Oil Prices have risen, Pay 500kr pr House and 2000pr Hotel you own!"),
+                new TypePayPerProperty(800,2300, "Property Tax has risen , Pay 800kr pr House and 2300kr pr hotel."),
+
+
                 new TypeMoneyCard(-1000, "You have driven over a 'full stop'. Pay a 1000kr fine."),
                 new TypeMoneyCard(-300,"Pay 300kr for a car wash and oil change."),
                 new TypeMoneyCard(-200,"Pay 200kr for 2 crates of beer."),
