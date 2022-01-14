@@ -19,7 +19,7 @@ public class JailField extends Field { // This class extends the Field class and
 
     @Override
     public void Arrived(Player p) { // This field places the player back to VisitJailSquare field.
-        controller.showMessage("JAIL TIME, you have been moved to jail");
+        controller.showMessage("JAIL TIME, you have been moved to jail.");
         p.isInJail = true;
         controller.removeCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 20);
