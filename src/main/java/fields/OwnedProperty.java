@@ -7,7 +7,7 @@ import gui_main.GUI;
 import java.awt.*;
 
 public class OwnedProperty extends Field {
-    public static boolean isThereAnOwner; // This class extends the Field class
+    // This class extends the Field class
 
     protected GUI gui;
 
@@ -34,9 +34,7 @@ public class OwnedProperty extends Field {
     @Override
     public void Arrived(Player player) { // This class creates the ownership for the fields, you can buy and rent fields.
         if (owner == null) {
-            player.getAccount().setBalance(player.getAccount().getBalance() - price);
-            owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+            controller.wannaBuy(this, player);
         } else {
             player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
@@ -60,15 +58,11 @@ public class OwnedProperty extends Field {
 
 
     //check if there is an owner
-    public boolean isThereAnOwner(){
-        if (owner==null) {
+    public boolean isThereAnOwner() {
+        return owner != null;
 
-            return true;
-        }
-        else {
-            return false;
-        }
     }
+
     public void buyDeed(Player player){
          player.getAccount().setBalance(player.getAccount().getBalance() - price);
          owner = player;

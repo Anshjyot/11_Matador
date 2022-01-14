@@ -30,11 +30,6 @@ public class MatadorController {
     public OwnedProperty property;
 
 
-    public Field getSquare(int i) {
-        return squares[i];
-
-    }
-
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new FieldController(players, guiController);
         this.guiController.initializeBoard(board);
@@ -52,7 +47,7 @@ public class MatadorController {
         while (noWinner) {
             for (int i = 0; i < players.size(); i++) {
                 //tester for specifikke felter
-                //int faceValue = 30;
+
 
                 if(players.get(i).isInJail) {
                     JailField jailField = board.getJailField();
@@ -94,15 +89,16 @@ public class MatadorController {
                     players.get(i).setPosition(players.get(i).getPosition() + faceValue);
                 }
 
-               guiController.wannaBuy(board.getSquare(players.get(i).getPosition()), players.get(i));
-
                 fieldOutcome(i); // The field outcome for the specific field
 
                 for (Player player : players) {
                     guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
 
                 }
-                guiController.addHouse(board.getSquare(players.get(i).getPosition()));
+
+                //if(board.SameOwnerColor(property)) {
+                    guiController.addHouse(board.getSquare(players.get(i).getPosition()));
+               // }
 
                 winner(i); // Checking if the winner is found.
             }

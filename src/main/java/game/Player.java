@@ -1,6 +1,10 @@
 package game;
 
-public class Player { // This class creates the player which will be used in the GUI, a player with an account.
+import GUI.GUIController;
+import gui_fields.GUI_Car;
+
+public class Player {
+    public GUIController guiController; // This class creates the player which will be used in the GUI, a player with an account.
 
     private Account account;
     private String PlayerName;
