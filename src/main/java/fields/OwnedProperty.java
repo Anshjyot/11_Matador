@@ -82,5 +82,9 @@ public class OwnedProperty extends Field {
         house = house+1;
     }
 
+    public void CheckOwned() {
+        //
+    }
+
 
     }

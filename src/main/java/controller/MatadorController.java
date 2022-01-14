@@ -49,7 +49,7 @@ public class MatadorController {
                     if (currentPlayer.isInJail)
                         continue;
                 }
-                //if()
+
                 guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
 
                 guiController.askForDice(); // Dice and Cup usage
