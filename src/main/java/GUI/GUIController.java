@@ -54,7 +54,7 @@ public class GUIController {
         this.guiPlayers = new GUI_Player[players.size()];
         GUI_Car[] car_choices = {
                 new GUI_Car(Color.PINK, Color.RED, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_GRADIANT),
-                new GUI_Car(Color.BLACK, Color.WHITE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED),
+                new GUI_Car(Color.ORANGE, Color.WHITE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED),
                 new GUI_Car(Color.BLUE, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED),
                 new GUI_Car(Color.YELLOW, Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA),
                 new GUI_Car(Color.GREEN, Color.DARK_GRAY, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_LINE),
@@ -111,10 +111,10 @@ public class GUIController {
                   GUI_Street field = (GUI_Street) gui.getFields()[((OwnedProperty) property).getIndex()];
                   ((OwnedProperty)property).buyDeed(player);
 
-                  int i = 0;
-                  Color playercolors = this.guiPlayers[i].getCar().getPrimaryColor();
+                  Color playercolors = this.guiPlayers[player.getIndex()].getCar().getPrimaryColor();
                   field.setBorder(playercolors);
                   gui.showMessage("You now own this field");
+
               }
           } else {
 
