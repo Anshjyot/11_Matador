@@ -23,14 +23,17 @@ public class GUIController {
     private GUI_Player[] players;
     Field[] squares = new Field[40];
     GUI_Field[] fields = new GUI_Field[40];
+    private Language language;
     public static final String TEXT_CYAN = "\u001B[36m";
 
-    public GUIController() {
-    }
 
     public void initializeBoard(FieldController board) { // Initializing the board
         this.board = board;
         this.gui = new GUI(board.BoardCreator(), new Color(14, 162, 124)); // Change game-board color
+    }
+
+    public void getLanguage() {
+        gui.getUserButtonPressed("Choose language", "English");
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI

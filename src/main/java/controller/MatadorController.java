@@ -31,6 +31,7 @@ public class MatadorController {
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new FieldController(players, guiController);
         guiController.initializeBoard(board);
+        chooseLanguage();
         numberOfPlayers();
         try {
             gameLoop();
@@ -101,7 +102,6 @@ public class MatadorController {
 
         if (players[player].getAccount().getBalance() < 0) {
             for (int i = 0; i < players.length; i++) {
-                //guiController.removeCar(currentPlayer.getPosition(),i);
                 if (players[i].getAccount().getBalance() > loserBalance) {
                     winnerName.add(players[i].getPlayerName());
                 }
@@ -113,6 +113,10 @@ public class MatadorController {
             }
 
         }
+    }
+
+    private void chooseLanguage() {
+        guiController.getLanguage();
     }
 
     private void numberOfPlayers() { // Start money declaration
