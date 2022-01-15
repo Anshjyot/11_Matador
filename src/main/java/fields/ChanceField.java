@@ -5,4 +5,5 @@ public class ChanceField extends Field { // This class extends the Field class a
     public ChanceField(String fieldName){
         super(fieldName);
     }
+
 }

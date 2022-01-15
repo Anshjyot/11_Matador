@@ -20,9 +20,9 @@ public class MatadorController {
     public Player[] players;
     Player currentPlayer;
     FieldController board;
-    protected int[] ages = new int[0];
-    protected String[] names = new String[0];
-    protected GUI gui;
+    private int[] ages = new int[0];
+    private String[] names = new String[0];
+    private GUI gui;
     private Cup cup = new Cup();
     Field[] squares = new Field[40];
 
@@ -32,6 +32,7 @@ public class MatadorController {
         if (instance == null) {
             instance = new MatadorController();
         }
+        System.out.println("Jacob!");
         return instance;
     }
 
@@ -55,9 +56,10 @@ public class MatadorController {
                 if(currentPlayer.isInJail) {
                     FieldController.getInstance().GetOutOfJail(currentPlayer);
                     if (currentPlayer.isInJail)
-
                         continue;
                 }
+                FieldController.getInstance().choosePlayerOption(currentPlayer);
+
                 GUIController.getInstance().askForDice();
                 int faceValue = cup.CupRoll();
                 GUIController.getInstance().setDice(cup.GetDice1Value(),cup.GetDice2Value());
@@ -89,14 +91,11 @@ public class MatadorController {
 
                 //Skal rykkes ind i field controller.
 
-
-                FieldController.getInstance().fieldOutcome(currentPlayer, players); // The field outcome for the specific field
+                FieldController.getInstance().fieldOutcome(currentPlayer); // The field outcome for the specific field
 
                 for (Player player : players) {
                     GUIController.getInstance().setNewBalance(player.getIndex(), player.getAccount().getBalance());
                 }
-                //guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
-
                 winner(i); // Checking if the winner is found.
             }
 
@@ -155,11 +154,11 @@ public class MatadorController {
             //ages[i] = age;
             //players.add(new Player(name, age, startBalance, StartField, i));
         }
-
         GUIController.getInstance().addPlayers(players); // Adds players to the GUI
+        System.out.println("Spillere: " + players.toString());
     }
 
-    public Player getPlayer(int i){return this.players[i];}
-    public Player[] getPlayers(){return this.players;}
+    public Player getPlayer(int i){return players[i];}
+    public Player[] getPlayers(){return players;}
 
 }

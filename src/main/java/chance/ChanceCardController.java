@@ -50,6 +50,7 @@ public class ChanceCardController {
         }
 
         public ChanceCard draw (Player p) {
+            GUIController.getInstance().pressChanceButton();
 
             ChanceCard topCard = chanceCards[0];
             for (int i = 0; i < chanceCards.length - 1; i++) {
@@ -68,10 +69,13 @@ public class ChanceCardController {
                 GUIController.getInstance().showMessage(card.getCardMessage());
 
                 GUIController.getInstance().removeCar(p.getPosition(),p.getIndex());
-                System.out.println("Spiller rykkes fra " + p.getPosition());
-                p.setPosition(p.getPosition()+card.getCardValue());
-                GUIController.getInstance().addCar(p.getPosition(),p.getIndex());
-                System.out.println(" til " + p.getPosition());
+
+                if(p.getPosition()+card.getCardValue()<0){
+                    p.setPosition(40 + p.getPosition()+card.getCardValue());
+                }
+                else{
+                    p.setPosition(p.getPosition()+card.getCardValue());
+                    GUIController.getInstance().addCar(p.getPosition(),p.getIndex());}
             }
             else if (topCard instanceof TypeMoveToCard){
                 TypeMoveToCard card = ((TypeMoveToCard)topCard);
@@ -82,6 +86,7 @@ public class ChanceCardController {
                 GUIController.getInstance().removeCar(p.getPosition(),p.getIndex());
                 p.setPosition(card.getCardDestination());
                 GUIController.getInstance().addCar(p.getPosition(),p.getIndex());
+
             }
             //will work when players is an array instead of a List.
             else if(topCard instanceof TypePayPlayerCard){

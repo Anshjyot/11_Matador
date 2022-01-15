@@ -7,5 +7,4 @@ public class VisitJailField extends Field { // Creates our VisitJailSquare field
     public VisitJailField(String fieldName) {
         super(fieldName);
     }
-
 }

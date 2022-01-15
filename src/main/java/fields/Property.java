@@ -16,6 +16,7 @@ public abstract class Property extends Field{
     }
 
     abstract int getRent();
+    abstract int getPrice();
 
     public int getOwner() {
         return owner;

@@ -20,5 +20,9 @@ public class BreweryField extends Property { // This class extends the Field cla
     int getRent() {
         return rent0;
     }
+
+    @Override
+    int getPrice() {return this.price;}
+
 }
 

@@ -7,9 +7,7 @@ import gui_main.GUI;
 import java.awt.*;
 
 public class StreetField extends Property {
-    public static boolean isThereAnOwner; // This class extends the Field class
     private int noOfHouses = 0;
-    protected GUI gui;
 
     public StreetField(String fieldname, int price, int houseprice, int[] rent, Color color, int index) {
         super(fieldname, price);
@@ -17,8 +15,6 @@ public class StreetField extends Property {
         this.price = price;
         this.houseprice = houseprice;
         this.rent = rent;
-        this.controller = controller;
-        this.house = 0;
         this.index = index;
         this.color = color;
     }
@@ -26,16 +22,10 @@ public class StreetField extends Property {
     int price;
     int houseprice;
     int[] rent;
-    int house;
     int index;
-    Player owner;
-    GUIController controller;
     Color color;
 
     public String getFieldName(){return fieldName;}
-  //  public boolean inJail() {}
-        //if players current position is jailfield 30.
-       // if (inJail(30)
 
     public Color getColor() {
         return color;
@@ -46,11 +36,14 @@ public class StreetField extends Property {
     }
 
     public void addHouse() {
-        house = house+1;
+        noOfHouses = noOfHouses+1;
     }
 
     int getPrice() {
         return this.price;
+    }
+    public int getHouseprice(){
+        return houseprice;
     }
 
     @Override

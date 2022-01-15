@@ -11,4 +11,5 @@ public class ExtraordinaryTaxField extends Field { // This class extends the Fie
         this.tax = tax;
     }
     public int getTax(){return tax;}
+
 }

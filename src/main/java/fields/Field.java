@@ -13,6 +13,7 @@ public abstract class Field { // This class creates the different special types 
     public Field() {
     }
 
-    //public abstract void Arrived(Player p);
-
+    public String getFieldName(){
+        return this.fieldName;
+    }
 }

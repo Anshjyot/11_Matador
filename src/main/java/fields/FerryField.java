@@ -11,7 +11,6 @@ public class FerryField extends Property { // This class extends the Field class
         this.rent1 = rent1;
         this.rent2 = rent0;
         this.rent3 = rent1;
-        this.controller = controller;
     }
 
     int price;
@@ -20,10 +19,13 @@ public class FerryField extends Property { // This class extends the Field class
     int rent2;
     int rent3;
 
-    GUIController controller;
-
     @Override
     int getRent() {
         return 0;
+    }
+
+    @Override
+    int getPrice() {
+        return this.price;
     }
 }

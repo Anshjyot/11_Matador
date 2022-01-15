@@ -48,11 +48,5 @@ public class Player { // This class creates the player which will be used in the
     public int getIndex() {
         return index;
     }
-
-    //Bruges ikke lige nu, bruges til test af JailField
-     /*public void printStatus(){
-        System.out.println(this.PlayerName);
-        System.out.println(this.currentposition);
-        System.out.println(this.account.getBalance()); } */
     }
 

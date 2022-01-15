@@ -102,15 +102,24 @@ public class GUIController {
         gui.displayChanceCard(message);
     } // Shows the Chance card outcome message
 
-
     public void addHouse(Field property) {
-        if (property instanceof StreetField) {
-            if (board.SameOwnerColor((StreetField) property)) {
-                ((StreetField) property).addHouse();
-                GUI_Street field = (GUI_Street) gui.getFields()[((StreetField) property).getIndex()];
-                field.setHouses(1);
-            }
+        if (FieldController.getInstance().SameOwnerColor((StreetField) property)) {
+            ((StreetField) property).addHouse();
+            GUI_Street field = (GUI_Street) gui.getFields()[((StreetField) property).getIndex()];
+            field.setHouses(1);
+        }else{
+            showMessage("You can't build a house here yet :( \n" +
+                    "Collect all the deeds for the same colored streets to buy houses. ");
         }
+    }
+    public String playerChoice(){
+        String choice = gui.getUserSelection("Choose an option","Roll Dice","Buy Building");
+        return choice;
+    }
+
+    public String chooseStreet(Player player){
+        String streetChoice = gui.getUserSelection("Choose a Property", FieldController.getInstance().getPropertyList(player));
+        return streetChoice;
     }
 
     //choose if you wanna buy the property
@@ -136,5 +145,4 @@ public class GUIController {
                 "OK"
         );
     }
-
 }
