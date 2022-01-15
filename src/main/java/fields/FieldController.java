@@ -186,18 +186,16 @@ public class FieldController {
 
         noStreets = 0;
 
-        //for (int i = 0; i < propertyList.length; i++){
-            for (Field squares : squares) {
-                if (squares instanceof StreetField) {
-                    StreetField currentSquare = (StreetField) squares;
-                    boolean canAffordHouse = player.getAccount().getBalance() >= currentSquare.getHouseprice();
-                    if (currentSquare.getOwner() == player.getIndex() && canAffordHouse) {
-                        propertyList[noStreets] = currentSquare.fieldName;
-                        noStreets++;
-                    }
+        for (Field squares : squares) {
+            if (squares instanceof StreetField) {
+                StreetField currentSquare = (StreetField) squares;
+                boolean canAffordHouse = player.getAccount().getBalance() >= currentSquare.getHouseprice();
+                if (currentSquare.getOwner() == player.getIndex() && canAffordHouse) {
+                    propertyList[noStreets] = currentSquare.fieldName;
+                    noStreets++;
                 }
             }
-        //}
+        }
         return propertyList;
     }
 
