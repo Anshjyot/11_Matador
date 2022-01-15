@@ -12,7 +12,7 @@ public class ParkingField extends Field { // Creates our Parking field, and whic
     }
 
     @Override
-    public void Arrived(Player p) {
+    public void Arrived(Player p) { // Arrived method for ParkingField
         Language.ArrivedParkingFieldText(controller);
-    }
+    } // Message sent from the Language class
 }

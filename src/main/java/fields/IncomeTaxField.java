@@ -15,8 +15,8 @@ public class IncomeTaxField extends Field { // This class extends the Field clas
     GUIController controller;
 
     @Override
-    public void Arrived(Player p) {
-        Language.IncomeTaxFieldText(controller);
+    public void Arrived(Player p) { // Arrived method used on Income TaxField
+        Language.IncomeTaxFieldText(controller); // Message sent from the Language class
         p.getAccount().setBalance(p.getAccount().getBalance()-4000);
 
     }

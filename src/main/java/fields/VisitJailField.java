@@ -13,9 +13,9 @@ public class VisitJailField extends Field { // Creates our VisitJailSquare field
     }
 
     @Override
-    public void Arrived(Player p) {
+    public void Arrived(Player p) { // Arrived method for VisitJailField
         if (!p.isInJail) {
-            Language.ArrivedVisitJailFieldText(controller);
+            Language.ArrivedVisitJailFieldText(controller); // Message sent from the Language class
 
         }
     }

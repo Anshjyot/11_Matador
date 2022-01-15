@@ -5,7 +5,6 @@ import chance.*;
 import game.Player;
 import language.Language;
 
-import java.util.List;
 import java.util.Random;
 
 public class ChanceField extends Field { // This class extends the Square class and creates the ChanceCard

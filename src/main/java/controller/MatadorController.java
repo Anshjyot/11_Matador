@@ -56,13 +56,14 @@ public class MatadorController {
                 guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
 
                 guiController.askForDice(); // Dice and Cup usage
-                int faceValue = cup.CupRoll();
+                int faceValue = cup.CupRoll(); // Using the faceValue for player-movement
                 guiController.setDice(cup.GetDice1Value(), cup.GetDice2Value());
 
 
                 guiController.removeCar(currentPlayer.getPosition(), i);
 
 
+                // Step by Step [Field by Field] movement
                 for (int j = 0; j < faceValue; j++) {
                     int newPos = (currentPlayer.getPosition() + j) % 40;
 
@@ -73,7 +74,7 @@ public class MatadorController {
                 }
                 // Updating player position
                 if (currentPlayer.getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
-                    startField(i);
+                    startField(i); // 4000dkk when you go pass the StartField
                     currentPlayer.setPosition(currentPlayer.getPosition() + faceValue - 40);
 
                 } else {
@@ -96,7 +97,8 @@ public class MatadorController {
     }
 
 
-    private void winner(int player) { // The last person to have a balance >0 wins
+    // The last person to have a balance >0 wins
+    private void winner(int player) {
         int loserBalance = 0;
         List<String> winnerName = new ArrayList<>();
 
@@ -115,11 +117,12 @@ public class MatadorController {
         }
     }
 
+    //Choose Language button
     private void chooseLanguage() {
         guiController.getLanguage();
     }
 
-    private void numberOfPlayers() { // Start money declaration
+    private void numberOfPlayers() {
         int playerList = guiController.getPlayerList();
 
         players = new Player[playerList];
@@ -137,29 +140,31 @@ public class MatadorController {
             //Insert name
             String name = guiController.getPlayerName(i);
             int age = 0;
-            boolean ageIsInt;
+            boolean TypeAge;
             do {
                 try {
                     //insert age
                     age = guiController.getPlayerAge(i);
-                    ageIsInt = age >= 10 && age <= 150;
+                    TypeAge = age >= 10 && age <= 150;
                 } catch (NumberFormatException e) {
-                    ageIsInt = false;
+                    TypeAge = false;
                 }
-            } while (!ageIsInt);
+            } while (!TypeAge);
             players[i] = new Player(name,age, STARTBALANCE,StartField,i);
-            //ages[i] = age;
-            //players.add(new Player(name, age, startBalance, StartField, i));
+
+
         }
 
         guiController.addPlayers(players); // Adds players to the GUI
 
     }
 
+    // The fieldOutcome method used above
     private void fieldOutcome(int i) { // The field outcome method
         board.getSquare(players[i].getPosition()).Arrived(players[i]);
     }
 
+    // The startField method used above
     private void startField(int i) { // You get 4.000 dkk when you pass the Start-field
         players[i].getAccount().setBalance(players[i].getAccount().getBalance() + 4000);
     }

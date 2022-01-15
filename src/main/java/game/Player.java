@@ -1,7 +1,6 @@
 package game;
 
 import GUI.GUIController;
-import gui_fields.GUI_Car;
 
 public class Player {
     public GUIController guiController; // This class creates the player which will be used in the GUI, a player with an account.
@@ -22,6 +21,7 @@ public class Player {
         this.index = index;
     }
 
+    // Getters and setters for Player
     public Player() { }
 
     public void setPlayerName(String PlayerName) {

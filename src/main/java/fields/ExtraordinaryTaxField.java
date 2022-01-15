@@ -15,8 +15,8 @@ public class ExtraordinaryTaxField extends Field { // This class extends the Fie
     GUIController controller;
 
     @Override
-    public void Arrived(Player p) {
-        Language.ExtraordinaryTaxFieldText(controller);
+    public void Arrived(Player p) { // Arrived Method used on the Extraordinary TaxField (-2000dkk)
+        Language.ExtraordinaryTaxFieldText(controller); // Message sent from the Language class
         p.getAccount().setBalance(p.getAccount().getBalance()-2000);
 
     }

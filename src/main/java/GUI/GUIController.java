@@ -50,6 +50,7 @@ public class GUIController {
         return age;
     }
 
+    // GUI message for dice
     public void askForDice() {
         gui.getUserButtonPressed("Roll The Dice", "Roll");
     }
@@ -77,29 +78,33 @@ public class GUIController {
 
     }
 
+    // Adds the car to the GUI
     public void addCar(int position, int player) { //Adds car
         board.getField(position).setCar(guiPlayers[player], true);
-    } // Adds the car to the GUI
+    }
 
+    // Removes the car from the GUI
     public void removeCar(int position2, int player2) {
         board.getField(position2).setCar(guiPlayers[player2], false);
-    } // Removes the car from the GUI
+    }
 
     public void setNewBalance(int player, int newBalance) {
         this.guiPlayers[player].setBalance(newBalance);
     }
 
+    // Winner message
     public void getWinnerMessage(List<String> message) {
         gui.showMessage(message.toString() + TEXT_CYAN + " WON!!");
         System.out.println(message.toString() + TEXT_CYAN + " WON!!");
     }
-     // Winner message
 
+    // Shows the Chance card outcome message
     public void showMessage(String message) {
         gui.displayChanceCard(message);
     }
-     // Shows the Chance card outcome message
 
+
+    //adds house to a field, when the conditions are fulfilled
     public void addHouse(Field property) {
         if (property instanceof OwnedProperty) {
             if (board.SameOwnerColor((OwnedProperty) property)) {
@@ -130,12 +135,12 @@ public class GUIController {
         }
     }
 
-    public String getOutOfJail() {
+    public String getOutOfJail() { // Choose how you want to get out of Jail [GUI]
         String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
         return jailChoice;
     }
 
-    public void pressChanceButton() {
+    public void pressChanceButton() { // [GUI] message for ChanceButton]
         gui.getUserButtonPressed(
                 "Press the button to try your luck!",
                 "Draw card"

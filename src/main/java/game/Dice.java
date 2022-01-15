@@ -1,6 +1,6 @@
 package game;
 
-public class Dice { // Creates a dice throw method for one dice only
+public class Dice { // Creates a dice throw method for a die
     private int faces;
     private int numOfSides;
 

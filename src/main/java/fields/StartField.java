@@ -12,7 +12,7 @@ public class StartField extends Field { // Creates our Start field, and which fu
     }
 
     @Override
-    public void Arrived(Player p) {
+    public void Arrived(Player p) { // Arrived method for StartField
         Language.ArrivedStartFieldText(controller);
-    }
+    } // Message sent from the Language class
 }

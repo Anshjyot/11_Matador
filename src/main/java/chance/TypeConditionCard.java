@@ -11,6 +11,8 @@ public class TypeConditionCard extends ChanceCard{
         this.message2 = message2;
     }
 
+    //Getters for TypeConditionCard
+
     public String getMessage1() {
         return message1;
     }

@@ -25,12 +25,12 @@ public class BreweryField extends Field { // This class extends the Field class
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);
             owner = player;
-            Language.ArrivedBreweryText1(fieldName, price, player, controller);
+            Language.ArrivedBreweryText1(fieldName, price, player, controller); // Message sent from the Language class
 
         } else {
             player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-            Language.ArrivedBreweryText2(fieldName, rent0, player, owner, controller);
+            Language.ArrivedBreweryText2(fieldName, rent0, player, owner, controller); // Message sent from the Language class
 
         }
     }

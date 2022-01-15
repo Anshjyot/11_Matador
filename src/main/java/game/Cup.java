@@ -1,6 +1,6 @@
 package game;
 
-public class Cup {
+public class Cup { // Our Cup for our dice
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6);
 

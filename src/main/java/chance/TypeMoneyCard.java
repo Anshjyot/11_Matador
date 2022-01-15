@@ -6,6 +6,7 @@ public class TypeMoneyCard extends ChanceCard {
         super(total, message);
     }
 
+    //Getters for TypeMoneyCard
     @Override
     public int getCardValue() {
         return super.getCardValue();

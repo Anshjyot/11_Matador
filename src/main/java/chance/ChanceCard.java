@@ -8,6 +8,7 @@ public abstract class ChanceCard {
         this.cardValue = value;
         this.cardMessage = message;}
 
+    //Getters for ChanceCard
     public int getCardValue(){return cardValue;}
 
     public String getCardMessage(){return cardMessage;}

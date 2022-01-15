@@ -34,14 +34,14 @@ public class OwnedProperty extends Field {
 
     @Override
     public void Arrived(Player player) { // This class creates the ownership for the fields, you can buy and rent fields.
-        if (owner == null) {
+        if (owner == null) { // If there is no owner, you can buy the field
             controller.wannaBuy(this, player);
         }
 
-        else if(owner != player){
+        else if(owner != player){ // If the field has an owner, then player "pays" rent to owner
             player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
-            Language.ArrivedOwnedPropertyText(fieldName, rent, player, owner, controller);
+            Language.ArrivedOwnedPropertyText(fieldName, rent, player, owner, controller); // Message sent from the Language class
 
         }
 
@@ -66,7 +66,7 @@ public class OwnedProperty extends Field {
 
     }
 
-    public void buyDeed(Player player){
+    public void buyDeed(Player player){ // Method used in wannaBuy method, in the GUIController
          player.getAccount().setBalance(player.getAccount().getBalance() - price);
          owner = player;
          Language.BuyDeedOwnedPropertyText(fieldName, price, player, controller);
@@ -81,11 +81,8 @@ public class OwnedProperty extends Field {
 
     public void addHouse() {
         house = house+1;
-    }
+    } // adds house to field
 
-    public void CheckOwned() {
-        //
-    }
 
 
     }

@@ -1,7 +1,6 @@
 package fields;
 
 import java.awt.Color;
-import java.util.List;
 import GUI.GUIController;
 import game.Player;
 import gui_fields.*;
@@ -17,16 +16,16 @@ public class FieldController {
 
     public GUI_Field getField(int i) {
         return fields[i];
-    }
+    } // Returns our GUI fields
 
     public Field getSquare(int i) {
-        return squares[i];
+        return squares[i]; // Returns our squares fields
 
     }
 
     protected GUI gui;
 
-    public GUI_Field[] BoardCreator() {
+    public GUI_Field[] BoardCreator() { // Our GUI board
 
         fields[0] = new GUI_Start("Start", "Modtag: 4.000", "Modtag kr. 4.000,-\nnår de passerer start", Color.RED, Color.BLACK);
         fields[1] = new GUI_Street("Rødovrevej", "kr. 1200", "Rødovrevej", "Leje:  20", new Color(75, 155, 225), Color.BLACK);
@@ -120,7 +119,7 @@ public class FieldController {
 
     }
 
-    public boolean SameOwnerColor(OwnedProperty property) {
+    public boolean SameOwnerColor(OwnedProperty property) { // Checks if the same owner owns the same colored-fields
         int colorAmount = 0;
         for (Field squares : squares) {
             if (squares instanceof OwnedProperty) {

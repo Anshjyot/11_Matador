@@ -30,12 +30,12 @@ public class FerryField extends Field { // This class extends the Field class
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);
             owner = player;
-            Language.ArrivedFerryFieldText1(fieldName, price, player, controller);
+            Language.ArrivedFerryFieldText1(fieldName, price, player, controller); // Message sent from the Language class
 
         } else {
             player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-            Language.ArrivedFerryFieldText2(fieldName, rent0, player, owner, controller);
+            Language.ArrivedFerryFieldText2(fieldName, rent0, player, owner, controller); // Message sent from the Language class
         }
     }
 }

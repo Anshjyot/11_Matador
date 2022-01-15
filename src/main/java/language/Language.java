@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Language {
     static int house;
-
     static Scanner sc = new Scanner(System.in);
 
     public static void ArrivedBreweryText1(String fieldName, int price, Player player, GUIController controller) {
@@ -76,8 +75,6 @@ public class Language {
     public static void ArrivedStartFieldText(GUIController controller) {
         controller.showMessage("You landed on start, receive 4000$, for staying alive");
     }
-
-
 
 }
 
