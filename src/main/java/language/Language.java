@@ -1,22 +1,13 @@
 package language;
 
 import GUI.GUIController;
-import fields.FieldController;
 import game.Player;
-import gui_fields.GUI_Player;
-import gui_main.GUI;
-
-import java.awt.*;
-import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
 public class Language {
     static int house;
 
     static Scanner sc = new Scanner(System.in);
-
-    private static final String[] _languages = new String[] {"English", "Dansk"};
 
     public static void ArrivedBreweryText1(String fieldName, int price, Player player, GUIController controller) {
         controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
