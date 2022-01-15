@@ -1,6 +1,9 @@
 package game;
 
-public class Player { // This class creates the player which will be used in the GUI, a player with an account.
+import GUI.GUIController;
+
+public class Player {
+    public GUIController guiController; // This class creates the player which will be used in the GUI, a player with an account.
 
     private Account account;
     private String PlayerName;
@@ -18,6 +21,7 @@ public class Player { // This class creates the player which will be used in the
         this.index = index;
     }
 
+    // Getters and setters for Player
     public Player() { }
 
     public void setPlayerName(String PlayerName) {

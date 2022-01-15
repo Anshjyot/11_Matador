@@ -7,6 +7,7 @@ public class TypePayPlayerCard extends ChanceCard{
         super(total, message);
     }
 
+    //Getters for TypePayPlayerCard
     public int getCardTotal() {
         return cardTotal;
     }

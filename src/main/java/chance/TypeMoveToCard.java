@@ -8,6 +8,7 @@ public class TypeMoveToCard extends ChanceCard {
         cardDestination = destination;
     }
 
+    //Getters for TypeMoveToCard
 
     public int getCardDestination() {
         return cardDestination;

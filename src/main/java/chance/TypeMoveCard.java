@@ -6,6 +6,7 @@ public class TypeMoveCard extends ChanceCard{
         super(noFields, message);
     }
 
+    //Getters for TypeMoveCard
     @Override
     public int getCardValue() {
         return super.getCardValue();
