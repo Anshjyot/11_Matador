@@ -2,13 +2,10 @@ package GUI;
 import java.awt.*;
 import java.util.List;
 
-import chance.ChanceCardController;
 import fields.Field;
-import fields.Property;
 import fields.StreetField;
 import fields.FieldController;
 
-import game.Cup;
 import game.Player;
 
 import gui_fields.*;

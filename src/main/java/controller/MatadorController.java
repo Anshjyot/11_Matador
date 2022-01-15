@@ -2,11 +2,9 @@
 package controller;
 
 import GUI.GUIController;
-import fields.Field;
 import fields.FieldController;
 import game.Cup;
 import game.Player;
-import gui_main.GUI;
 import java.util.*;
 import java.util.List;
 
@@ -20,9 +18,7 @@ public class MatadorController {
     FieldController board;
     private int[] ages = new int[0];
     private String[] names = new String[0];
-    private GUI gui;
     private Cup cup = new Cup();
-    Field[] squares = new Field[40];
 
     private static MatadorController instance;
 
@@ -63,12 +59,6 @@ public class MatadorController {
                 GUIController.getInstance().setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
                 GUIController.getInstance().removeCar(currentPlayer.getPosition(), i);
-
-                /*if (players.get(i).getPosition() - faceValue > 0) {
-                    guiController.AddCar(players.get(i).getPosition() - faceValue, i);
-                } else {
-                    guiController.AddCar(players.get(i).getPosition(), i);
-                }*/
 
                 for (int j = 0; j < faceValue; j++) {
                     int newPos = (currentPlayer.getPosition() + j)%40;

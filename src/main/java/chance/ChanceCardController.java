@@ -2,9 +2,7 @@ package chance;
 
 import GUI.GUIController;
 import controller.MatadorController;
-import fields.FieldController;
 import game.Player;
-import gui_main.GUI;
 
 import java.util.Random;
 
