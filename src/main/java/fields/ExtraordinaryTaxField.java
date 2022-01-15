@@ -2,6 +2,7 @@ package fields;
 
 import GUI.GUIController;
 import game.Player;
+import language.Language;
 
 public class ExtraordinaryTaxField extends Field { // This class extends the Field class
 
@@ -15,7 +16,7 @@ public class ExtraordinaryTaxField extends Field { // This class extends the Fie
 
     @Override
     public void Arrived(Player p) {
-        controller.showMessage("Betal Extraordinær-skat på 2000$");
+        Language.ExtraordinaryTaxFieldText(controller);
         p.getAccount().setBalance(p.getAccount().getBalance()-2000);
 
     }

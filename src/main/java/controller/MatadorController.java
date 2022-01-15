@@ -9,6 +9,8 @@ import fields.OwnedProperty;
 import game.Cup;
 import game.Player;
 import gui_main.GUI;
+import language.Language;
+
 import java.util.*;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class MatadorController {
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new FieldController(players, guiController);
-        this.guiController.initializeBoard(board);
+        guiController.initializeBoard(board);
         numberOfPlayers();
         try {
             gameLoop();
@@ -95,7 +97,7 @@ public class MatadorController {
 
     private void winner(int player) { // The last person to have a balance >0 wins
         int loserBalance = 0;
-        List<String> winnerName = new ArrayList<String>();
+        List<String> winnerName = new ArrayList<>();
 
         if (players[player].getAccount().getBalance() < 0) {
             for (int i = 0; i < players.length; i++) {

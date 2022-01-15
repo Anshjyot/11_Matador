@@ -2,6 +2,7 @@ package fields;
 
 import GUI.GUIController;
 import game.Player;
+import language.Language;
 
 public class IncomeTaxField extends Field { // This class extends the Field class
 
@@ -15,7 +16,7 @@ public class IncomeTaxField extends Field { // This class extends the Field clas
 
     @Override
     public void Arrived(Player p) {
-        controller.showMessage("Betal Indkomst-skatten på 4000$");
+        Language.IncomeTaxFieldText(controller);
         p.getAccount().setBalance(p.getAccount().getBalance()-4000);
 
     }

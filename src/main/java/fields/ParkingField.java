@@ -2,6 +2,7 @@ package fields;
 
 import GUI.GUIController;
 import game.Player;
+import language.Language;
 
 public class ParkingField extends Field { // Creates our Parking field, and which functionality wise doesn't do anything
     private GUIController controller;
@@ -12,6 +13,6 @@ public class ParkingField extends Field { // Creates our Parking field, and whic
 
     @Override
     public void Arrived(Player p) {
-    controller.showMessage("You found a legendary free parking spot");
+        Language.ArrivedParkingFieldText(controller);
     }
 }

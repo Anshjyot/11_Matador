@@ -2,6 +2,7 @@ package fields;
 
 import GUI.GUIController;
 import game.Player;
+import language.Language;
 
 public class BreweryField extends Field { // This class extends the Field class
 
@@ -24,12 +25,13 @@ public class BreweryField extends Field { // This class extends the Field class
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);
             owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+            Language.ArrivedBreweryText1(fieldName, price, player, controller);
 
         } else {
             player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
+            Language.ArrivedBreweryText2(fieldName, rent0, player, owner, controller);
+
         }
     }
 

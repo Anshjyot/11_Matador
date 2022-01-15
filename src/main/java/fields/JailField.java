@@ -3,9 +3,12 @@ package fields;
 import GUI.GUIController;
 import game.Player;
 import game.Cup;
+import gui_main.GUI;
+import language.Language;
 
 public class JailField extends Field { // This class extends the Field class and creates JailSquare.
     private GUIController controller;
+    private GUI gui;
     /* kan slettes
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6); */
@@ -19,7 +22,7 @@ public class JailField extends Field { // This class extends the Field class and
 
     @Override
     public void Arrived(Player p) { // This field places the player back to VisitJailSquare field.
-        controller.showMessage("JAIL TIME! You have been moved to jail.");
+        Language.ArrivedJailFieldText1(controller);
         p.isInJail = true;
         controller.removeCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 20);
@@ -33,7 +36,7 @@ public class JailField extends Field { // This class extends the Field class and
             //The player should still pay 1000$ - dont know if this feature works totally correct?
             player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
             player.isInJail = false;
-            controller.showMessage("You have been in jail for 3 rounds, pay 1000kr and get out of here!");
+            Language.ArrivedJailFieldText2(controller);
             cup.CupRoll();
             controller.askForDice();
             controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
@@ -45,18 +48,18 @@ public class JailField extends Field { // This class extends the Field class and
                     //Pay1000$, check if account>=1000
                     if (player.getAccount().getBalance() >= 1000) {
                         player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
-                        controller.showMessage("You paid yourself out of jail");
+                        Language.ArrivedJailFieldText3(controller);
                         player.isInJail = false;
                     }
                     break;
                 case "Roll the dice":
                     //Roll the dice, and have a chance to get out of jail for free
-                    controller.showMessage("Roll the dice, and have a chance to get out of jail for free");
+                    Language.ArrivedJailFieldText4(controller);
                     cup.CupRoll();
                     controller.askForDice();
                     controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
                     if (cup.GetDice1Value() == cup.GetDice2Value()) {
-                        controller.showMessage("You got lucky, you got a pair and get an extra throw");
+                        Language.ArrivedJailFieldText5(controller);
                         player.isInJail = false;
 
                     }

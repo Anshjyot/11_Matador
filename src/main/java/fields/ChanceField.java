@@ -3,6 +3,8 @@ package fields;
 import GUI.GUIController;
 import chance.*;
 import game.Player;
+import language.Language;
+
 import java.util.List;
 import java.util.Random;
 
@@ -71,7 +73,7 @@ public class ChanceField extends Field { // This class extends the Square class 
 
     public void draw (Player p) {
         shuffle();
-        controller.showMessage("You landed on Chance! Draw a chance card.");
+        Language.ChanceFieldDrawText(controller);
         controller.pressChanceButton();
 
         ChanceCard topCard = chanceCards[0];

@@ -3,6 +3,7 @@ package fields;
 import GUI.GUIController;
 import game.Player;
 import gui_main.GUI;
+import language.Language;
 
 import java.awt.*;
 
@@ -40,7 +41,7 @@ public class OwnedProperty extends Field {
         else if(owner != player){
             player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
+            Language.ArrivedOwnedPropertyText(fieldName, rent, player, owner, controller);
 
         }
 
@@ -68,7 +69,7 @@ public class OwnedProperty extends Field {
     public void buyDeed(Player player){
          player.getAccount().setBalance(player.getAccount().getBalance() - price);
          owner = player;
-         controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+         Language.BuyDeedOwnedPropertyText(fieldName, price, player, controller);
      }
     public Color getColor() {
         return color;

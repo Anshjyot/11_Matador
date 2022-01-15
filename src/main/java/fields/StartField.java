@@ -2,6 +2,7 @@ package fields;
 
 import GUI.GUIController;
 import game.Player;
+import language.Language;
 
 public class StartField extends Field { // Creates our Start field, and which functionality wise doesn't do anything
     private GUIController controller;
@@ -12,6 +13,6 @@ public class StartField extends Field { // Creates our Start field, and which fu
 
     @Override
     public void Arrived(Player p) {
-    controller.showMessage("You landed on start, receive 4000$, for staying alive");
+        Language.ArrivedStartFieldText(controller);
     }
 }

@@ -11,6 +11,7 @@ import game.Player;
 
 import gui_fields.*;
 import gui_main.GUI;
+import language.Language;
 
 public class GUIController {
 
@@ -22,6 +23,7 @@ public class GUIController {
     private GUI_Player[] players;
     Field[] squares = new Field[40];
     GUI_Field[] fields = new GUI_Field[40];
+    public static final String TEXT_CYAN = "\u001B[36m";
 
     public GUIController() {
     }
@@ -80,20 +82,20 @@ public class GUIController {
         board.getField(position2).setCar(guiPlayers[player2], false);
     } // Removes the car from the GUI
 
-
     public void setNewBalance(int player, int newBalance) {
         this.guiPlayers[player].setBalance(newBalance);
     }
 
     public void getWinnerMessage(List<String> message) {
-        gui.showMessage(message.toString() + " WON!!");
-        System.out.println(message.toString() + "WON!!");
-    } // Winner message
+        gui.showMessage(message.toString() + TEXT_CYAN + " WON!!");
+        System.out.println(message.toString() + TEXT_CYAN + " WON!!");
+    }
+     // Winner message
 
     public void showMessage(String message) {
         gui.displayChanceCard(message);
-    } // Shows the Chance card outcome message
-
+    }
+     // Shows the Chance card outcome message
 
     public void addHouse(Field property) {
         if (property instanceof OwnedProperty) {
