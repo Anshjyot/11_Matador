@@ -2,6 +2,7 @@ package GUI;
 import java.awt.*;
 import java.util.List;
 
+import chance.ChanceCardController;
 import fields.Field;
 import fields.Property;
 import fields.StreetField;
@@ -15,9 +16,7 @@ import gui_main.GUI;
 
 public class GUIController {
 
-    public Cup cup;
     private GUI_Player[] guiPlayers;
-    GUIController controller;
     private GUI gui;
     FieldController board;
     private Color[] playercolors;
@@ -25,12 +24,19 @@ public class GUIController {
     Field[] squares = new Field[40];
     GUI_Field[] fields = new GUI_Field[40];
 
-    public GUIController() {
+    private static GUIController instance;
+
+    public static GUIController getInstance() {
+        if (instance == null) {
+            instance = new GUIController();
+        }
+        return instance;
     }
 
-    public void initializeBoard(FieldController board) { // Initializing the board
+    public GUI initializeBoard(FieldController board) { // Initializing the board
         this.board = board;
         this.gui = new GUI(board.BoardCreator(), new Color(14, 162, 124)); // Change game-board color
+        return this.gui;
     }
 
     public int getPlayerList() { // Choosing the number of players in the GUI

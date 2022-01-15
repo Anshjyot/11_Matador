@@ -3,6 +3,7 @@ package fields;
 import java.awt.Color;
 
 import GUI.GUIController;
+import chance.ChanceCardController;
 import controller.MatadorController;
 import game.Cup;
 import game.Player;
@@ -21,7 +22,6 @@ public class FieldController {
     }
     //Skal returnere en poperty (behøves vel ikke?)
 
-    protected GUI gui;
     private static FieldController instance;
 
     public static FieldController getInstance() {
@@ -159,37 +159,20 @@ public class FieldController {
     int rent1;
     int rent2;
     int rent3;
-    GUIController controller;
-
-    public void arrivedFerry(Player player, Property property) { // This class creates the ownership for the fields, you can buy and rent fields.
-        arrivedAtProperty(player, property);
-    }
 
     public void buyProperty(Player player, Property property){
         player.getAccount().setBalance(player.getAccount().getBalance() - property.price);
         property.setOwner(player.getIndex());
-        controller.showMessage(player.getPlayerName() + " bought " + property.fieldName + " for " + price + " dkk ");
+        GUIController.getInstance().showMessage(player.getPlayerName() + " bought " + property.fieldName + " for " + price + " dkk ");
     }
 
     public void rentProperty(Player player,Property property){
         player.getAccount().setBalance(player.getAccount().getBalance() - property.getRent());
 
-        Player owner = MatadorController.getInstance().getPlayer(property.getOwner());
+        int owner = property.getOwner();
         owner.getAccount().setBalance(owner.getAccount().getBalance() + property.getRent());
 
-        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + property.fieldName + " for " + rent0 + " dkk ");
-    }
-
-    public void arrivedAtProperty(Player player, Property property){
-        if (property.isOwned()) {
-            rentProperty(player, property);
-        } else {
-            buyProperty(player,property);
-        }
-    }
-
-    public void arrivedBrewery(Player player, Property property) { // This class creates the ownership for the fields, you can buy and rent fields.
-        arrivedAtProperty(player, property);
+        GUIController.getInstance().showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + property.fieldName + " for " + rent0 + " dkk ");
     }
 
     int[] rent;
@@ -197,24 +180,10 @@ public class FieldController {
     int index;
     Color color;
 
-    public void arrivedOwnedProperty(Player player, Property property) { // This class creates the ownership for the fields, you can buy and rent fields.
-        arrivedAtProperty(player,property);
-    }
-
     public String getOwnerName(Property property) {
         Player owner = MatadorController.getInstance().getPlayer(property.getOwner());
         return owner.getPlayerName();
     }
-
-    //check if there is an owner
-    public boolean isThereAnOwner(Property property) {
-        if (property.isOwned()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     public Color getColor() {
         return color;
@@ -230,20 +199,17 @@ public class FieldController {
         p.setPosition(p.getPosition() - 16);
         controller.addCar(p.getPosition(), p.getIndex()); */
 
-    public JailField getJailField(){
-        return (JailField) squares[30];
-    }
-
-    public void fieldOutcome(Player player){
+    public void fieldOutcome(Player player, Player[] players){
         Field currentField = squares[player.getPosition()];
 
         if (currentField instanceof Property){
             Property field = ((Property) currentField);
             //when landed on field is owned
             if (field.isOwned()){
-                Player owner = MatadorController.getInstance().getPlayer(field.getOwner());
-                if (player == owner){
-                    controller.showMessage("Oh, you've already bought this property... How nice it is :)");
+                int owner = field.getOwner();
+
+                if (player.getIndex() == owner){
+                    GUIController.getInstance().showMessage("Oh, you've already bought this property... How nice it is :)");
                 }
                 else{
                     //rent need to be updated for multiple types of properties.
@@ -252,47 +218,50 @@ public class FieldController {
             }
             //when landed on field is not owned.
             else{
-                if(controller.wannaBuy()){
+                if(GUIController.getInstance().wannaBuy()){
                     buyProperty(player,field);
                 }
             }
         }
         if(currentField instanceof ExtraordinaryTaxField){
-            controller.showMessage("Betal Extraordinær-skat");
-            player.getAccount().setBalance(player.getAccount().getBalance() - 2000);
+            GUIController.getInstance().showMessage("Betal Extraordinær-skat på 2000 kr.");
+            int tax = ((ExtraordinaryTaxField) currentField).getTax();
+            player.getAccount().setBalance(player.getAccount().getBalance() - tax);
         }
         if(currentField instanceof IncomeTaxField){
-            controller.showMessage("Betal Indkomst-skat");
-            player.getAccount().setBalance(player.getAccount().getBalance() - 4000);
+            GUIController.getInstance().showMessage("Betal Indkomst-skat på 4000 kr.");
+            int tax = ((IncomeTaxField) currentField).getTax();
+            player.getAccount().setBalance(player.getAccount().getBalance() - tax);
         }
         if(currentField instanceof VisitJailField){
             if(!player.isInJail){
-                controller.showMessage("Welcome to prison, say hi to your inmates. Relax, You're just on a visit");}
+                GUIController.getInstance().showMessage("Welcome to prison, say hi to your inmates. Relax, You're just on a visit");}
         }
         if(currentField instanceof JailField){
             arrivedAtJail(player);
         }
         if(currentField instanceof ParkingField){
-            controller.showMessage("You found a legendary free parking spot");
+            GUIController.getInstance().showMessage("You found a legendary free parking spot");
         }
         if(currentField instanceof StartField){
-            controller.showMessage("You landed on start, receive 4000$, for staying alive");
+            GUIController.getInstance().showMessage("You landed on start, receive 4000$, for staying alive");
         }
         if(currentField instanceof ChanceField){
-
+            ChanceCardController.getInstance().draw(player);
         }
-        controller.okButton();
+        GUIController.getInstance().okButton();
 
     }
-    public void getOwner(){
 
+    public void startField(Player player) { // You get 4.000 dkk when you pass the Start-field
+        player.getAccount().setBalance(player.getAccount().getBalance() + 4000);
     }
     public void arrivedAtJail(Player p) { // This field places the player back to VisitJailSquare field.
-        controller.showMessage("JAIL TIME! You have been moved to jail.");
+        GUIController.getInstance().showMessage("JAIL TIME! You have been moved to jail.");
         p.isInJail = true;
-        controller.removeCar(p.getPosition(), p.getIndex());
+        GUIController.getInstance().removeCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 20);
-        controller.addCar(p.getPosition(), p.getIndex());
+        GUIController.getInstance().addCar(p.getPosition(), p.getIndex());
         //GetOutOfJail(p);
     }
     public void GetOutOfJail(Player player) {
@@ -301,30 +270,30 @@ public class FieldController {
             //The player should still pay 1000$ - dont know if this feature works totally correct?
             player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
             player.isInJail = false;
-            controller.showMessage("You have been in jail for 3 rounds, pay 1000$ and get out of here!");
+            GUIController.getInstance().showMessage("You have been in jail for 3 rounds, pay 1000$ and get out of here!");
             cup.CupRoll();
-            controller.askForDice();
-            controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
+            GUIController.getInstance().askForDice();
+            GUIController.getInstance().setDice(cup.GetDice1Value(), cup.GetDice2Value());
         } else {
         //The Player can only get out of Jail, if one of the three methods has happened
-            String option = controller.getOutOfJail();
+            String option = GUIController.getInstance().getOutOfJail();
             switch (option) {
                 case "Pay 1000$":
                     //Pay1000$, check if account>=1000
                     if (player.getAccount().getBalance() >= 1000) {
                         player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
-                        controller.showMessage("You paid yourself out of jail");
+                        GUIController.getInstance().showMessage("You paid yourself out of jail");
                         player.isInJail = false;
                     }
                     break;
                 case "Roll the dice":
                     //Roll the dice, and have a chance to get out of jail for free
-                    controller.showMessage("Roll the dice, and have a chance to get out of jail for free");
+                    GUIController.getInstance().showMessage("Roll the dice, and have a chance to get out of jail for free");
                     cup.CupRoll();
-                    controller.askForDice();
-                    controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
+                    GUIController.getInstance().askForDice();
+                    GUIController.getInstance().setDice(cup.GetDice1Value(), cup.GetDice2Value());
                     if (cup.GetDice1Value() == cup.GetDice2Value()) {
-                        controller.showMessage("You got lucky, you got a pair and get an extra throw");
+                        GUIController.getInstance().showMessage("You got lucky, you got a pair and get an extra throw");
                         player.isInJail = false;
 
                     }

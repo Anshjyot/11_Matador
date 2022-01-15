@@ -15,20 +15,16 @@ import java.util.List;
 public class MatadorController {
 
     private final int StartField = 0;
-    private GUIController guiController = new GUIController();
     private final int STARTBALANCE = 30000;
     private boolean noWinner = true;
-    Player[] players;
+    public Player[] players;
     Player currentPlayer;
     FieldController board;
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
     protected GUI gui;
-    private Player player;
     private Cup cup = new Cup();
     Field[] squares = new Field[40];
-    GUIController controller;
-    public StreetField property;
 
     private static MatadorController instance;
 
@@ -39,14 +35,9 @@ public class MatadorController {
         return instance;
     }
 
-    public Field getSquare(int i) {
-        return squares[i];
-
-    }
-
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
         board = new FieldController();
-        this.guiController.initializeBoard(board);
+        GUIController.getInstance().initializeBoard(board);
         numberOfPlayers();
         try {
             gameLoop();
@@ -62,21 +53,16 @@ public class MatadorController {
                 //int faceValue = 30;
                 currentPlayer = players[i];
                 if(currentPlayer.isInJail) {
-                    JailField jailField = board.getJailField();
-                    jailField.GetOutOfJail(currentPlayer);
+                    FieldController.getInstance().GetOutOfJail(currentPlayer);
                     if (currentPlayer.isInJail)
 
                         continue;
                 }
-                guiController.askForDice();
+                GUIController.getInstance().askForDice();
                 int faceValue = cup.CupRoll();
-                guiController.setDice(cup.GetDice1Value(),cup.GetDice2Value());
+                GUIController.getInstance().setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
-
-                guiController.removeCar(currentPlayer.getPosition(), i);
-
-
-
+                GUIController.getInstance().removeCar(currentPlayer.getPosition(), i);
 
                 /*if (players.get(i).getPosition() - faceValue > 0) {
                     guiController.AddCar(players.get(i).getPosition() - faceValue, i);
@@ -87,14 +73,14 @@ public class MatadorController {
                 for (int j = 0; j < faceValue; j++) {
                     int newPos = (currentPlayer.getPosition() + j)%40;
 
-                    guiController.removeCar(newPos, i);
-                    guiController.addCar((newPos+1)%40, i);
+                    GUIController.getInstance().removeCar(newPos, i);
+                    GUIController.getInstance().addCar((newPos+1)%40, i);
                     Thread.sleep(150);
 
                 }
                  // Updating player position
                 if (currentPlayer.getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
-                    startField(i);
+                    FieldController.getInstance().startField(currentPlayer);
                     currentPlayer.setPosition(currentPlayer.getPosition() + faceValue - 40);
 
                 } else {
@@ -104,12 +90,12 @@ public class MatadorController {
                 //Skal rykkes ind i field controller.
 
 
-                fieldOutcome(i); // The field outcome for the specific field
+                FieldController.getInstance().fieldOutcome(currentPlayer, players); // The field outcome for the specific field
 
                 for (Player player : players) {
-                    guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
+                    GUIController.getInstance().setNewBalance(player.getIndex(), player.getAccount().getBalance());
                 }
-                guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
+                //guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
 
                 winner(i); // Checking if the winner is found.
             }
@@ -129,7 +115,7 @@ public class MatadorController {
             }
 
             if (winnerName.size() == 1) {
-                guiController.getWinnerMessage(winnerName);
+                GUIController.getInstance().getWinnerMessage(winnerName);
                 System.exit(0); // Games finishes when the winner is announced
             }
 
@@ -137,9 +123,9 @@ public class MatadorController {
     }
 
     private void numberOfPlayers() { // Start money declaration
-        int playerList = guiController.getPlayerList();
+        int playerList = GUIController.getInstance().getPlayerList();
 
-        players = new Player[playerList];
+        this.players = new Player[playerList];
 
         for (int i = 0; i < playerList; i++) {
             String[] temporaryName = new String[names.length + 1];
@@ -152,32 +138,28 @@ public class MatadorController {
             ages = temporaryAge;
 
             //Insert name
-            String name = guiController.getPlayerName(i);
+            String name = GUIController.getInstance().getPlayerName(i);
             int age = 0;
             boolean ageIsInt;
             do {
                 try {
                     //insert age
-                    age = guiController.getPlayerAge(i);
+                    age = GUIController.getInstance().getPlayerAge(i);
                     ageIsInt = age >= 10 && age <= 150;
                 } catch (NumberFormatException e) {
                     ageIsInt = false;
                 }
             } while (!ageIsInt);
             players[i] = new Player(name,age, STARTBALANCE,StartField,i);
+            this.players[i] = players[i];
             //ages[i] = age;
             //players.add(new Player(name, age, startBalance, StartField, i));
         }
 
-        guiController.addPlayers(players); // Adds players to the GUI
-    }
-    public Player getPlayer(int i){return players[i];}
-
-    private void fieldOutcome(int i) { // The field outcome method
-        board.getSquare(players[i].getPosition()).arrived(players[i]);
+        GUIController.getInstance().addPlayers(players); // Adds players to the GUI
     }
 
-    private void startField(int i) { // You get 4.000 dkk when you pass the Start-field
-        players[i].getAccount().setBalance(players[i].getAccount().getBalance() + 4000);
-    }
+    public Player getPlayer(int i){return this.players[i];}
+    public Player[] getPlayers(){return this.players;}
+
 }

@@ -1,14 +1,28 @@
 package chance;
 
 import GUI.GUIController;
+import controller.MatadorController;
+import fields.FieldController;
 import game.Player;
+import gui_main.GUI;
+
 import java.util.Random;
 
 public class ChanceCardController {
-        private GUIController controller;
-        private ChanceCard[] chanceCards;
-        private Player[] players; //works when we've made players as an array instead of a list.
-        private Player otherPlayer;
+    private ChanceCard[] chanceCards;
+    private Player otherPlayer;
+
+    private static ChanceCardController instance;
+
+    public static ChanceCardController getInstance() {
+        if (instance == null) {
+            instance = new ChanceCardController();
+        }
+        return instance;
+    }
+    private ChanceCardController(){
+        makeChanceCards();
+    }
 
     public ChanceCard[] makeChanceCards(){
             chanceCards = new ChanceCard[]{
@@ -47,27 +61,27 @@ public class ChanceCardController {
                 TypeMoneyCard card = ((TypeMoneyCard)topCard);
                 p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardValue());
                 System.out.println(card.getCardValue());
-                controller.showMessage(card.getCardMessage());
+                GUIController.getInstance().showMessage(card.getCardMessage());
             }
             else if (topCard instanceof TypeMoveCard){
                 TypeMoveCard card = ((TypeMoveCard)topCard);
-                controller.showMessage(card.getCardMessage());
+                GUIController.getInstance().showMessage(card.getCardMessage());
 
-                controller.removeCar(p.getPosition(),p.getIndex());
+                GUIController.getInstance().removeCar(p.getPosition(),p.getIndex());
                 System.out.println("Spiller rykkes fra " + p.getPosition());
                 p.setPosition(p.getPosition()+card.getCardValue());
-                controller.addCar(p.getPosition(),p.getIndex());
+                GUIController.getInstance().addCar(p.getPosition(),p.getIndex());
                 System.out.println(" til " + p.getPosition());
             }
             else if (topCard instanceof TypeMoveToCard){
                 TypeMoveToCard card = ((TypeMoveToCard)topCard);
-                controller.showMessage(card.getCardMessage());
+                GUIController.getInstance().showMessage(card.getCardMessage());
 
                 System.out.println("Spiller rykker til start");
                 System.out.println(p.getAccount().getBalance());
-                controller.removeCar(p.getPosition(),p.getIndex());
+                GUIController.getInstance().removeCar(p.getPosition(),p.getIndex());
                 p.setPosition(card.getCardDestination());
-                controller.addCar(p.getPosition(),p.getIndex());
+                GUIController.getInstance().addCar(p.getPosition(),p.getIndex());
             }
             //will work when players is an array instead of a List.
             else if(topCard instanceof TypePayPlayerCard){
@@ -77,7 +91,7 @@ public class ChanceCardController {
 
                 int noOtherPlayers = 0;
 
-                for (Player player : players){
+                for (Player player : MatadorController.getInstance().getPlayers()){
                     System.out.println("Nuværende spillers balance: " + player.getAccount().getBalance());
                     if (player == p) {
                     }
@@ -88,19 +102,14 @@ public class ChanceCardController {
                 }
                 otherPlayer.getAccount().setBalance(otherPlayer.getAccount().getBalance()-card.getCardTotal());
                 p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardTotal() * noOtherPlayers);
-                //for (Player player : players) {
-                //    switch (player) {
-                //        case p:
-                //    }
-                //}
             }
             else if (topCard instanceof TypeConditionCard) {
                 TypeConditionCard card = ((TypeConditionCard) topCard);
                 if (p.getAccount().getBalance() < 15000){
-                    controller.showMessage(card.getMessage1());
+                    GUIController.getInstance().showMessage(card.getMessage1());
                     p.getAccount().setBalance(p.getAccount().getBalance() + card.getCardValue());
                 }
-                else {controller.showMessage(card.getMessage2());
+                else {GUIController.getInstance().showMessage(card.getMessage2());
                 }
             }
             return topCard;
