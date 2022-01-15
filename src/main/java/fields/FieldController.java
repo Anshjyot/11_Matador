@@ -19,10 +19,8 @@ public class FieldController {
     public GUI_Field getField(int i) {
         return fields[i];
     }
-    public Property getProperty(int i) {
-        MatadorController.getInstance().getPlayer(i).getPosition();
-        return ;
-    }
+    //Skal returnere en poperty (behøves vel ikke?)
+
     protected GUI gui;
     private static FieldController instance;
 
@@ -194,17 +192,6 @@ public class FieldController {
         arrivedAtProperty(player, property);
     }
 
-    public void arrivedIncomeTax(Player p) { // This field places makes the player pay 4000.
-        controller.showMessage("Betal Indkomst-skat");
-        p.getAccount().setBalance(p.getAccount().getBalance() - 4000);
-
-    }
-
-    public void arrivedExtraordinaryTax(Player p) { // This field makes the player pay 2000
-        controller.showMessage("Betal Extraordinær-skat");
-        p.getAccount().setBalance(p.getAccount().getBalance() - 2000);
-    }
-
     int[] rent;
     int house;
     int index;
@@ -247,8 +234,59 @@ public class FieldController {
         return (JailField) squares[30];
     }
 
-    public void askWannaBuy(){controller.wannaBuy(Property, currentPlayer);}
+    public void fieldOutcome(Player player){
+        Field currentField = squares[player.getPosition()];
 
+        if (currentField instanceof Property){
+            Property field = ((Property) currentField);
+            //when landed on field is owned
+            if (field.isOwned()){
+                Player owner = MatadorController.getInstance().getPlayer(field.getOwner());
+                if (player == owner){
+                    controller.showMessage("Oh, you've already bought this property... How nice it is :)");
+                }
+                else{
+                    //rent need to be updated for multiple types of properties.
+                    rentProperty(player,field);
+                }
+            }
+            //when landed on field is not owned.
+            else{
+                if(controller.wannaBuy()){
+                    buyProperty(player,field);
+                }
+            }
+        }
+        if(currentField instanceof ExtraordinaryTaxField){
+            controller.showMessage("Betal Extraordinær-skat");
+            player.getAccount().setBalance(player.getAccount().getBalance() - 2000);
+        }
+        if(currentField instanceof IncomeTaxField){
+            controller.showMessage("Betal Indkomst-skat");
+            player.getAccount().setBalance(player.getAccount().getBalance() - 4000);
+        }
+        if(currentField instanceof VisitJailField){
+            if(!player.isInJail){
+                controller.showMessage("Welcome to prison, say hi to your inmates. Relax, You're just on a visit");}
+        }
+        if(currentField instanceof JailField){
+            arrivedAtJail(player);
+        }
+        if(currentField instanceof ParkingField){
+            controller.showMessage("You found a legendary free parking spot");
+        }
+        if(currentField instanceof StartField){
+            controller.showMessage("You landed on start, receive 4000$, for staying alive");
+        }
+        if(currentField instanceof ChanceField){
+
+        }
+        controller.okButton();
+
+    }
+    public void getOwner(){
+
+    }
     public void arrivedAtJail(Player p) { // This field places the player back to VisitJailSquare field.
         controller.showMessage("JAIL TIME! You have been moved to jail.");
         p.isInJail = true;
@@ -268,7 +306,7 @@ public class FieldController {
             controller.askForDice();
             controller.setDice(cup.GetDice1Value(), cup.GetDice2Value());
         } else {
-//The Player can only get out of Jail, if one of the three methods has happened
+        //The Player can only get out of Jail, if one of the three methods has happened
             String option = controller.getOutOfJail();
             switch (option) {
                 case "Pay 1000$":
@@ -300,11 +338,10 @@ public class FieldController {
                     System.out.println(option);
             }
             player.printStatus(); */
-
             }
         }
     }
-    }
+}
 
 
 

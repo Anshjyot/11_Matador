@@ -58,12 +58,6 @@ public class ChanceField extends Field { // This class extends the Square class 
         };
 
     }
-    /*
-    @Override
-    public void Arrived(Player p) { // Creates different outcomes when landing on the Chance-fields
-        draw(p);
-    }
-     */
 
     public void draw (Player p) {
         shuffle();

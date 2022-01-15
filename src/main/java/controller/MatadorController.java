@@ -108,7 +108,6 @@ public class MatadorController {
 
                 for (Player player : players) {
                     guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
-
                 }
                 guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
 

@@ -108,20 +108,9 @@ public class GUIController {
     }
 
     //choose if you wanna buy the property
-    public void wannaBuy(Property property, Player player) {
-        if (property instanceof StreetField) {
-            if (!StreetField.isThereAnOwner) {
-                boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
-                if (yes) {
-//              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
-                    FieldController.getInstance().buyProperty(player,property);
-                    // field.setBorder(Color.RED,Color.RED);
-                    //  gui.showMessage("You now own this field");
-                }
-            } else {
-
-            }
-        }
+    public boolean wannaBuy() {
+        boolean choice = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
+        return choice;
     }
 
     public String getOutOfJail() {
@@ -133,6 +122,12 @@ public class GUIController {
         gui.getUserButtonPressed(
                 "Press the button to try your luck!",
                 "Draw card"
+        );
+    }
+    public void okButton(){
+        gui.getUserButtonPressed(
+                "Press OK to continue",
+                "OK"
         );
     }
 
