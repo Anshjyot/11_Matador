@@ -19,10 +19,6 @@ public class GUIController {
     private GUI_Player[] guiPlayers;
     private GUI gui;
     FieldController board;
-    private Color[] playercolors;
-    private GUI_Player[] players;
-    Field[] squares = new Field[40];
-    GUI_Field[] fields = new GUI_Field[40];
 
     private static GUIController instance;
 
@@ -109,7 +105,7 @@ public class GUIController {
             field.setHouses(1);
         }else{
             showMessage("You can't build a house here yet :( \n" +
-                    "Collect all the deeds for the same colored streets to buy houses. ");
+                    "Collect all the deeds for the same colored streets to buy houses.");
         }
     }
     public String playerChoice(){

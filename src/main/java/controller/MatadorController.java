@@ -4,8 +4,6 @@ package controller;
 import GUI.GUIController;
 import fields.Field;
 import fields.FieldController;
-import fields.JailField;
-import fields.StreetField;
 import game.Cup;
 import game.Player;
 import gui_main.GUI;
@@ -89,8 +87,6 @@ public class MatadorController {
                     currentPlayer.setPosition(currentPlayer.getPosition() + faceValue);
                 }
 
-                //Skal rykkes ind i field controller.
-
                 FieldController.getInstance().fieldOutcome(currentPlayer); // The field outcome for the specific field
 
                 for (Player player : players) {
@@ -151,8 +147,6 @@ public class MatadorController {
             } while (!ageIsInt);
             players[i] = new Player(name,age, STARTBALANCE,StartField,i);
             this.players[i] = players[i];
-            //ages[i] = age;
-            //players.add(new Player(name, age, startBalance, StartField, i));
         }
         GUIController.getInstance().addPlayers(players); // Adds players to the GUI
         System.out.println("Spillere: " + players.toString());

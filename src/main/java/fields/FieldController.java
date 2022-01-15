@@ -19,7 +19,6 @@ public class FieldController {
     public GUI_Field getField(int i) {
         return fields[i];
     }
-    //Skal returnere en poperty (behøves vel ikke?)
 
     private static FieldController instance;
 

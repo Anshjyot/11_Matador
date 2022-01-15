@@ -1,8 +1,5 @@
 package fields;
 
-import GUI.GUIController;
-import game.Player;
-
 public class ExtraordinaryTaxField extends Field { // This class extends the Field class
     private int tax;
 

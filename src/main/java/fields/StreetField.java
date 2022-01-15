@@ -1,9 +1,5 @@
 package fields;
 
-import GUI.GUIController;
-import game.Player;
-import gui_main.GUI;
-
 import java.awt.*;
 
 public class StreetField extends Property {

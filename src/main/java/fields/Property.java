@@ -1,9 +1,5 @@
 package fields;
 
-import game.Player;
-
-import java.awt.*;
-
 public abstract class Property extends Field{
     int price;
     int owner;

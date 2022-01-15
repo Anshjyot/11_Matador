@@ -1,7 +1,5 @@
 package fields;
 
-import GUI.GUIController;
-
 public class FerryField extends Property { // This class extends the Field class
 
     public FerryField(String fieldname, int price, int rent0, int rent1, int rent2, int rent3) {
