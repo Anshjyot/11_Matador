@@ -1,8 +1,10 @@
 package fields;
 
 import java.awt.Color;
-import java.util.List;
+
 import GUI.GUIController;
+import controller.MatadorController;
+import game.Cup;
 import game.Player;
 import gui_fields.*;
 import gui_main.GUI;
@@ -10,22 +12,26 @@ import gui_main.GUI;
 public class FieldController {
     GUI_Field[] fields = new GUI_Field[40];
     Field[] squares = new Field[40];
-
-    public FieldController(Player[] players, GUIController controller) {
-        CreateStreets(players, controller);
+    private Cup cup = new Cup();
+    public FieldController() {
+        CreateStreets();
     }
-
     public GUI_Field getField(int i) {
         return fields[i];
     }
-
-    public Field getSquare(int i) {
-        return squares[i];
-
+    public Property getProperty(int i) {
+        MatadorController.getInstance().getPlayer(i).getPosition();
+        return ;
     }
-
     protected GUI gui;
+    private static FieldController instance;
 
+    public static FieldController getInstance() {
+        if (instance == null) {
+            instance = new FieldController();
+        }
+        return instance;
+    }
     public GUI_Field[] BoardCreator() {
 
         fields[0] = new GUI_Start("Start", "Modtag: 4.000", "Modtag kr. 4.000,-\nnår de passerer start", Color.RED, Color.BLACK);
@@ -71,60 +77,60 @@ public class FieldController {
         return fields;
     }
 
-    public void CreateStreets(Player[] players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
+    public void CreateStreets() { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
         squares[0] = new StartField("START");
-        squares[1] = new OwnedProperty("Rødovrevej", 1200, 1000, new int[]{50, 250, 750, 2250, 4000, 6000}, new Color(75, 155, 225), 1, controller);
-        squares[2] = new ChanceField("Prøv Lykken", players, controller);
-        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1000, new int[]{50, 250, 400, 750, 2250, 6000}, new Color(75, 155, 225), 3, controller);
-        squares[4] = new IncomeTaxField("Betal Indkomst-skat", 4000, controller);
-        squares[5] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000, controller);
-        squares[6] = new OwnedProperty("Roskildevej", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 6, controller);
-        squares[7] = new ChanceField("Prøv Lykken", players, controller);
-        squares[8] = new OwnedProperty("Valbylanggade", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 8, controller);
-        squares[9] = new OwnedProperty("Allégade", 2400, 1000, new int[]{150, 800, 2000, 6000, 9000, 12000}, new Color(255, 135, 120), 9, controller);
+        squares[1] = new StreetField("Rødovrevej", 1200, 1000, new int[]{50, 250, 750, 2250, 4000, 6000}, new Color(75, 155, 225), 1);
+        squares[2] = new ChanceField("Prøv Lykken");
+        squares[3] = new StreetField("Hvidovrevej", 1200, 1000, new int[]{50, 250, 400, 750, 2250, 6000}, new Color(75, 155, 225), 3);
+        squares[4] = new IncomeTaxField("Betal Indkomst-skat", 4000);
+        squares[5] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000);
+        squares[6] = new StreetField("Roskildevej", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 6);
+        squares[7] = new ChanceField("Prøv Lykken");
+        squares[8] = new StreetField("Valbylanggade", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 8);
+        squares[9] = new StreetField("Allégade", 2400, 1000, new int[]{150, 800, 2000, 6000, 9000, 12000}, new Color(255, 135, 120), 9);
 
-        squares[10] = new VisitJailField("På fængsels-besøg",controller);
+        squares[10] = new VisitJailField("På fængsels-besøg");
 
-        squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 11, controller);
-        squares[12] = new BreweryField("Tuborg", 3000, 100, 200, controller);
-        squares[13] = new OwnedProperty("Bülowsvej", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 13, controller);
-        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 2000, new int[]{250, 1250, 3750, 10000, 14000, 18000}, new Color(18, 253, 0), 14, controller);
-        squares[15] = new FerryField("Mols linien", 4000, 500, 1000, 2000, 4000, controller);
-        squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 16, controller);
-        squares[17] = new ChanceField("Prøv Lykken", players, controller);
-        squares[18] = new OwnedProperty("Hellerupvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 18, controller);
-        squares[19] = new OwnedProperty("Strandvejen", 4000, 2000, new int[]{350, 1600, 4400, 12000, 16000, 20000}, new Color(153, 153, 153), 19, controller);
+        squares[11] = new StreetField("Frederiksbergs Allé", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 11);
+        squares[12] = new BreweryField("Tuborg", 3000, 100, 200);
+        squares[13] = new StreetField("Bülowsvej", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 13);
+        squares[14] = new StreetField("Gl. Kongevej", 3200, 2000, new int[]{250, 1250, 3750, 10000, 14000, 18000}, new Color(18, 253, 0), 14);
+        squares[15] = new FerryField("Mols linien", 4000, 500, 1000, 2000, 4000);
+        squares[16] = new StreetField("Bernstorffsvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 16);
+        squares[17] = new ChanceField("Prøv Lykken");
+        squares[18] = new StreetField("Hellerupvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 18);
+        squares[19] = new StreetField("Strandvejen", 4000, 2000, new int[]{350, 1600, 4400, 12000, 16000, 20000}, new Color(153, 153, 153), 19);
         squares[20] = new ParkingField("Parkering");
-        squares[21] = new OwnedProperty("Trianglen", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 21, controller);
-        squares[22] = new ChanceField("Prøv Lykken", players, controller);
-        squares[23] = new OwnedProperty("Østerbrogade", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 23, controller);
-        squares[24] = new OwnedProperty("Grønningen", 4600, 3000, new int[]{400, 2000, 6000, 15000, 18500, 22000}, Color.RED, 24, controller);
-        squares[25] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000, controller);
-        squares[26] = new OwnedProperty("Bredgade", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 26, controller);
-        squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 27, controller);
-        squares[28] = new BreweryField("Carlsberg", 3000, 100, 200, controller);
-        squares[29] = new OwnedProperty("Østergade", 5600, 3000, new int[]{500, 2400, 7200, 17000, 20500, 24000}, Color.WHITE, 28, controller);
+        squares[21] = new StreetField("Trianglen", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 21);
+        squares[22] = new ChanceField("Prøv Lykken");
+        squares[23] = new StreetField("Østerbrogade", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 23);
+        squares[24] = new StreetField("Grønningen", 4600, 3000, new int[]{400, 2000, 6000, 15000, 18500, 22000}, Color.RED, 24);
+        squares[25] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000);
+        squares[26] = new StreetField("Bredgade", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 26);
+        squares[27] = new StreetField("Kgs. Nytorv", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 27);
+        squares[28] = new BreweryField("Carlsberg", 3000, 100, 200);
+        squares[29] = new StreetField("Østergade", 5600, 3000, new int[]{500, 2400, 7200, 17000, 20500, 24000}, Color.WHITE, 28);
 
-        squares[30] = new JailField("JAIL", controller);
+        squares[30] = new JailField("JAIL");
 
-        squares[31] = new OwnedProperty("Amagertorv", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 30, controller);
-        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 31, controller);
-        squares[33] = new ChanceField("Prøv Lykken", players, controller);
-        squares[34] = new OwnedProperty("Nygade", 6400, 4000, new int[]{600, 3000, 9000, 20000, 24000, 28000}, new Color(255, 255, 50), 33, controller);
-        squares[35] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000, controller);
-        squares[36] = new ChanceField("Prøv Lykken", players, controller);
-        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 4000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, new Color(150, 60, 150), 36, controller);
-        squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000, controller);
-        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 4000, new int[]{1000, 4000, 12000, 28000, 34000, 40000}, new Color(150, 60, 150), 38, controller);
+        squares[31] = new StreetField("Amagertorv", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 30);
+        squares[32] = new StreetField("Vimmelskaftet", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 31);
+        squares[33] = new ChanceField("Prøv Lykken");
+        squares[34] = new StreetField("Nygade", 6400, 4000, new int[]{600, 3000, 9000, 20000, 24000, 28000}, new Color(255, 255, 50), 33);
+        squares[35] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000);
+        squares[36] = new ChanceField("Prøv Lykken");
+        squares[37] = new StreetField("Frederiksberggade", 7000, 4000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, new Color(150, 60, 150), 36);
+        squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000);
+        squares[39] = new StreetField("Rådhuspladsen", 8000, 4000, new int[]{1000, 4000, 12000, 28000, 34000, 40000}, new Color(150, 60, 150), 38);
 
     }
 
-    public boolean SameOwnerColor(OwnedProperty property) {
+    public boolean SameOwnerColor(StreetField property) {
         int colorAmount = 0;
         for (Field squares : squares) {
-            if (squares instanceof OwnedProperty) {
-                OwnedProperty currentSquare = (OwnedProperty) squares;
-                if (currentSquare.getColor().equals(property.getColor()) && getOwner().equals(getOwner())) {
+            if (squares instanceof StreetField) {
+                StreetField currentSquare = (StreetField) squares;
+                if (currentSquare.getColor().equals(property.getColor()) && getOwnerName(property).equals(getOwnerName(currentSquare))) {
                     colorAmount++;
                 }
             }
@@ -155,32 +161,37 @@ public class FieldController {
     int rent1;
     int rent2;
     int rent3;
-    Player owner;
     GUIController controller;
 
-    public void arrivedFerry(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
-        arrivedAtProperty(player, fieldName);
+    public void arrivedFerry(Player player, Property property) { // This class creates the ownership for the fields, you can buy and rent fields.
+        arrivedAtProperty(player, property);
     }
-    public void buyProperty(Player player,){
-        player.getAccount().setBalance(player.getAccount().getBalance() - price);
-        owner = player;
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+
+    public void buyProperty(Player player, Property property){
+        player.getAccount().setBalance(player.getAccount().getBalance() - property.price);
+        property.setOwner(player.getIndex());
+        controller.showMessage(player.getPlayerName() + " bought " + property.fieldName + " for " + price + " dkk ");
     }
-    public void rentProperty(Player player,String fieldName){
-        player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
-        owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
+
+    public void rentProperty(Player player,Property property){
+        player.getAccount().setBalance(player.getAccount().getBalance() - property.getRent());
+
+        Player owner = MatadorController.getInstance().getPlayer(property.getOwner());
+        owner.getAccount().setBalance(owner.getAccount().getBalance() + property.getRent());
+
+        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + property.fieldName + " for " + rent0 + " dkk ");
     }
-    public void arrivedAtProperty(Player player, String fieldName){
-        if (owner == null) {
-            buyProperty(player,fieldName);
+
+    public void arrivedAtProperty(Player player, Property property){
+        if (property.isOwned()) {
+            rentProperty(player, property);
         } else {
-            rentProperty(player, fieldName);
+            buyProperty(player,property);
         }
     }
 
-    public void arrivedBrewery(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
-        arrivedAtProperty(player, fieldName);
+    public void arrivedBrewery(Player player, Property property) { // This class creates the ownership for the fields, you can buy and rent fields.
+        arrivedAtProperty(player, property);
     }
 
     public void arrivedIncomeTax(Player p) { // This field places makes the player pay 4000.
@@ -194,38 +205,29 @@ public class FieldController {
         p.getAccount().setBalance(p.getAccount().getBalance() - 2000);
     }
 
-
     int[] rent;
     int house;
     int index;
     Color color;
 
-    public void arrivedOwnedProperty(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
-        arrivedAtProperty(player,fieldName);
+    public void arrivedOwnedProperty(Player player, Property property) { // This class creates the ownership for the fields, you can buy and rent fields.
+        arrivedAtProperty(player,property);
     }
 
-    public String getOwner() {
-        if (owner == null) {
-            return "";
-        }
+    public String getOwnerName(Property property) {
+        Player owner = MatadorController.getInstance().getPlayer(property.getOwner());
         return owner.getPlayerName();
-
     }
 
     //check if there is an owner
-    public boolean isThereAnOwner() {
-        if (owner == null) {
+    public boolean isThereAnOwner(Property property) {
+        if (property.isOwned()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void buyDeed(Player player, String fieldName) {
-        player.getAccount().setBalance(player.getAccount().getBalance() - price);
-        owner = player;
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-    }
 
     public Color getColor() {
         return color;
@@ -244,6 +246,8 @@ public class FieldController {
     public JailField getJailField(){
         return (JailField) squares[30];
     }
+
+    public void askWannaBuy(){controller.wannaBuy(Property, currentPlayer);}
 
     public void arrivedAtJail(Player p) { // This field places the player back to VisitJailSquare field.
         controller.showMessage("JAIL TIME! You have been moved to jail.");

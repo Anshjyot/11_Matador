@@ -9,10 +9,8 @@ public class JailField extends Field { // This class extends the Field class and
     /* kan slettes
     private Dice dice1 = new Dice(6);
     private Dice dice2 = new Dice(6); */
-    private Cup cup = new Cup();
 
-
-    public JailField(String fieldName, GUIController controller) {
+    public JailField(String fieldName) {
         super(fieldName);
         this.controller = controller;
     }

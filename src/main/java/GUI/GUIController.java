@@ -3,7 +3,8 @@ import java.awt.*;
 import java.util.List;
 
 import fields.Field;
-import fields.OwnedProperty;
+import fields.Property;
+import fields.StreetField;
 import fields.FieldController;
 
 import game.Cup;
@@ -97,23 +98,23 @@ public class GUIController {
 
 
     public void addHouse(Field property) {
-        if (property instanceof OwnedProperty) {
-            if (board.SameOwnerColor((OwnedProperty) property)) {
-                ((OwnedProperty) property).addHouse();
-                GUI_Street field = (GUI_Street) gui.getFields()[((OwnedProperty) property).getIndex()];
+        if (property instanceof StreetField) {
+            if (board.SameOwnerColor((StreetField) property)) {
+                ((StreetField) property).addHouse();
+                GUI_Street field = (GUI_Street) gui.getFields()[((StreetField) property).getIndex()];
                 field.setHouses(1);
             }
         }
     }
 
     //choose if you wanna buy the property
-    public void wannaBuy(Field property, Player player) {
-        if (property instanceof OwnedProperty) {
-            if (!OwnedProperty.isThereAnOwner) {
+    public void wannaBuy(Property property, Player player) {
+        if (property instanceof StreetField) {
+            if (!StreetField.isThereAnOwner) {
                 boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
                 if (yes) {
 //              GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
-                    buyDeed(player);
+                    FieldController.getInstance().buyProperty(player,property);
                     // field.setBorder(Color.RED,Color.RED);
                     //  gui.showMessage("You now own this field");
                 }

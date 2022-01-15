@@ -15,10 +15,8 @@ public class ChanceField extends Field { // This class extends the Square class 
     private Player otherPlayer;
     Random rand = new Random();
 
-    public ChanceField(String fieldName, Player[] players, GUIController controller) {
+    public ChanceField(String fieldName) {
         super(fieldName);
-        this.controller = controller;
-        this.players = players;
 
         chanceCards = new ChanceCard[]{
                 new TypeMoneyCard(-1000, "You have driven over a 'full stop'. Pay a 1000kr fine."),
@@ -60,10 +58,12 @@ public class ChanceField extends Field { // This class extends the Square class 
         };
 
     }
+    /*
     @Override
     public void Arrived(Player p) { // Creates different outcomes when landing on the Chance-fields
         draw(p);
     }
+     */
 
     public void draw (Player p) {
         shuffle();

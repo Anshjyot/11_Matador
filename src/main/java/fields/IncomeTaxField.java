@@ -5,7 +5,7 @@ import game.Player;
 
 public class IncomeTaxField extends Field { // This class extends the Field class
 
-    public IncomeTaxField(String fieldname, int tax, GUIController controller) {
+    public IncomeTaxField(String fieldname, int tax) {
         super(fieldname);
         this.tax = tax;
         this.controller = controller;

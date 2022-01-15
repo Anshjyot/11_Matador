@@ -5,7 +5,7 @@ import GUI.GUIController;
 import fields.Field;
 import fields.FieldController;
 import fields.JailField;
-import fields.OwnedProperty;
+import fields.StreetField;
 import game.Cup;
 import game.Player;
 import gui_main.GUI;
@@ -18,7 +18,7 @@ public class MatadorController {
     private GUIController guiController = new GUIController();
     private final int STARTBALANCE = 30000;
     private boolean noWinner = true;
-    Player players[];
+    Player[] players;
     Player currentPlayer;
     FieldController board;
     protected int[] ages = new int[0];
@@ -28,8 +28,16 @@ public class MatadorController {
     private Cup cup = new Cup();
     Field[] squares = new Field[40];
     GUIController controller;
-    public OwnedProperty property;
+    public StreetField property;
 
+    private static MatadorController instance;
+
+    public static MatadorController getInstance() {
+        if (instance == null) {
+            instance = new MatadorController();
+        }
+        return instance;
+    }
 
     public Field getSquare(int i) {
         return squares[i];
@@ -37,7 +45,7 @@ public class MatadorController {
     }
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
-        board = new FieldController(players, guiController);
+        board = new FieldController();
         this.guiController.initializeBoard(board);
         numberOfPlayers();
         try {
@@ -45,9 +53,7 @@ public class MatadorController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
-
 
     private void gameLoop() throws InterruptedException {
         while (noWinner) {
@@ -95,7 +101,8 @@ public class MatadorController {
                     currentPlayer.setPosition(currentPlayer.getPosition() + faceValue);
                 }
 
-               guiController.wannaBuy(board.getSquare(currentPlayer.getPosition()), currentPlayer);
+                //Skal rykkes ind i field controller.
+
 
                 fieldOutcome(i); // The field outcome for the specific field
 
@@ -164,8 +171,8 @@ public class MatadorController {
         }
 
         guiController.addPlayers(players); // Adds players to the GUI
-
     }
+    public Player getPlayer(int i){return players[i];}
 
     private void fieldOutcome(int i) { // The field outcome method
         board.getSquare(players[i].getPosition()).arrived(players[i]);

@@ -3,10 +3,10 @@ package fields;
 import GUI.GUIController;
 import game.Player;
 
-public class BreweryField extends Field { // This class extends the Field class
+public class BreweryField extends Property { // This class extends the Field class
 
-    public BreweryField(String fieldname, int price, int rent0, int rent1, GUIController controller) {
-        super(fieldname);
+    public BreweryField(String fieldname, int price, int rent0, int rent1) {
+        super(fieldname, price);
         this.price = price;
         this.rent0 = rent0;
         this.rent1 = rent1;
@@ -19,7 +19,6 @@ public class BreweryField extends Field { // This class extends the Field class
     Player owner;
     GUIController controller;
 
-    @Override
     public void Arrived(Player player) { // This class creates the ownership for the brewery fields, you can buy and rent fields.
         if (owner == null) {
             player.getAccount().setBalance(player.getAccount().getBalance() - price);

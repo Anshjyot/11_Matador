@@ -5,7 +5,7 @@ import game.Player;
 
 public class VisitJailField extends Field { // Creates our VisitJailSquare field, and which functionality wise doesn't do anything
     private GUIController controller;
-    public VisitJailField(String fieldName, GUIController controller) {
+    public VisitJailField(String fieldName) {
         super(fieldName);
         this.controller= controller;
     }
