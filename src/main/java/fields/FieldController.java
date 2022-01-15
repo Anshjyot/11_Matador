@@ -186,17 +186,18 @@ public class FieldController {
 
         noStreets = 0;
 
-        for (int i = 0; i < propertyList.length; i++){
+        //for (int i = 0; i < propertyList.length; i++){
             for (Field squares : squares) {
                 if (squares instanceof StreetField) {
                     StreetField currentSquare = (StreetField) squares;
                     boolean canAffordHouse = player.getAccount().getBalance() >= currentSquare.getHouseprice();
                     if (currentSquare.getOwner() == player.getIndex() && canAffordHouse) {
-                        propertyList[noStreets++] = currentSquare.fieldName;
+                        propertyList[noStreets] = currentSquare.fieldName;
+                        noStreets++;
                     }
                 }
             }
-        }
+        //}
         return propertyList;
     }
 
@@ -215,7 +216,7 @@ public class FieldController {
     public void choosePlayerOption(Player player) {
         if (FieldController.getInstance().getPropertyList(player).length != 0) {
             if (guiInstance.playerChoice().equals("Buy Building")) {
-                GUIController.getInstance().chooseStreet(player);
+                //GUIController.getInstance().chooseStreet(player);
                 buyHouse(player);
             }
         }

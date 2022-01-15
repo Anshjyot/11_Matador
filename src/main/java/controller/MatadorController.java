@@ -26,7 +26,6 @@ public class MatadorController {
         if (instance == null) {
             instance = new MatadorController();
         }
-        System.out.println("Jacob!");
         return instance;
     }
 
