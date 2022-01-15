@@ -9,7 +9,7 @@ public class Language {
     static Scanner sc = new Scanner(System.in);
 
     public static void ArrivedBreweryText1(String fieldName, int price, Player player, GUIController controller) {
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk. You gotta have a drink sometimes");
     }
 
     public static void ArrivedBreweryText2(String fieldName, int rent0, Player player, Player owner, GUIController controller) {
@@ -25,7 +25,7 @@ public class Language {
     }
 
     public static void ArrivedFerryFieldText1(String fieldName, int price, Player player, GUIController controller) {
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk. Are you planning on sailing anywhere soon?");
     }
 
     public static void ArrivedFerryFieldText2(String fieldName, int rent0, Player player, Player owner, GUIController controller) {
