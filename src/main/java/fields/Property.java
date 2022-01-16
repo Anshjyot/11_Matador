@@ -13,7 +13,7 @@ public abstract class Property extends Field{
         this.owner = 10;
     }
 
-    abstract int getRent();
+    public abstract int getRent();
     abstract int getPrice();
 
     public int getIndex(){return this.index;}

@@ -2,8 +2,9 @@ package testing;
 
 import GUI.GUIController;
 import fields.Field;
-import fields.OwnedProperty;
 
+import fields.Property;
+import fields.StreetField;
 import game.Player;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RentTest {
     Field[] squares = new Field[40];
     GUIController controller;
-    private OwnedProperty property;
+    private StreetField property;
     int price;
     int houseprice;
     int[] rent;
@@ -24,7 +25,7 @@ public class RentTest {
     Color color;
     String fieldname;
 
-    public void OwnedProperty(String fieldname, int price, int houseprice, int[] rent, Color color, int index, GUIController controller) {
+    public void StreetField (String fieldname, int price, int houseprice, int[] rent, Color color, int index, GUIController controller) {
         this.fieldname = fieldname;
         this.price = price;
         this.houseprice = houseprice;

@@ -3,11 +3,7 @@ import java.awt.*;
 import java.util.List;
 
 import fields.*;
-
-import fields.Field;
-import fields.OwnedProperty;
 import fields.FieldController;
-import game.Cup;
 import game.Player;
 import gui_fields.*;
 import gui_main.GUI;
@@ -18,9 +14,6 @@ public class GUIController {
     private GUI_Player[] guiPlayers;
     private GUI gui;
     FieldController board;
-    private GUI_Player[] players;
-    Field[] squares = new Field[40];
-    GUI_Field[] fields = new GUI_Field[40];
     private Language language;
     public static final String TEXT_CYAN = "\u001B[36m";
 
