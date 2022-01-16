@@ -1,31 +1,34 @@
 package fields;
 
 import java.awt.Color;
+
 import GUI.GUIController;
+import chance.ChanceCardController;
+import controller.MatadorController;
+import game.Cup;
 import game.Player;
 import gui_fields.*;
-import gui_main.GUI;
 
 public class FieldController {
     GUI_Field[] fields = new GUI_Field[40];
     Field[] squares = new Field[40];
-
-    public FieldController(Player[] players, GUIController controller) {
-        CreateStreets(players, controller);
+    private Cup cup = new Cup();
+    public FieldController() {
+        CreateStreets();
     }
-
     public GUI_Field getField(int i) {
         return fields[i];
-    } // Returns our GUI fields
-
-    public Field getSquare(int i) {
-        return squares[i]; // Returns our squares fields
-
     }
 
-    protected GUI gui;
+    private static FieldController instance;
 
-    public GUI_Field[] BoardCreator() { // Our GUI board
+    public static FieldController getInstance() {
+        if (instance == null) {
+            instance = new FieldController();
+        }
+        return instance;
+    }
+    public GUI_Field[] BoardCreator() {
 
         fields[0] = new GUI_Start("Start", "Modtag: 4.000", "Modtag kr. 4.000,-\nnår de passerer start", Color.RED, Color.BLACK);
         fields[1] = new GUI_Street("Rødovrevej", "kr. 1200", "Rødovrevej", "Leje:  20", new Color(75, 155, 225), Color.BLACK);
@@ -70,192 +73,275 @@ public class FieldController {
         return fields;
     }
 
+    public void CreateStreets() { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
+        squares[0] = new StartField("START");
+        squares[1] = new StreetField("Rødovrevej", 1200, 1000, new int[]{50, 250, 750, 2250, 4000, 6000}, new Color(75, 155, 225), 1);
+        squares[2] = new ChanceField("Prøv Lykken");
+        squares[3] = new StreetField("Hvidovrevej", 1200, 1000, new int[]{50, 250, 400, 750, 2250, 6000}, new Color(75, 155, 225), 3);
+        squares[4] = new IncomeTaxField("Betal Indkomst-skat", 4000);
+        squares[5] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000,5);
+        squares[6] = new StreetField("Roskildevej", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 6);
+        squares[7] = new ChanceField("Prøv Lykken");
+        squares[8] = new StreetField("Valbylanggade", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 8);
+        squares[9] = new StreetField("Allégade", 2400, 1000, new int[]{150, 800, 2000, 6000, 9000, 12000}, new Color(255, 135, 120), 9);
 
-    public void CreateStreets(Player[] players, GUIController controller) { // This constructor is used to decide the buyprice and rentprice throughtout the game for each fields
-        squares[0] = new StartField("START", controller);
-        squares[1] = new OwnedProperty("Rødovrevej", 1200, 1000, new int[]{50, 250, 750, 2250, 4000, 6000}, new Color(75, 155, 225), 1, controller);
-        squares[2] = new ChanceField("Prøv Lykken", players, controller);
-        squares[3] = new OwnedProperty("Hvidovrevej", 1200, 1000, new int[]{50, 250, 400, 750, 2250, 6000}, new Color(75, 155, 225), 3, controller);
-        squares[4] = new IncomeTaxField("Betal Indkomst-skat", 4000, controller);
-        squares[5] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000, controller);
-        squares[6] = new OwnedProperty("Roskildevej", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 6, controller);
-        squares[7] = new ChanceField("Prøv Lykken", players, controller);
-        squares[8] = new OwnedProperty("Valbylanggade", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 8, controller);
-        squares[9] = new OwnedProperty("Allégade", 2400, 1000, new int[]{150, 800, 2000, 6000, 9000, 12000}, new Color(255, 135, 120), 9, controller);
+        squares[10] = new VisitJailField("På fængsels-besøg");
 
-        squares[10] = new VisitJailField("På fængsels-besøg",controller);
+        squares[11] = new StreetField("Frederiksbergs Allé", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 11);
+        squares[12] = new BreweryField("Tuborg", 3000, 100, 200,12);
+        squares[13] = new StreetField("Bülowsvej", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 13);
+        squares[14] = new StreetField("Gl. Kongevej", 3200, 2000, new int[]{250, 1250, 3750, 10000, 14000, 18000}, new Color(18, 253, 0), 14);
+        squares[15] = new FerryField("Mols linien", 4000, 500, 1000, 2000, 4000,15);
+        squares[16] = new StreetField("Bernstorffsvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 16);
+        squares[17] = new ChanceField("Prøv Lykken");
+        squares[18] = new StreetField("Hellerupvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 18);
+        squares[19] = new StreetField("Strandvejen", 4000, 2000, new int[]{350, 1600, 4400, 12000, 16000, 20000}, new Color(153, 153, 153), 19);
+        squares[20] = new ParkingField("Parkering");
+        squares[21] = new StreetField("Trianglen", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 21);
+        squares[22] = new ChanceField("Prøv Lykken");
+        squares[23] = new StreetField("Østerbrogade", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 23);
+        squares[24] = new StreetField("Grønningen", 4600, 3000, new int[]{400, 2000, 6000, 15000, 18500, 22000}, Color.RED, 24);
+        squares[25] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000,25);
+        squares[26] = new StreetField("Bredgade", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 26);
+        squares[27] = new StreetField("Kgs. Nytorv", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 27);
+        squares[28] = new BreweryField("Carlsberg", 3000, 100, 200,28);
+        squares[29] = new StreetField("Østergade", 5600, 3000, new int[]{500, 2400, 7200, 17000, 20500, 24000}, Color.WHITE, 29);
 
-        squares[11] = new OwnedProperty("Frederiksbergs Allé", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 11, controller);
-        squares[12] = new BreweryField("Tuborg", 3000, 100, 200, controller);
-        squares[13] = new OwnedProperty("Bülowsvej", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 13, controller);
-        squares[14] = new OwnedProperty("Gl. Kongevej", 3200, 2000, new int[]{250, 1250, 3750, 10000, 14000, 18000}, new Color(18, 253, 0), 14, controller);
-        squares[15] = new FerryField("Mols linien", 4000, 500, 1000, 2000, 4000, controller);
-        squares[16] = new OwnedProperty("Bernstorffsvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 16, controller);
-        squares[17] = new ChanceField("Prøv Lykken", players, controller);
-        squares[18] = new OwnedProperty("Hellerupvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 18, controller);
-        squares[19] = new OwnedProperty("Strandvejen", 4000, 2000, new int[]{350, 1600, 4400, 12000, 16000, 20000}, new Color(153, 153, 153), 19, controller);
-        squares[20] = new ParkingField("Parkering", controller);
-        squares[21] = new OwnedProperty("Trianglen", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 21, controller);
-        squares[22] = new ChanceField("Prøv Lykken", players, controller);
-        squares[23] = new OwnedProperty("Østerbrogade", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 23, controller);
-        squares[24] = new OwnedProperty("Grønningen", 4600, 3000, new int[]{400, 2000, 6000, 15000, 18500, 22000}, Color.RED, 24, controller);
-        squares[25] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000, controller);
-        squares[26] = new OwnedProperty("Bredgade", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 26, controller);
-        squares[27] = new OwnedProperty("Kgs. Nytorv", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 27, controller);
-        squares[28] = new BreweryField("Carlsberg", 3000, 100, 200, controller);
-        squares[29] = new OwnedProperty("Østergade", 5600, 3000, new int[]{500, 2400, 7200, 17000, 20500, 24000}, Color.WHITE, 29, controller);
+        squares[30] = new JailField("JAIL");
 
-        squares[30] = new JailField("JAIL", controller);
-
-        squares[31] = new OwnedProperty("Amagertorv", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 31, controller);
-        squares[32] = new OwnedProperty("Vimmelskaftet", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 32, controller);
-        squares[33] = new ChanceField("Prøv Lykken", players, controller);
-        squares[34] = new OwnedProperty("Nygade", 6400, 4000, new int[]{600, 3000, 9000, 20000, 24000, 28000}, new Color(255, 255, 50), 34, controller);
-        squares[35] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000, controller);
-        squares[36] = new ChanceField("Prøv Lykken", players, controller);
-        squares[37] = new OwnedProperty("Frederiksberggade", 7000, 4000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, new Color(150, 60, 150), 37, controller);
-        squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000, controller);
-        squares[39] = new OwnedProperty("Rådhuspladsen", 8000, 4000, new int[]{1000, 4000, 12000, 28000, 34000, 40000}, new Color(150, 60, 150), 39, controller);
+        squares[31] = new StreetField("Amagertorv", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 31);
+        squares[32] = new StreetField("Vimmelskaftet", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 32);
+        squares[33] = new ChanceField("Prøv Lykken");
+        squares[34] = new StreetField("Nygade", 6400, 4000, new int[]{600, 3000, 9000, 20000, 24000, 28000}, new Color(255, 255, 50), 34);
+        squares[35] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000,35);
+        squares[36] = new ChanceField("Prøv Lykken");
+        squares[37] = new StreetField("Frederiksberggade", 7000, 4000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, new Color(150, 60, 150), 37);
+        squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000);
+        squares[39] = new StreetField("Rådhuspladsen", 8000, 4000, new int[]{1000, 4000, 12000, 28000, 34000, 40000}, new Color(150, 60, 150), 39);
 
     }
-
-    public boolean SameOwnerColor(OwnedProperty property) { // Checks if the same owner owns the same colored-fields
+    
+    GUIController guiInstance = GUIController.getInstance();
+    MatadorController matadorInstance = MatadorController.getInstance();
+    
+    public boolean SameOwnerColor(StreetField property) {
         int colorAmount = 0;
         for (Field squares : squares) {
-            if (squares instanceof OwnedProperty) {
-                OwnedProperty currentSquare = (OwnedProperty) squares;
-                if (currentSquare.getColor().equals(property.getColor()) && currentSquare.getOwner().equals(property.getOwner())) {
+            if (squares instanceof StreetField) {
+                StreetField currentSquare = (StreetField) squares;
+                if(currentSquare.isOwned()){
+                    if (currentSquare.getColor().equals(property.getColor()) && getOwnerName(property).equals(getOwnerName(currentSquare))) {
                     colorAmount++;
+                    }
                 }
             }
         }
-
         if (property.getColor().equals(new Color(150, 60, 150))) {
             if (colorAmount == 2) {
                 return true;
             }
         }
-
         if (property.getColor().equals(new Color(75, 155, 225))) {
             if (colorAmount == 2) {
                 return true;
             }
         }
-
         if (colorAmount == 3) {
             return true;
         } else {
             return false;
         }
-
     }
 
-    int price;
-    int rent0;
-    int rent1;
-    int rent2;
-    int rent3;
-    Player owner;
-    GUIController controller;
+    public void buyProperty(Player player, Property property){
+        player.getAccount().setBalance(player.getAccount().getBalance() - property.getPrice());
+        property.setOwner(player.getIndex());
+        guiInstance.setBorderColors(player,property);
+        guiInstance.showMessage(player.getPlayerName() + " bought " + property.fieldName + " for " + property.getPrice() + " dkk ");
+    }
 
-    public void arrivedFerry(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
-        if (owner == null) {
-            player.getAccount().setBalance(player.getAccount().getBalance() - price);
-            owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+    public void rentProperty(Player player,Property property){
+        player.getAccount().setBalance(player.getAccount().getBalance() - property.getRent());
 
-        } else {
-            player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
-            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
+        Player owner = matadorInstance.getPlayer(property.getOwner());
+        owner.getAccount().setBalance(owner.getAccount().getBalance() + property.getRent());
+
+        guiInstance.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + property.fieldName + " for " + property.getRent() + " dkk ");
+    }
+    public int getNoStreets(Player player){
+        int noStreets = 0;
+        for (Field squares : squares) {
+            if (squares instanceof StreetField) {
+                StreetField currentSquare = (StreetField) squares;
+                if (currentSquare.getOwner() == player.getIndex()) {
+                    noStreets++;
+                }
+            }
+        }
+        return noStreets;
+    }
+
+    public String[] getPropertyList(Player player){
+        int noStreets = getNoStreets(player);
+        String[] propertyList = new String[noStreets];
+
+        noStreets = 0;
+
+        for (Field squares : squares) {
+            if (squares instanceof StreetField) {
+                StreetField currentSquare = (StreetField) squares;
+                boolean canAffordHouse = player.getAccount().getBalance() >= currentSquare.getHouseprice();
+                if (currentSquare.getOwner() == player.getIndex() && canAffordHouse) {
+                    propertyList[noStreets] = currentSquare.fieldName;
+                    noStreets++;
+                }
+            }
+        }
+        return propertyList;
+    }
+
+    public void buyHouse(Player player){
+        String chosenStreet = guiInstance.chooseStreet(player);
+
+        for (Field squares : squares){
+            if (chosenStreet.equals(squares.getFieldName())) {
+                StreetField currentStreet = (StreetField) squares;
+                if (currentStreet.getNoOfHouses() < 4) {
+                    currentStreet.addHouse();
+                    guiInstance.addHouse(currentStreet);
+                    player.getAccount().setBalance(player.getAccount().getBalance() - currentStreet.getHouseprice());
+                }
+                else {guiInstance.showMessage("You already have four houses, maybe a hotel?");}
+            }
+        }
+    }
+    public void choosePlayerOption(Player player) {
+        if (FieldController.getInstance().getPropertyList(player).length != 0) {
+            if (guiInstance.playerChoice().equals("Buy Building")) {
+                //GUIController.getInstance().chooseStreet(player);
+                buyHouse(player);
+            }
         }
     }
 
-    public void arrivedBrewery(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
-        if (owner == null) {
-            player.getAccount().setBalance(player.getAccount().getBalance() - price);
-            owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-
-        } else {
-            player.getAccount().setBalance(player.getAccount().getBalance() - rent0);
-            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent0);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
-        }
-    }
-
-    public void arrivedIncomeTax(Player p) { // This field places makes the player pay 4000.
-        controller.showMessage("Betal Indkomst-skat");
-        p.getAccount().setBalance(p.getAccount().getBalance() - 4000);
-
-    }
-
-    public void arrivedExtraordinaryTax(Player p) { // This field makes the player pay 2000
-        controller.showMessage("Betal Extraordinær-skat");
-        p.getAccount().setBalance(p.getAccount().getBalance() - 2000);
-    }
-
-
-    int[] rent;
-    int house;
-    int index;
-    Color color;
-
-    public void arrivedOwnedProperty(Player player, String fieldName) { // This class creates the ownership for the fields, you can buy and rent fields.
-        if (owner == null) {
-            player.getAccount().setBalance(player.getAccount().getBalance() - price);
-            owner = player;
-            controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-        } else {
-            player.getAccount().setBalance(player.getAccount().getBalance() - rent[house]);
-            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent[house]);
-            controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
-
-        }
-    }
-
-    public String getOwner() {
-        if (owner == null) {
-            return "";
-        }
+    public String getOwnerName(Property property) {
+        Player owner = matadorInstance.getPlayer(property.getOwner());
         return owner.getPlayerName();
+    }
+
+    public void fieldOutcome(Player player){
+        Field currentField = squares[player.getPosition()];
+
+        if (currentField instanceof Property){
+            Property field = ((Property) currentField);
+            //when landed on field is owned
+            if (field.isOwned()){
+                int owner = field.getOwner();
+
+                if (player.getIndex() == owner){
+                    guiInstance.showMessage("Oh, you've already bought this property... How nice it is :)");
+                }
+                else{
+                    //rent need to be updated for multiple types of properties.
+                    rentProperty(player,field);
+                }
+            }
+            //when landed on field is not owned.
+            else{
+                if(guiInstance.wannaBuy()){
+                    buyProperty(player,field);
+                }
+            }
+        }
+        else if (currentField instanceof ExtraordinaryTaxField){
+            guiInstance.showMessage("Betal Extraordinær-skat på 2000 kr.");
+            int tax = ((ExtraordinaryTaxField) currentField).getTax();
+            player.getAccount().setBalance(player.getAccount().getBalance() - tax);
+        }
+        else if(currentField instanceof IncomeTaxField){
+            guiInstance.showMessage("Betal Indkomst-skat på 4000 kr.");
+            int tax = ((IncomeTaxField) currentField).getTax();
+            player.getAccount().setBalance(player.getAccount().getBalance() - tax);
+        }
+        else if(currentField instanceof VisitJailField){
+            if(!player.isInJail){
+                guiInstance.showMessage("Welcome to prison, say hi to your inmates. Relax, You're just on a visit");}
+        }
+        else if(currentField instanceof JailField){
+            arrivedAtJail(player);
+        }
+        else if(currentField instanceof ParkingField){
+            guiInstance.showMessage("You found a legendary free parking spot");
+        }
+        else if(currentField instanceof StartField){
+            guiInstance.showMessage("You landed on start, receive 4000$, for staying alive");
+        }
+        else if(currentField instanceof ChanceField){
+            ChanceCardController.getInstance().draw(player);
+        }
+        guiInstance.okButton();
 
     }
 
-    //check if there is an owner
-    public boolean isThereAnOwner() {
-        if (owner == null) {
-            return true;
+    public void startField(Player player) { // You get 4.000 dkk when you pass the Start-field
+        player.getAccount().setBalance(player.getAccount().getBalance() + 4000);
+    }
+
+    public void arrivedAtJail(Player p) { // This field places the player back to VisitJailSquare field.
+        guiInstance.showMessage("JAIL TIME! You have been moved to jail.");
+        p.isInJail = true;
+        guiInstance.removeCar(p.getPosition(), p.getIndex());
+        p.setPosition(p.getPosition() - 20);
+        guiInstance.addCar(p.getPosition(), p.getIndex());
+        //GetOutOfJail(p);
+    }
+    public void GetOutOfJail(Player player) {
+        player.roundsInJail++;
+        if (player.roundsInJail > 3) {
+            //The player should still pay 1000$ - dont know if this feature works totally correct?
+            player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
+            player.isInJail = false;
+            guiInstance.showMessage("You have been in jail for 3 rounds, pay 1000$ and get out of here!");
+            cup.CupRoll();
+            guiInstance.askForDice();
+            guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
         } else {
-            return false;
+        //The Player can only get out of Jail, if one of the three methods has happened
+            String option = guiInstance.getOutOfJail();
+            switch (option) {
+                case "Pay 1000$":
+                    //Pay1000$, check if account>=1000
+                    if (player.getAccount().getBalance() >= 1000) {
+                        player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
+                        guiInstance.showMessage("You paid yourself out of jail");
+                        player.isInJail = false;
+                    }
+                    break;
+                case "Roll the dice":
+                    //Roll the dice, and have a chance to get out of jail for free
+                    guiInstance.showMessage("Roll the dice, and have a chance to get out of jail for free");
+                    cup.CupRoll();
+                    guiInstance.askForDice();
+                    guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
+                    if (cup.GetDice1Value() == cup.GetDice2Value()) {
+                        guiInstance.showMessage("You got lucky, you got a pair and get an extra throw");
+                        player.isInJail = false;
+
+                    }
+                    break;
+                /*case "Use a Get-Out-Of-Jail Card":
+                    if(chancecard==true) {
+                        player.isInJail = false;
+                    }
+                    break;
+               /* default:
+                    System.out.println(option);
+            }
+            player.printStatus(); */
+            }
         }
     }
-
-    public void buyDeed(Player player, String fieldName) {
-        player.getAccount().setBalance(player.getAccount().getBalance() - price);
-        owner = player;
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
-
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public int getIndex() {
-        return index;
-    }
-
-    /*public void ArrivedJail(Player p) { // This field places the player back to VisitJailSquare field.
-        controller.showMessage("JAIL TIME");
-        controller.removeCar(p.getPosition(), p.getIndex());
-        p.setPosition(p.getPosition() - 16);
-        controller.addCar(p.getPosition(), p.getIndex()); */
-
-    public JailField getJailField(){
-        return (JailField) squares[30];
-    }
-    }
+}
 
 
 

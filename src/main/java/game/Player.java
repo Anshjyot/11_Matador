@@ -52,11 +52,5 @@ public class Player {
     public int getIndex() {
         return index;
     }
-
-    //Bruges ikke lige nu, bruges til test af JailField
-     /*public void printStatus(){
-        System.out.println(this.PlayerName);
-        System.out.println(this.currentposition);
-        System.out.println(this.account.getBalance()); } */
     }
 

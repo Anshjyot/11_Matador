@@ -2,10 +2,7 @@
 package controller;
 
 import GUI.GUIController;
-import fields.Field;
 import fields.FieldController;
-import fields.JailField;
-import fields.OwnedProperty;
 import game.Cup;
 import game.Player;
 import gui_main.GUI;
@@ -17,20 +14,26 @@ import java.util.List;
 public class MatadorController {
 
     private final int StartField = 0;
-    private GUIController guiController = new GUIController();
     private final int STARTBALANCE = 30000;
     private boolean noWinner = true;
-    Player players[];
+    public Player[] players;
     Player currentPlayer;
     FieldController board;
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
-    protected GUI gui;
     private Cup cup = new Cup();
 
+    private static MatadorController instance;
+
+    public static MatadorController getInstance() {
+        if (instance == null) {
+            instance = new MatadorController();
+        }
+        return instance;
+    }
+
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
-        board = new FieldController(players, guiController);
-        guiController.initializeBoard(board);
+        GUIController.getInstance().initializeBoard(FieldController.getInstance());
         chooseLanguage();
         numberOfPlayers();
         try {
@@ -38,59 +41,48 @@ public class MatadorController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
-
 
     private void gameLoop() throws InterruptedException { // Our Game-loop system
         while (noWinner) {
             for (int i = 0; i < players.length; i++) {
                 currentPlayer = players[i];
-                if (currentPlayer.isInJail) { // Jail system
-                    JailField jailField = board.getJailField();
-                    jailField.GetOutOfJail(currentPlayer);
+                if(currentPlayer.isInJail) {  //Jail system.
+                    FieldController.getInstance().GetOutOfJail(currentPlayer);
                     if (currentPlayer.isInJail)
                         continue;
                 }
+                FieldController.getInstance().choosePlayerOption(currentPlayer);
 
-                guiController.addHouse(board.getSquare(currentPlayer.getPosition()));
+                GUIController.getInstance().askForDice();
+                int faceValue = cup.CupRoll();
+                GUIController.getInstance().setDice(cup.GetDice1Value(),cup.GetDice2Value());
 
-                guiController.askForDice(); // Dice and Cup usage
-                int faceValue = cup.CupRoll(); // Using the faceValue for player-movement
-                guiController.setDice(cup.GetDice1Value(), cup.GetDice2Value());
-
-
-                guiController.removeCar(currentPlayer.getPosition(), i);
-
+                GUIController.getInstance().removeCar(currentPlayer.getPosition(), i);
 
                 // Step by Step [Field by Field] movement
                 for (int j = 0; j < faceValue; j++) {
                     int newPos = (currentPlayer.getPosition() + j) % 40;
 
-                    guiController.removeCar(newPos, i);
-                    guiController.addCar((newPos + 1) % 40, i);
+                    GUIController.getInstance().removeCar(newPos, i);
+                    GUIController.getInstance().addCar((newPos+1)%40, i);
                     Thread.sleep(150);
 
                 }
                 // Updating player position
                 if (currentPlayer.getPosition() + faceValue > 39) { //When you exceed the last field, you get to a new round
-                    startField(i); // 4000dkk when you go pass the StartField
+                    FieldController.getInstance().startField(currentPlayer);  // 4000dkk when you go pass the StartField
                     currentPlayer.setPosition(currentPlayer.getPosition() + faceValue - 40);
 
                 } else {
                     currentPlayer.setPosition(currentPlayer.getPosition() + faceValue);
                 }
 
-                guiController.wannaBuy(board.getSquare(currentPlayer.getPosition()), currentPlayer);
-
-                fieldOutcome(i); // The field outcome for the specific field
+                FieldController.getInstance().fieldOutcome(currentPlayer); // The field outcome for the specific field
 
                 for (Player player : players) {
-                    guiController.setNewBalance(player.getIndex(), player.getAccount().getBalance());
-
+                    GUIController.getInstance().setNewBalance(player.getIndex(), player.getAccount().getBalance());
                 }
-
-
                 winner(i); // Checking if the winner is found.
             }
         }
@@ -110,21 +102,18 @@ public class MatadorController {
             }
 
             if (winnerName.size() == 1) {
-                guiController.getWinnerMessage(winnerName);
+                GUIController.getInstance().getWinnerMessage(winnerName);
                 System.exit(0); // Games finishes when the winner is announced
             }
 
         }
     }
-
     //Choose Language button
     private void chooseLanguage() {
-        guiController.getLanguage();
+        GUIController.getInstance().getLanguage();
     }
-
-    private void numberOfPlayers() {
-        int playerList = guiController.getPlayerList();
-
+    private void numberOfPlayers() { // Start money declaration
+        int playerList = GUIController.getInstance().getPlayerList();
         players = new Player[playerList];
 
         for (int i = 0; i < playerList; i++) {
@@ -138,13 +127,13 @@ public class MatadorController {
             ages = temporaryAge;
 
             //Insert name
-            String name = guiController.getPlayerName(i);
+            String name = GUIController.getInstance().getPlayerName(i);
             int age = 0;
             boolean TypeAge;
             do {
                 try {
                     //insert age
-                    age = guiController.getPlayerAge(i);
+                    age = GUIController.getInstance().getPlayerAge(i);
                     TypeAge = age >= 10 && age <= 150;
                 } catch (NumberFormatException e) {
                     TypeAge = false;
@@ -153,19 +142,13 @@ public class MatadorController {
             players[i] = new Player(name,age, STARTBALANCE,StartField,i);
 
 
+            //this.players[i] = players[i];
         }
-
-        guiController.addPlayers(players); // Adds players to the GUI
-
+        GUIController.getInstance().addPlayers(players); // Adds players to the GUI
+        System.out.println("Spillere: " + players.toString());
     }
 
-    // The fieldOutcome method used above
-    private void fieldOutcome(int i) { // The field outcome method
-        board.getSquare(players[i].getPosition()).Arrived(players[i]);
-    }
+    public Player getPlayer(int i){return players[i];}
+    public Player[] getPlayers(){return players;}
 
-    // The startField method used above
-    private void startField(int i) { // You get 4.000 dkk when you pass the Start-field
-        players[i].getAccount().setBalance(players[i].getAccount().getBalance() + 4000);
-    }
 }
