@@ -9,7 +9,7 @@ public class Language {
     static Scanner sc = new Scanner(System.in);
 
     public static void ArrivedBreweryText1(String fieldName, int price, Player player, GUIController controller) {
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk. You gotta have a drink sometimes");
     }
 
     public static void ArrivedBreweryText2(String fieldName, int rent0, Player player, Player owner, GUIController controller) {
@@ -21,11 +21,11 @@ public class Language {
     }
 
     public static void ExtraordinaryTaxFieldText(GUIController controller) {
-        controller.showMessage("Betal Extraordinær-skat på 2000$");
+        controller.showMessage("Pay the extraordinary-tax of 2000DKK");
     }
 
     public static void ArrivedFerryFieldText1(String fieldName, int price, Player player, GUIController controller) {
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk ");
+        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk. Are you planning on sailing anywhere soon?");
     }
 
     public static void ArrivedFerryFieldText2(String fieldName, int rent0, Player player, Player owner, GUIController controller) {
@@ -33,7 +33,7 @@ public class Language {
     }
 
     public static void IncomeTaxFieldText(GUIController controller) {
-        controller.showMessage("Betal Indkomst-skatten på 4000$");
+        controller.showMessage("Pay the income-tax of 4000DKK");
     }
 
     public static void ArrivedJailFieldText1(GUIController controller) {
@@ -41,7 +41,7 @@ public class Language {
     }
 
     public static void ArrivedJailFieldText2(GUIController controller) {
-        controller.showMessage("You have been in jail for 3 rounds, pay 1000kr and get out of here!");
+        controller.showMessage("You have been in jail for 3 rounds, pay 1000DKK and get out of here!");
     }
 
     public static void ArrivedJailFieldText3(GUIController controller) {
@@ -73,7 +73,7 @@ public class Language {
     }
 
     public static void ArrivedStartFieldText(GUIController controller) {
-        controller.showMessage("You landed on start, receive 4000$, for staying alive");
+        controller.showMessage("You landed on start, receive 4000DKK, for staying alive");
     }
 
 }
