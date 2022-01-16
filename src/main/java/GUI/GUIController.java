@@ -1,14 +1,11 @@
 package GUI;
 import java.awt.*;
 import java.util.List;
-
 import fields.Field;
 import fields.OwnedProperty;
 import fields.FieldController;
-
 import game.Cup;
 import game.Player;
-
 import gui_fields.*;
 import gui_main.GUI;
 import language.Language;
