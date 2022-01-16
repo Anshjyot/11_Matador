@@ -130,7 +130,7 @@ public class GUIController {
     }
 
   public String playerChoice () {
-        String choice = gui.getUserSelection("Choose what you want to do.", "Roll Dice", "Buy Building");
+        String choice = gui.getUserSelection("Choose what you want to do.", "Roll Dice", "Buy House");
         return choice;
     }
 
