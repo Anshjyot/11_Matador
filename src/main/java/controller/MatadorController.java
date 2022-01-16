@@ -20,6 +20,7 @@ public class MatadorController {
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
     private Cup cup = new Cup();
+    String winnerName;
 
     private static MatadorController instance;
 
@@ -94,16 +95,18 @@ public class MatadorController {
     // The last person to have a balance >0 wins
     private void winner(int player) {
         int loserBalance = 0;
-        List<String> winnerName = new ArrayList<>();
+        int remainingPlayers = 0;
 
         if (players[player].getAccount().getBalance() < 0) {
             for (int i = 0; i < players.length; i++) {
                 if (players[i].getAccount().getBalance() > loserBalance) {
-                    winnerName.add(players[i].getPlayerName());
+                    remainingPlayers++;
+                    this.winnerName = players[i].getPlayerName();
                 }
             }
+            String[] winnerNames = new String[remainingPlayers];
 
-            if (winnerName.size() == 1) {
+            if (winnerNames.length == 1) {
                 GUIController.getInstance().getWinnerMessage(winnerName);
                 System.exit(0); // Games finishes when the winner is announced
             }

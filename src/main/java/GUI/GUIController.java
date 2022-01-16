@@ -1,5 +1,6 @@
 package GUI;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.List;
 
 import fields.*;
@@ -91,9 +92,9 @@ public class GUIController {
     }
 
     // Winner message
-    public void getWinnerMessage(List<String> message) {
-        gui.showMessage(message.toString() + TEXT_CYAN + " WON!!");
-        System.out.println(message.toString() + TEXT_CYAN + " WON!!");
+    public void getWinnerMessage(String message) {
+        gui.showMessage(message + TEXT_CYAN + " WON!!");
+        System.out.println(message + TEXT_CYAN + " WON!!");
     }
 
     // Shows the Chance card outcome message
