@@ -14,7 +14,6 @@ public class GUIController {
     private GUI_Player[] guiPlayers;
     private GUI gui;
     FieldController board;
-    private Language language;
     public static final String TEXT_CYAN = "\u001B[36m";
 
     private static GUIController instance;
