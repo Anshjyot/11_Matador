@@ -1,7 +1,7 @@
-package chance;
+package controller;
 
 import GUI.GUIController;
-import controller.MatadorController;
+import chance.*;
 import game.Player;
 
 import java.util.Random;

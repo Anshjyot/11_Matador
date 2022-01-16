@@ -1,10 +1,9 @@
-package fields;
+package controller;
 
 import java.awt.Color;
 
 import GUI.GUIController;
-import chance.ChanceCardController;
-import controller.MatadorController;
+import fields.*;
 import game.Cup;
 import game.Player;
 import gui_fields.*;
@@ -171,15 +170,14 @@ public class FieldController {
             Language.ArrivedText(property, player, owner);
         }
         else if(property instanceof BreweryField){
-            guiInstance.showMessage("This brewery is owned by " + owner.getPlayerName() +
-                    ". Roll dice to find out how much you have to pay them.");
+            Language.breweryText1(owner);
             cup.CupRoll();
             guiInstance.askForDice();
             guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
             int rent = (cup.GetDice1Value()+ cup.GetDice2Value())*100;
             player.getAccount().setBalance(player.getAccount().getBalance() - rent);
             owner.getAccount().setBalance(owner.getAccount().getBalance() + rent);
-            guiInstance.showMessage("You've paid " + rent + " to " + owner.getPlayerName());
+            Language.breweryText2(owner, rent);
         }
         guiInstance.setNewBalance(player.getIndex(),player.getAccount().getBalance());
         guiInstance.setNewBalance(owner.getIndex(),owner.getAccount().getBalance());

@@ -14,7 +14,7 @@ public class StreetField extends Property {
         this.index = index;
         this.color = color;
     }
-    String fieldName;
+    public String fieldName;
     int price;
     int houseprice;
     int[] rent;

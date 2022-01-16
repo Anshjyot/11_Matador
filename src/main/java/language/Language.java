@@ -76,6 +76,15 @@ public class Language {
         GUIController.getInstance().showMessage("You already have four houses, maybe a hotel?");
     }
 
+    public static void breweryText1(Player owner) {
+        GUIController.getInstance().showMessage("This brewery is owned by " + owner.getPlayerName() + ". Roll dice to find out how much you have to pay them.");
+    }
+
+    public static void breweryText2(Player owner, int rent) {
+        GUIController.getInstance().showMessage("You've paid " + rent + " to " + owner.getPlayerName());
+    }
+
+
 }
 
 

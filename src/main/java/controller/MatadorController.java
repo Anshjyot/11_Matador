@@ -2,8 +2,6 @@
 package controller;
 
 import GUI.GUIController;
-import chance.ChanceCardController;
-import fields.FieldController;
 import game.Cup;
 import game.Player;
 import language.Language;
@@ -36,7 +34,6 @@ public class MatadorController {
         GUIController.getInstance().initializeBoard(FieldController.getInstance());
         chooseLanguage();
         numberOfPlayers();
-        ChanceCardController.getInstance().shuffle();
         try {
             gameLoop();
         } catch (InterruptedException e) {
@@ -149,6 +146,7 @@ public class MatadorController {
             //this.players[i] = players[i];
         }
         GUIController.getInstance().addPlayers(players); // Adds players to the GUI
+        System.out.println("Spillere: " + players.toString());
     }
 
     public Player getPlayer(int i){return players[i];}

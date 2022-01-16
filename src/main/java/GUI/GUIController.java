@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.List;
 
 import fields.*;
-import fields.FieldController;
+import controller.FieldController;
 import game.Player;
 import gui_fields.*;
 import gui_main.GUI;
