@@ -157,6 +157,7 @@ public class FieldController {
     public void buyProperty(Player player, Property property){
         player.getAccount().setBalance(player.getAccount().getBalance() - property.getPrice());
         property.setOwner(player.getIndex());
+        guiInstance.setNewBalance(player.getIndex(),player.getAccount().getBalance());
         guiInstance.setBorderColors(player,property);
         Language.BuyDeedText(property,player);
     }
@@ -168,6 +169,9 @@ public class FieldController {
         owner.getAccount().setBalance(owner.getAccount().getBalance() + property.getRent());
 
         Language.ArrivedText(property, player, owner);
+        guiInstance.setNewBalance(player.getIndex(),player.getAccount().getBalance());
+        guiInstance.setNewBalance(owner.getIndex(),owner.getAccount().getBalance());
+
     }
     public int getNoStreets(Player player){
         int noStreets = 0;
@@ -286,6 +290,7 @@ public class FieldController {
 
     public void startField(Player player) { // You get 4.000 dkk when you pass the Start-field
         player.getAccount().setBalance(player.getAccount().getBalance() + 4000);
+        guiInstance.setNewBalance(player.getIndex(),player.getAccount().getBalance());
     }
 
     public void arrivedAtJail(Player p) { // This field places the player back to VisitJailSquare field.
