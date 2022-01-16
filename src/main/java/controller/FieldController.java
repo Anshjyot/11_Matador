@@ -231,8 +231,7 @@ public class FieldController {
     }
     public void choosePlayerOption(Player player) {
         if (FieldController.getInstance().getPropertyList(player).length != 0) {
-            if (guiInstance.playerChoice(player).equals("Buy Building")) {
-                //GUIController.getInstance().chooseStreet(player);
+            if (guiInstance.playerChoice().equals("Buy House")) {
                 buyHouse(player);
             }
         }
