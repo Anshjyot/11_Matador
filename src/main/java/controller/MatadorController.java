@@ -21,9 +21,6 @@ public class MatadorController {
     FieldController board;
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
-    //protected GUI gui;
-    //private int[] ages = new int[0];
-    //private String[] names = new String[0];
     private Cup cup = new Cup();
 
     private static MatadorController instance;
@@ -36,8 +33,7 @@ public class MatadorController {
     }
 
     public void playGame() { // These methods below are essential for the game to run, thus Main will run playGame()
-        board = new FieldController();
-        GUIController.getInstance().initializeBoard(board);
+        GUIController.getInstance().initializeBoard(FieldController.getInstance());
         chooseLanguage();
         numberOfPlayers();
         try {

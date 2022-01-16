@@ -21,6 +21,7 @@ public class StreetField extends Property {
     int index;
     Color color;
 
+    public int getNoOfHouses(){return this.noOfHouses;}
     public String getFieldName(){return fieldName;}
 
     public Color getColor() {

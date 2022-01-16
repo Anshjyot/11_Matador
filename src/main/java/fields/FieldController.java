@@ -156,8 +156,7 @@ public class FieldController {
     public void buyProperty(Player player, Property property){
         player.getAccount().setBalance(player.getAccount().getBalance() - property.getPrice());
         property.setOwner(player.getIndex());
-        //only changes bordercolor on streets.
-        if(property instanceof StreetField){guiInstance.setBorderColors(player,property);}
+        guiInstance.setBorderColors(player,property);
         guiInstance.showMessage(player.getPlayerName() + " bought " + property.fieldName + " for " + property.getPrice() + " dkk ");
     }
 
@@ -205,11 +204,14 @@ public class FieldController {
         String chosenStreet = guiInstance.chooseStreet(player);
 
         for (Field squares : squares){
-            if (chosenStreet.equals(squares.getFieldName())){
-                StreetField currentStreet = (StreetField)squares;
-                guiInstance.addHouse(currentStreet);
-                player.getAccount().setBalance(player.getAccount().getBalance() - currentStreet.getHouseprice());
-                currentStreet.addHouse();
+            if (chosenStreet.equals(squares.getFieldName())) {
+                StreetField currentStreet = (StreetField) squares;
+                if (currentStreet.getNoOfHouses() < 4) {
+                    currentStreet.addHouse();
+                    guiInstance.addHouse(currentStreet);
+                    player.getAccount().setBalance(player.getAccount().getBalance() - currentStreet.getHouseprice());
+                }
+                else {guiInstance.showMessage("You already have four houses, maybe a hotel?");}
             }
         }
     }

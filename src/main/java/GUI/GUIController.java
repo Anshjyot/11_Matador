@@ -2,10 +2,7 @@ package GUI;
 import java.awt.*;
 import java.util.List;
 
-import fields.Field;
-import fields.Property;
-import fields.StreetField;
-import fields.FieldController;
+import fields.*;
 
 import game.Player;
 
@@ -111,53 +108,40 @@ public class GUIController {
 
 
     //adds house to a field, when the conditions are fulfilled
-    public void addHouse(Field property) {
+    public void addHouse(StreetField property) {
         //if (property instanceof OwnedProperty) {
-            if (board.SameOwnerColor((StreetField) property)) {
-                ((StreetField) property).addHouse();
-                GUI_Street field = (GUI_Street) gui.getFields()[((StreetField) property).getIndex()];
-                field.setHouses(1);
+            if (FieldController.getInstance().SameOwnerColor(property)) {
+                GUI_Street field = (GUI_Street) gui.getFields()[(property).getIndex()];
+                field.setHouses(property.getNoOfHouses());
             }else {
-                showMessage("You can't build a house here yet :( \n" +
+                showMessage("You can't build a house here yet :(  " +
                         "Collect all the deeds for the same colored streets to buy houses.");
             }
     }
     public void setBorderColors(Player player, Property property){
-        GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
         Color playerColors = this.guiPlayers[player.getIndex()].getCar().getPrimaryColor();
-        field.setBorder(playerColors);
+        if(property instanceof StreetField){
+            GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+            field.setBorder(playerColors);
+        }
+        else if(property instanceof FerryField){
+            GUI_Shipping ship = (GUI_Shipping) gui.getFields()[property.getIndex()];
+            ship.setBorder(playerColors);
+        }
+        else if(property instanceof BreweryField){
+            GUI_Brewery brew = (GUI_Brewery) gui.getFields()[property.getIndex()];
+            brew.setBorder(playerColors);
+        }
         gui.showMessage("You now own this field");
     }
-    //choose if you wanna buy the property
-  /*public void wannaBuy(Field field, Player player) {
-      if (field instanceof Property) {
-        Property property = (Property)field;
-          if (!(property.isOwned()){
-              boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
-              if (yes) {
-                  ((OwnedProperty) property).buyDeed(player);
-                  ((OwnedProperty) property).buyDeed(player);
 
-
-                  if (FieldController.getInstance().SameOwnerColor((StreetField) property)) {
-                      ((StreetField) property).addHouse();
-                      GUI_Street field = (GUI_Street) gui.getFields()[((StreetField) property).getIndex()];
-                      field.setHouses(1);
-                  } else {
-                      showMessage("You can't build a house here yet :( \n" +
-                              "Collect all the deeds for the same colored streets to buy houses.");
-                  }
-              }
-          }
-      }
-  }*/
   public String playerChoice () {
         String choice = gui.getUserSelection("Choose an option", "Roll Dice", "Buy Building");
         return choice;
     }
 
     public String chooseStreet (Player player){
-        String streetChoice = gui.getUserSelection("Here's a list of all your owned properties.\n " +
+        String streetChoice = gui.getUserSelection("Here's a list of all your owned properties." +
                 "Choose where you want to build a house.", FieldController.getInstance().getPropertyList(player));
         return streetChoice;
     }
