@@ -163,16 +163,28 @@ public class FieldController {
     }
 
     public void rentProperty(Player player,Property property){
-        player.getAccount().setBalance(player.getAccount().getBalance() - property.getRent());
-
         Player owner = matadorInstance.getPlayer(property.getOwner());
-        owner.getAccount().setBalance(owner.getAccount().getBalance() + property.getRent());
 
-        Language.ArrivedText(property, player, owner);
+        if(property instanceof StreetField || property instanceof FerryField){
+            player.getAccount().setBalance(player.getAccount().getBalance() - property.getRent());
+            owner.getAccount().setBalance(owner.getAccount().getBalance() + property.getRent());
+            Language.ArrivedText(property, player, owner);
+        }
+        else if(property instanceof BreweryField){
+            guiInstance.showMessage("This brewery is owned by " + owner.getPlayerName() +
+                    ". Roll dice to find out how much you have to pay them.");
+            cup.CupRoll();
+            guiInstance.askForDice();
+            guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
+            int rent = (cup.GetDice1Value()+ cup.GetDice2Value())*100;
+            player.getAccount().setBalance(player.getAccount().getBalance() - rent);
+            owner.getAccount().setBalance(owner.getAccount().getBalance() + rent);
+            guiInstance.showMessage("You've paid " + rent + " to " + owner.getPlayerName());
+        }
         guiInstance.setNewBalance(player.getIndex(),player.getAccount().getBalance());
         guiInstance.setNewBalance(owner.getIndex(),owner.getAccount().getBalance());
-
     }
+
     public int getNoStreets(Player player){
         int noStreets = 0;
         for (Field squares : squares) {
@@ -311,6 +323,10 @@ public class FieldController {
             cup.CupRoll();
             guiInstance.askForDice();
             guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
+
+            //rounds in jail is reset.
+            player.roundsInJail = 0;
+
         } else {
         //The Player can only get out of Jail, if one of the three methods has happened
             String option = guiInstance.getOutOfJail();

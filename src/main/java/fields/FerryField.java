@@ -21,7 +21,7 @@ public class FerryField extends Property { // This class extends the Field class
 
     @Override
     public int getRent() {
-        return 0;
+        return this.rent0;
     }
 
     @Override
