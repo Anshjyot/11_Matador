@@ -2,8 +2,7 @@ package game;
 
 import GUI.GUIController;
 
-public class Player {
-    public GUIController guiController; // This class creates the player which will be used in the GUI, a player with an account.
+public class Player { // This class creates the player which will be used in the GUI, a player with an account.
 
     private Account account;
     private String PlayerName;

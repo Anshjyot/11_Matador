@@ -142,8 +142,6 @@ public class MatadorController {
             } while (!TypeAge);
             players[i] = new Player(name,age, STARTBALANCE,StartField,i);
 
-
-            //this.players[i] = players[i];
         }
         GUIController.getInstance().addPlayers(players); // Adds players to the GUI
         System.out.println("Spillere: " + players.toString());

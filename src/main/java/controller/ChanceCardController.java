@@ -3,7 +3,6 @@ package controller;
 import GUI.GUIController;
 import chance.*;
 import game.Player;
-
 import java.util.Random;
 
 public class ChanceCardController {

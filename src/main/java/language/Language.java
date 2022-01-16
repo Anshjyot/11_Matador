@@ -3,14 +3,8 @@ package language;
 import GUI.GUIController;
 import fields.Property;
 import game.Player;
-import gui_main.GUI;
-
-import java.util.Scanner;
 
 public class Language {
-    static int house;
-    static GUI gui;
-    static Scanner sc = new Scanner(System.in);
 
     public static void turnStartText(Player player){
         GUIController.getInstance().showMessage("It's " + player.getPlayerName() + "'s turn.");
