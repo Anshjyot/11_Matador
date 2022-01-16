@@ -158,7 +158,7 @@ public class FieldController {
         player.getAccount().setBalance(player.getAccount().getBalance() - property.getPrice());
         property.setOwner(player.getIndex());
         guiInstance.setBorderColors(player,property);
-        Language.BuyDeedOwnedPropertyText(property,player, guiInstance);
+        Language.BuyDeedText(property,player);
     }
 
     public void rentProperty(Player player,Property property){
@@ -167,7 +167,7 @@ public class FieldController {
         Player owner = matadorInstance.getPlayer(property.getOwner());
         owner.getAccount().setBalance(owner.getAccount().getBalance() + property.getRent());
 
-        Language.ArrivedOwnedPropertyText(property, player, owner, guiInstance);
+        Language.ArrivedText(property, player, owner);
     }
     public int getNoStreets(Player player){
         int noStreets = 0;
@@ -240,7 +240,7 @@ public class FieldController {
                 int owner = field.getOwner();
 
                 if (player.getIndex() == owner){
-                    Language.AlreadyBought(guiInstance);
+                    Language.AlreadyBought();
                 }
                 else{
                     //rent need to be updated for multiple types of properties.
@@ -275,7 +275,7 @@ public class FieldController {
             Language.ArrivedParkingFieldText();
         }
         else if(currentField instanceof StartField){
-            Language.ArrivedStartFieldText(guiInstance);
+            Language.ArrivedStartFieldText();
         }
         else if(currentField instanceof ChanceField){
             ChanceCardController.getInstance().draw(player);

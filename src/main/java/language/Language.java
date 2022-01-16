@@ -14,31 +14,11 @@ public class Language {
 
     GUIController guiInstance = GUIController.getInstance();
 
-    /*public static void ArrivedBreweryText1(String fieldName, int price, Player player, GUIController controller) {
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk. You gotta have a drink sometimes");
-    }
 
-    public static void ArrivedBreweryText2(String fieldName, int rent0, Player player, Player owner, GUIController controller) {
-        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
-    }
-
-    public static void ChanceFieldDrawText(GUIController controller) {
-        controller.showMessage("You landed on Chance! Draw a chance card.");
-    }
-   */
     public static void ExtraordinaryTaxFieldText() {
         GUIController.getInstance().showMessage("Pay the extraordinary-tax of 2000DKK");
     }
 
- /*
-    public static void ArrivedFerryFieldText1(String fieldName, int price, Player player, GUIController controller) {
-        controller.showMessage(player.getPlayerName() + " bought " + fieldName + " for " + price + " dkk. Are you planning on sailing anywhere soon?");
-    }
-
-    public static void ArrivedFerryFieldText2(String fieldName, int rent0, Player player, Player owner, GUIController controller) {
-        controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent0 + " dkk ");
-    }
- */
     public static void IncomeTaxFieldText() {
         GUIController.getInstance().showMessage("Pay the income-tax of 4000DKK");
     }
@@ -67,12 +47,11 @@ public class Language {
         GUIController.getInstance().showMessage("Welcome to prison, say hi to your inmates. Relax, You're just on a visit");
     }
 
-    public static void ArrivedOwnedPropertyText(Property property, Player player, Player owner, GUIController controller) {
+    public static void ArrivedText(Property property, Player player, Player owner) {
         GUIController.getInstance().showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + property.fieldName + " for " + property.getRent() + " dkk ");
-        //controller.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + fieldName + " for " + rent[house] + " dkk ");
     }
 
-    public static void BuyDeedOwnedPropertyText(Property property, Player player, GUIController controller) {
+    public static void BuyDeedText(Property property, Player player) {
         GUIController.getInstance().showMessage(player.getPlayerName() + " bought " + property.fieldName + " for " + property.getPrice() + " dkk ");
     }
 
@@ -80,11 +59,11 @@ public class Language {
         GUIController.getInstance().showMessage("You found a legendary free parking spot");
     }
 
-    public static void ArrivedStartFieldText(GUIController controller) {
+    public static void ArrivedStartFieldText() {
         GUIController.getInstance().showMessage("You landed on start, receive 4000DKK, for staying alive");
     }
 
-    public static void AlreadyBought(GUIController controller) {
+    public static void AlreadyBought() {
         GUIController.getInstance().showMessage("Oh, you've already bought this property... How nice it is :)");
     }
 
@@ -96,9 +75,6 @@ public class Language {
         GUIController.getInstance().showMessage("You already have four houses, maybe a hotel?");
     }
 
-    //public static void showMessage(String message) {
-    //    gui.displayChanceCard(message);
-    //}
 }
 
 

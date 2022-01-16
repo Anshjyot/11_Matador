@@ -1,6 +1,5 @@
 package testing;
 
-import game.Account;
 import game.Player;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,11 @@ public class WinnerTest {
     List<String> winnerName = new ArrayList<>();
 
     @Test
-    public void winner(Player player1, Player player2, Player player3){
+    public void winner(){
+        Player player1 = new Player();
+        Player player2 = new Player();
+        Player player3 = new Player();
+
         player1.getAccount().setBalance(-400);
         player2.getAccount().setBalance(-100);
         player3.getAccount().setBalance(800);
@@ -38,6 +41,7 @@ public class WinnerTest {
 
         List<String> expectingResult = (List<String>) player3;
         List<String> actualResult = winnerName;
+        System.out.println(winnerName);
 
         assertEquals(expectingResult, actualResult);
     }
