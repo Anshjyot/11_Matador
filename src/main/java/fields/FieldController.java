@@ -8,6 +8,7 @@ import controller.MatadorController;
 import game.Cup;
 import game.Player;
 import gui_fields.*;
+import language.Language;
 
 public class FieldController {
     GUI_Field[] fields = new GUI_Field[40];
@@ -157,7 +158,7 @@ public class FieldController {
         player.getAccount().setBalance(player.getAccount().getBalance() - property.getPrice());
         property.setOwner(player.getIndex());
         guiInstance.setBorderColors(player,property);
-        guiInstance.showMessage(player.getPlayerName() + " bought " + property.fieldName + " for " + property.getPrice() + " dkk ");
+        Language.BuyDeedOwnedPropertyText(property,player, guiInstance);
     }
 
     public void rentProperty(Player player,Property property){
@@ -166,7 +167,7 @@ public class FieldController {
         Player owner = matadorInstance.getPlayer(property.getOwner());
         owner.getAccount().setBalance(owner.getAccount().getBalance() + property.getRent());
 
-        guiInstance.showMessage(player.getPlayerName() + " rented " + owner.getPlayerName() + "'s" + " property: " + property.fieldName + " for " + property.getRent() + " dkk ");
+        Language.ArrivedOwnedPropertyText(property, player, owner, guiInstance);
     }
     public int getNoStreets(Player player){
         int noStreets = 0;
@@ -211,7 +212,7 @@ public class FieldController {
                     guiInstance.addHouse(currentStreet);
                     player.getAccount().setBalance(player.getAccount().getBalance() - currentStreet.getHouseprice());
                 }
-                else {guiInstance.showMessage("You already have four houses, maybe a hotel?");}
+                else {Language.buyHouseText();}
             }
         }
     }
@@ -239,7 +240,7 @@ public class FieldController {
                 int owner = field.getOwner();
 
                 if (player.getIndex() == owner){
-                    guiInstance.showMessage("Oh, you've already bought this property... How nice it is :)");
+                    Language.AlreadyBought(guiInstance);
                 }
                 else{
                     //rent need to be updated for multiple types of properties.
@@ -254,27 +255,27 @@ public class FieldController {
             }
         }
         else if (currentField instanceof ExtraordinaryTaxField){
-            guiInstance.showMessage("Betal Extraordinær-skat på 2000 kr.");
+            Language.ExtraordinaryTaxFieldText(guiInstance);
             int tax = ((ExtraordinaryTaxField) currentField).getTax();
             player.getAccount().setBalance(player.getAccount().getBalance() - tax);
         }
         else if(currentField instanceof IncomeTaxField){
-            guiInstance.showMessage("Betal Indkomst-skat på 4000 kr.");
+            Language.IncomeTaxFieldText(guiInstance);
             int tax = ((IncomeTaxField) currentField).getTax();
             player.getAccount().setBalance(player.getAccount().getBalance() - tax);
         }
         else if(currentField instanceof VisitJailField){
             if(!player.isInJail){
-                guiInstance.showMessage("Welcome to prison, say hi to your inmates. Relax, You're just on a visit");}
+                Language.ArrivedVisitJailFieldText(guiInstance); }
         }
         else if(currentField instanceof JailField){
             arrivedAtJail(player);
         }
         else if(currentField instanceof ParkingField){
-            guiInstance.showMessage("You found a legendary free parking spot");
+            Language.ArrivedParkingFieldText(guiInstance);
         }
         else if(currentField instanceof StartField){
-            guiInstance.showMessage("You landed on start, receive 4000$, for staying alive");
+            Language.ArrivedStartFieldText(guiInstance);
         }
         else if(currentField instanceof ChanceField){
             ChanceCardController.getInstance().draw(player);
@@ -288,7 +289,7 @@ public class FieldController {
     }
 
     public void arrivedAtJail(Player p) { // This field places the player back to VisitJailSquare field.
-        guiInstance.showMessage("JAIL TIME! You have been moved to jail.");
+        Language.ArrivedJailFieldText1(guiInstance);
         p.isInJail = true;
         guiInstance.removeCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 20);
@@ -301,7 +302,7 @@ public class FieldController {
             //The player should still pay 1000$ - dont know if this feature works totally correct?
             player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
             player.isInJail = false;
-            guiInstance.showMessage("You have been in jail for 3 rounds, pay 1000$ and get out of here!");
+            Language.ArrivedJailFieldText2(guiInstance);
             cup.CupRoll();
             guiInstance.askForDice();
             guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
@@ -313,18 +314,18 @@ public class FieldController {
                     //Pay1000$, check if account>=1000
                     if (player.getAccount().getBalance() >= 1000) {
                         player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
-                        guiInstance.showMessage("You paid yourself out of jail");
+                        Language.ArrivedJailFieldText3(guiInstance);
                         player.isInJail = false;
                     }
                     break;
                 case "Roll the dice":
                     //Roll the dice, and have a chance to get out of jail for free
-                    guiInstance.showMessage("Roll the dice, and have a chance to get out of jail for free");
+                    Language.ArrivedJailFieldText4(guiInstance);
                     cup.CupRoll();
                     guiInstance.askForDice();
                     guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
                     if (cup.GetDice1Value() == cup.GetDice2Value()) {
-                        guiInstance.showMessage("You got lucky, you got a pair and get an extra throw");
+                        Language.ArrivedJailFieldText5(guiInstance);
                         player.isInJail = false;
 
                     }

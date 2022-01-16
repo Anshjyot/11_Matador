@@ -36,7 +36,7 @@ public class StreetField extends Property {
         noOfHouses = noOfHouses+1;
     }
 
-    int getPrice() {
+    public int getPrice() {
         return this.price;
     }
     public int getHouseprice(){
@@ -44,7 +44,7 @@ public class StreetField extends Property {
     }
 
     @Override
-    int getRent() {
+    public int getRent() {
         return rent[noOfHouses];
     }
 }

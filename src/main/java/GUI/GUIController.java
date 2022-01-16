@@ -64,7 +64,7 @@ public class GUIController {
                 new GUI_Car(Color.RED, Color.PINK, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_GRADIANT),
                 new GUI_Car(Color.ORANGE, Color.WHITE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED),
                 new GUI_Car(Color.BLUE, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.DOTTED),
-                new GUI_Car(Color.YELLOW, Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA),
+                new GUI_Car(new Color(0, 255, 246), Color.PINK, GUI_Car.Type.CAR, GUI_Car.Pattern.ZEBRA),
                 new GUI_Car(Color.GREEN, Color.DARK_GRAY, GUI_Car.Type.TRACTOR, GUI_Car.Pattern.HORIZONTAL_LINE),
                 new GUI_Car(Color.PINK, new Color(117, 15, 255), GUI_Car.Type.UFO, GUI_Car.Pattern.FILL)
         };
@@ -109,9 +109,9 @@ public class GUIController {
             if (FieldController.getInstance().SameOwnerColor(property)) {
                 GUI_Street field = (GUI_Street) gui.getFields()[(property).getIndex()];
                 field.setHouses(property.getNoOfHouses());
-            }else {
-                showMessage("You can't build a house here yet :(  " +
-                        "Collect all the deeds for the same colored streets to buy houses.");
+            }
+            else {
+                Language.addHouseText();
             }
     }
     public void setBorderColors(Player player, Property property){
@@ -137,8 +137,7 @@ public class GUIController {
     }
 
     public String chooseStreet (Player player){
-        String streetChoice = gui.getUserSelection("Here's a list of all your owned properties." +
-                "Choose where you want to build a house.", FieldController.getInstance().getPropertyList(player));
+        String streetChoice = gui.getUserSelection("Here's a list of all your owned properties." + " Choose where you want to build a house.", FieldController.getInstance().getPropertyList(player));
         return streetChoice;
     }
 

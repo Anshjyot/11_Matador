@@ -20,12 +20,12 @@ public class FerryField extends Property { // This class extends the Field class
     public int getIndex(){return this.index;}
 
     @Override
-    int getRent() {
+    public int getRent() {
         return 0;
     }
 
     @Override
-    int getPrice() {
+    public int getPrice() {
         return this.price;
     }
 }

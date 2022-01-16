@@ -3,7 +3,7 @@ package fields;
 public abstract class Property extends Field{
     int price;
     int owner;
-    String fieldName;
+    public String fieldName;
     int index;
 
     public Property (String fieldName, int price, int index){
@@ -14,7 +14,7 @@ public abstract class Property extends Field{
     }
 
     public abstract int getRent();
-    abstract int getPrice();
+    public abstract int getPrice();
 
     public int getIndex(){return this.index;}
     public int getOwner() {

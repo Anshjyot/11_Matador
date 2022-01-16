@@ -16,12 +16,12 @@ public class BreweryField extends Property { // This class extends the Field cla
     public int getIndex(){return this.index;}
 
     @Override
-    int getRent() {
+    public int getRent() {
         return rent0;
     }
 
     @Override
-    int getPrice() {return this.price;}
+    public int getPrice() {return this.price;}
 
 }
 
