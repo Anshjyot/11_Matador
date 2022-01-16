@@ -105,7 +105,6 @@ public class GUIController {
 
     //adds house to a field, when the conditions are fulfilled
     public void addHouse(StreetField property) {
-        //if (property instanceof OwnedProperty) {
             if (FieldController.getInstance().SameOwnerColor(property)) {
                 GUI_Street field = (GUI_Street) gui.getFields()[(property).getIndex()];
                 field.setHouses(property.getNoOfHouses());
@@ -131,8 +130,8 @@ public class GUIController {
         gui.showMessage("You now own this field");
     }
 
-  public String playerChoice (Player player) {
-        String choice = gui.getUserSelection("Choose what you want to do.", "Roll Dice", "Buy Building");
+  public String playerChoice () {
+        String choice = gui.getUserSelection("Choose what you want to do.", "Roll Dice", "Buy House");
         return choice;
     }
 
