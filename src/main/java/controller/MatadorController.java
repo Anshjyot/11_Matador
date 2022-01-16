@@ -149,7 +149,6 @@ public class MatadorController {
             //this.players[i] = players[i];
         }
         GUIController.getInstance().addPlayers(players); // Adds players to the GUI
-        System.out.println("Spillere: " + players.toString());
     }
 
     public Player getPlayer(int i){return players[i];}

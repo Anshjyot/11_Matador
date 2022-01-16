@@ -4,7 +4,6 @@ import GUI.GUIController;
 import controller.MatadorController;
 import game.Player;
 
-import java.util.List;
 import java.util.Random;
 
 public class ChanceCardController {
@@ -109,8 +108,6 @@ public class ChanceCardController {
                 TypeMoveToCard card = ((TypeMoveToCard)topCard);
                 GUIController.getInstance().showMessage(card.getCardMessage());
 
-                System.out.println("Spiller rykker til start");
-                System.out.println(p.getAccount().getBalance());
                 GUIController.getInstance().removeCar(p.getPosition(),p.getIndex());
                 p.setPosition(card.getCardDestination());
                 GUIController.getInstance().addCar(p.getPosition(),p.getIndex());
@@ -126,7 +123,6 @@ public class ChanceCardController {
                 int noOtherPlayers = 0;
 
                 for (Player player : MatadorController.getInstance().getPlayers()){
-                    System.out.println("Nuværende spillers balance: " + player.getAccount().getBalance());
                     if (player == p) {
                     }
                     else {
