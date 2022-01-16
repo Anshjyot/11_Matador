@@ -23,12 +23,10 @@ public class ChanceCardController {
         makeChanceCards();
     }
 
+    GUIController guiInstance = GUIController.getInstance();
+
     public ChanceCard[] makeChanceCards(){
             chanceCards = new ChanceCard[]{
-                    new TypePayPlayerCard(200, "Its your Birthday, receive 200kr from every Player."),
-                    new TypePayPlayerCard(500, "Payback time! You put money up front for a joint, receive 500kr from every player."),
-                    new TypePayPlayerCard(500, "Its your Birthday party! Every player is invited and has to pay you 500kr!"),
-
                     new TypeMoneyCard(-1000, "You have driven over a 'full stop'. Pay a 1000kr fine."),
                     new TypeMoneyCard(-300,"Pay 300kr for a car wash and oil change."),
                     new TypeMoneyCard(-200,"Pay 200kr for 2 crates of beer."),
@@ -60,7 +58,11 @@ public class ChanceCardController {
                     new TypeMoveCard(-3, "Move 3 places backwards!"),
 
                     new TypeMoveToCard(0, "Move to start"),
-                    new TypeMoveToCard(0, "Move to start")
+                    new TypeMoveToCard(0, "Move to start"),
+                    /*
+                    new TypePayPlayerCard(200, "Its your Birthday, receive 200kr from every Player."),
+                    new TypePayPlayerCard(500, "Payback time! You put money up front for a joint, receive 500kr from every player."),
+                    new TypePayPlayerCard(500, "Its your Birthday party! Every player is invited and has to pay you 500kr!")*/
             };
             return chanceCards;
         }
@@ -114,9 +116,10 @@ public class ChanceCardController {
                 GUIController.getInstance().addCar(p.getPosition(),p.getIndex());
 
             }
-            //will work when players is an array instead of a List.
+
             else if(topCard instanceof TypePayPlayerCard){
                 TypePayPlayerCard card = ((TypePayPlayerCard)topCard);
+                guiInstance.showMessage(card.getCardMessage());
                 System.out.println("Pay player");
                 System.out.println(p.getAccount().getBalance());
 
@@ -128,10 +131,10 @@ public class ChanceCardController {
                     }
                     else {
                         otherPlayer = player;
+                        otherPlayer.getAccount().setBalance(otherPlayer.getAccount().getBalance()-card.getCardTotal());
                         noOtherPlayers++;
                     }
                 }
-                otherPlayer.getAccount().setBalance(otherPlayer.getAccount().getBalance()-card.getCardTotal());
                 p.getAccount().setBalance(p.getAccount().getBalance()+card.getCardTotal() * noOtherPlayers);
             }
             else if (topCard instanceof TypeConditionCard) {

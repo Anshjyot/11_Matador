@@ -2,10 +2,10 @@
 package controller;
 
 import GUI.GUIController;
+import chance.ChanceCardController;
 import fields.FieldController;
 import game.Cup;
 import game.Player;
-import gui_main.GUI;
 import language.Language;
 
 import java.util.*;
@@ -36,6 +36,7 @@ public class MatadorController {
         GUIController.getInstance().initializeBoard(FieldController.getInstance());
         chooseLanguage();
         numberOfPlayers();
+        ChanceCardController.getInstance().shuffle();
         try {
             gameLoop();
         } catch (InterruptedException e) {
