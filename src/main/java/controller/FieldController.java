@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.Color;
-
 import GUI.GUIController;
 import fields.*;
 import game.Cup;
@@ -349,15 +348,7 @@ public class FieldController {
 
                     }
                     break;
-                /*case "Use a Get-Out-Of-Jail Card":
-                    if(chancecard==true) {
-                        player.isInJail = false;
-                    }
-                    break;
-               /* default:
-                    System.out.println(option);
-            }
-            player.printStatus(); */
+
             }
         }
     }
