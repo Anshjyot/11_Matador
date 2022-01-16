@@ -34,6 +34,7 @@ public class MatadorController {
         GUIController.getInstance().initializeBoard(FieldController.getInstance());
         chooseLanguage();
         numberOfPlayers();
+        ChanceCardController.getInstance().shuffle();
         try {
             gameLoop();
         } catch (InterruptedException e) {
