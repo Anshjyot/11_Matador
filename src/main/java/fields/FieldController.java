@@ -79,7 +79,7 @@ public class FieldController {
         squares[2] = new ChanceField("Prøv Lykken");
         squares[3] = new StreetField("Hvidovrevej", 1200, 1000, new int[]{50, 250, 400, 750, 2250, 6000}, new Color(75, 155, 225), 3);
         squares[4] = new IncomeTaxField("Betal Indkomst-skat", 4000);
-        squares[5] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000);
+        squares[5] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000,5);
         squares[6] = new StreetField("Roskildevej", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 6);
         squares[7] = new ChanceField("Prøv Lykken");
         squares[8] = new StreetField("Valbylanggade", 2000, 1000, new int[]{100, 600, 1800, 5400, 8000, 11000}, new Color(255, 135, 120), 8);
@@ -88,10 +88,10 @@ public class FieldController {
         squares[10] = new VisitJailField("På fængsels-besøg");
 
         squares[11] = new StreetField("Frederiksbergs Allé", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 11);
-        squares[12] = new BreweryField("Tuborg", 3000, 100, 200);
+        squares[12] = new BreweryField("Tuborg", 3000, 100, 200,12);
         squares[13] = new StreetField("Bülowsvej", 2800, 2000, new int[]{200, 1000, 3000, 9000, 12500, 15000}, new Color(18, 253, 0), 13);
         squares[14] = new StreetField("Gl. Kongevej", 3200, 2000, new int[]{250, 1250, 3750, 10000, 14000, 18000}, new Color(18, 253, 0), 14);
-        squares[15] = new FerryField("Mols linien", 4000, 500, 1000, 2000, 4000);
+        squares[15] = new FerryField("Mols linien", 4000, 500, 1000, 2000, 4000,15);
         squares[16] = new StreetField("Bernstorffsvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 16);
         squares[17] = new ChanceField("Prøv Lykken");
         squares[18] = new StreetField("Hellerupvej", 3600, 2000, new int[]{300, 1400, 4000, 11000, 15000, 19000}, new Color(153, 153, 153), 18);
@@ -101,23 +101,23 @@ public class FieldController {
         squares[22] = new ChanceField("Prøv Lykken");
         squares[23] = new StreetField("Østerbrogade", 4000, 3000, new int[]{350, 1800, 5000, 14000, 17500, 21000}, Color.RED, 23);
         squares[24] = new StreetField("Grønningen", 4600, 3000, new int[]{400, 2000, 6000, 15000, 18500, 22000}, Color.RED, 24);
-        squares[25] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000);
+        squares[25] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000,25);
         squares[26] = new StreetField("Bredgade", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 26);
         squares[27] = new StreetField("Kgs. Nytorv", 5200, 3000, new int[]{450, 2200, 6600, 16000, 19500, 23000}, Color.WHITE, 27);
-        squares[28] = new BreweryField("Carlsberg", 3000, 100, 200);
-        squares[29] = new StreetField("Østergade", 5600, 3000, new int[]{500, 2400, 7200, 17000, 20500, 24000}, Color.WHITE, 28);
+        squares[28] = new BreweryField("Carlsberg", 3000, 100, 200,28);
+        squares[29] = new StreetField("Østergade", 5600, 3000, new int[]{500, 2400, 7200, 17000, 20500, 24000}, Color.WHITE, 29);
 
         squares[30] = new JailField("JAIL");
 
-        squares[31] = new StreetField("Amagertorv", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 30);
-        squares[32] = new StreetField("Vimmelskaftet", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 31);
+        squares[31] = new StreetField("Amagertorv", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 31);
+        squares[32] = new StreetField("Vimmelskaftet", 6000, 4000, new int[]{550, 2600, 7800, 18000, 22000, 25000}, new Color(255, 255, 50), 32);
         squares[33] = new ChanceField("Prøv Lykken");
-        squares[34] = new StreetField("Nygade", 6400, 4000, new int[]{600, 3000, 9000, 20000, 24000, 28000}, new Color(255, 255, 50), 33);
-        squares[35] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000);
+        squares[34] = new StreetField("Nygade", 6400, 4000, new int[]{600, 3000, 9000, 20000, 24000, 28000}, new Color(255, 255, 50), 34);
+        squares[35] = new FerryField("Scandlines", 4000, 500, 1000, 2000, 4000,35);
         squares[36] = new ChanceField("Prøv Lykken");
-        squares[37] = new StreetField("Frederiksberggade", 7000, 4000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, new Color(150, 60, 150), 36);
+        squares[37] = new StreetField("Frederiksberggade", 7000, 4000, new int[]{700, 3500, 10000, 22000, 26000, 30000}, new Color(150, 60, 150), 37);
         squares[38] = new ExtraordinaryTaxField("Ekstraordinær statsskat", 2000);
-        squares[39] = new StreetField("Rådhuspladsen", 8000, 4000, new int[]{1000, 4000, 12000, 28000, 34000, 40000}, new Color(150, 60, 150), 38);
+        squares[39] = new StreetField("Rådhuspladsen", 8000, 4000, new int[]{1000, 4000, 12000, 28000, 34000, 40000}, new Color(150, 60, 150), 39);
 
     }
     
@@ -156,6 +156,8 @@ public class FieldController {
     public void buyProperty(Player player, Property property){
         player.getAccount().setBalance(player.getAccount().getBalance() - property.getPrice());
         property.setOwner(player.getIndex());
+        //only changes bordercolor on streets.
+        if(property instanceof StreetField){guiInstance.setBorderColors(player,property);}
         guiInstance.showMessage(player.getPlayerName() + " bought " + property.fieldName + " for " + property.getPrice() + " dkk ");
     }
 

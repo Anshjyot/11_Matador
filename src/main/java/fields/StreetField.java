@@ -6,7 +6,7 @@ public class StreetField extends Property {
     private int noOfHouses = 0;
 
     public StreetField(String fieldname, int price, int houseprice, int[] rent, Color color, int index) {
-        super(fieldname, price);
+        super(fieldname, price,index);
         this.fieldName = fieldname;
         this.price = price;
         this.houseprice = houseprice;

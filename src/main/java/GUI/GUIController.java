@@ -3,6 +3,7 @@ import java.awt.*;
 import java.util.List;
 
 import fields.Field;
+import fields.Property;
 import fields.StreetField;
 import fields.FieldController;
 
@@ -111,69 +112,73 @@ public class GUIController {
 
     //adds house to a field, when the conditions are fulfilled
     public void addHouse(Field property) {
-        if (property instanceof OwnedProperty) {
-            if (board.SameOwnerColor((OwnedProperty) property)) {
-                ((OwnedProperty) property).addHouse();
-                GUI_Street field = (GUI_Street) gui.getFields()[((OwnedProperty) property).getIndex()];
+        //if (property instanceof OwnedProperty) {
+            if (board.SameOwnerColor((StreetField) property)) {
+                ((StreetField) property).addHouse();
+                GUI_Street field = (GUI_Street) gui.getFields()[((StreetField) property).getIndex()];
                 field.setHouses(1);
+            }else {
+                showMessage("You can't build a house here yet :( \n" +
+                        "Collect all the deeds for the same colored streets to buy houses.");
             }
-        }
     }
-
+    public void setBorderColors(Player player, Property property){
+        GUI_Street field = (GUI_Street) gui.getFields()[property.getIndex()];
+        Color playerColors = this.guiPlayers[player.getIndex()].getCar().getPrimaryColor();
+        field.setBorder(playerColors);
+        gui.showMessage("You now own this field");
+    }
     //choose if you wanna buy the property
-  public void wannaBuy(Field property, Player player) {
-      if (property instanceof OwnedProperty) {
-          if (!((OwnedProperty) property).isThereAnOwner()) {
+  /*public void wannaBuy(Field field, Player player) {
+      if (field instanceof Property) {
+        Property property = (Property)field;
+          if (!(property.isOwned()){
               boolean yes = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
               if (yes) {
-                  ((OwnedProperty)property).buyDeed(player);
-                  GUI_Street field = (GUI_Street) gui.getFields()[((OwnedProperty) property).getIndex()];
-                  ((OwnedProperty)property).buyDeed(player);
+                  ((OwnedProperty) property).buyDeed(player);
+                  ((OwnedProperty) property).buyDeed(player);
 
-                  Color playercolors = this.guiPlayers[player.getIndex()].getCar().getPrimaryColor();
-                  field.setBorder(playercolors);
-                  gui.showMessage("You now own this field");
-        if (FieldController.getInstance().SameOwnerColor((StreetField) property)) {
-            ((StreetField) property).addHouse();
-            GUI_Street field = (GUI_Street) gui.getFields()[((StreetField) property).getIndex()];
-            field.setHouses(1);
-        }else{
-            showMessage("You can't build a house here yet :( \n" +
-                    "Collect all the deeds for the same colored streets to buy houses.");
-        }
-    }
-    public String playerChoice(){
-        String choice = gui.getUserSelection("Choose an option","Roll Dice","Buy Building");
+
+                  if (FieldController.getInstance().SameOwnerColor((StreetField) property)) {
+                      ((StreetField) property).addHouse();
+                      GUI_Street field = (GUI_Street) gui.getFields()[((StreetField) property).getIndex()];
+                      field.setHouses(1);
+                  } else {
+                      showMessage("You can't build a house here yet :( \n" +
+                              "Collect all the deeds for the same colored streets to buy houses.");
+                  }
+              }
+          }
+      }
+  }*/
+  public String playerChoice () {
+        String choice = gui.getUserSelection("Choose an option", "Roll Dice", "Buy Building");
         return choice;
     }
 
-    public String chooseStreet(Player player){
-        String streetChoice = gui.getUserSelection("Choose a Property", FieldController.getInstance().getPropertyList(player));
+    public String chooseStreet (Player player){
+        String streetChoice = gui.getUserSelection("Here's a list of all your owned properties.\n " +
+                "Choose where you want to build a house.", FieldController.getInstance().getPropertyList(player));
         return streetChoice;
     }
 
     //choose if you wanna buy the property
-    public boolean wannaBuy() {
+    public boolean wannaBuy () {
         boolean choice = gui.getUserLeftButtonPressed("Do you wanna buy the property", "yes", "no");
         return choice;
-              }
-          }
-
-        }
     }
 
-    public String getOutOfJail() { // Choose how you want to get out of Jail [GUI]
+    public String getOutOfJail () { // Choose how you want to get out of Jail [GUI]
         String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
         return jailChoice;
     }
 
-    public void pressChanceButton() { // [GUI] message for ChanceButton]
+    public void pressChanceButton () { // [GUI] message for ChanceButton]
         gui.getUserButtonPressed(
                 "Press the button to try your luck!",
-                "Draw card"
-        );
+                "Draw card");
     }
-    public void okButton(){
+    public void okButton () {
         gui.getUserButtonPressed(
                 "Press OK to continue",
                 "OK"

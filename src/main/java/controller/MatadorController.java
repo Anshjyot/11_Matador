@@ -21,9 +21,9 @@ public class MatadorController {
     FieldController board;
     protected int[] ages = new int[0];
     protected String[] names = new String[0];
-    protected GUI gui;
-    private int[] ages = new int[0];
-    private String[] names = new String[0];
+    //protected GUI gui;
+    //private int[] ages = new int[0];
+    //private String[] names = new String[0];
     private Cup cup = new Cup();
 
     private static MatadorController instance;
@@ -114,13 +114,10 @@ public class MatadorController {
     }
     //Choose Language button
     private void chooseLanguage() {
-        guiController.getLanguage();
-
+        GUIController.getInstance().getLanguage();
+    }
     private void numberOfPlayers() { // Start money declaration
         int playerList = GUIController.getInstance().getPlayerList();
-
-    }
-
         players = new Player[playerList];
 
         for (int i = 0; i < playerList; i++) {
