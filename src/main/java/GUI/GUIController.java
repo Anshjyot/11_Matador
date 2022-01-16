@@ -131,8 +131,8 @@ public class GUIController {
         gui.showMessage("You now own this field");
     }
 
-  public String playerChoice () {
-        String choice = gui.getUserSelection("Choose an option", "Roll Dice", "Buy Building");
+  public String playerChoice (Player player) {
+        String choice = gui.getUserSelection("Choose what you want to do.", "Roll Dice", "Buy Building");
         return choice;
     }
 
@@ -148,7 +148,7 @@ public class GUIController {
     }
 
     public String getOutOfJail () { // Choose how you want to get out of Jail [GUI]
-        String jailChoice = gui.getUserSelection("Choose an option?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
+        String jailChoice = gui.getUserSelection("How do you want to get out of jail?", "Pay 1000$", "Roll the dice", "Use a Get-Out-Of-Jail Card");
         return jailChoice;
     }
 

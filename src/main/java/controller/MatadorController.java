@@ -47,11 +47,14 @@ public class MatadorController {
         while (noWinner) {
             for (int i = 0; i < players.length; i++) {
                 currentPlayer = players[i];
+                Language.turnStartText(currentPlayer);
+
                 if(currentPlayer.isInJail) {  //Jail system.
                     FieldController.getInstance().GetOutOfJail(currentPlayer);
                     if (currentPlayer.isInJail)
                         continue;
                 }
+
                 FieldController.getInstance().choosePlayerOption(currentPlayer);
 
                 GUIController.getInstance().askForDice();

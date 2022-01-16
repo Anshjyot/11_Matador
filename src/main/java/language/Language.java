@@ -12,8 +12,9 @@ public class Language {
     static GUI gui;
     static Scanner sc = new Scanner(System.in);
 
-    GUIController guiInstance = GUIController.getInstance();
-
+    public static void turnStartText(Player player){
+        GUIController.getInstance().showMessage("It's " + player.getPlayerName() + "'s turn.");
+    }
 
     public static void ExtraordinaryTaxFieldText() {
         GUIController.getInstance().showMessage("Pay the extraordinary-tax of 2000DKK");
@@ -68,7 +69,7 @@ public class Language {
     }
 
     public static void addHouseText() {
-        GUIController.getInstance().showMessage("You can't build a house here yet :(  " + " Collect all the deeds for the same colored streets to buy houses.");
+        GUIController.getInstance().showMessage("You can't build a house here yet :(\n\n" + "Collect all the deeds for the same colored streets to buy houses.");
     }
 
     public static void buyHouseText() {
