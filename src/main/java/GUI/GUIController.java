@@ -93,8 +93,7 @@ public class GUIController {
 
     // Winner message
     public void getWinnerMessage(String message) {
-        gui.showMessage(message + TEXT_CYAN + " WON!!");
-        System.out.println(message + TEXT_CYAN + " WON!!");
+        gui.showMessage(message + " WON!!");
     }
 
     // Shows the Chance card outcome message
