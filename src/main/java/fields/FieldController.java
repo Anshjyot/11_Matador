@@ -255,24 +255,24 @@ public class FieldController {
             }
         }
         else if (currentField instanceof ExtraordinaryTaxField){
-            Language.ExtraordinaryTaxFieldText(guiInstance);
+            Language.ExtraordinaryTaxFieldText();
             int tax = ((ExtraordinaryTaxField) currentField).getTax();
             player.getAccount().setBalance(player.getAccount().getBalance() - tax);
         }
         else if(currentField instanceof IncomeTaxField){
-            Language.IncomeTaxFieldText(guiInstance);
+            Language.IncomeTaxFieldText();
             int tax = ((IncomeTaxField) currentField).getTax();
             player.getAccount().setBalance(player.getAccount().getBalance() - tax);
         }
         else if(currentField instanceof VisitJailField){
             if(!player.isInJail){
-                Language.ArrivedVisitJailFieldText(guiInstance); }
+                Language.ArrivedVisitJailFieldText(); }
         }
         else if(currentField instanceof JailField){
             arrivedAtJail(player);
         }
         else if(currentField instanceof ParkingField){
-            Language.ArrivedParkingFieldText(guiInstance);
+            Language.ArrivedParkingFieldText();
         }
         else if(currentField instanceof StartField){
             Language.ArrivedStartFieldText(guiInstance);
@@ -289,7 +289,7 @@ public class FieldController {
     }
 
     public void arrivedAtJail(Player p) { // This field places the player back to VisitJailSquare field.
-        Language.ArrivedJailFieldText1(guiInstance);
+        Language.ArrivedJailFieldText1();
         p.isInJail = true;
         guiInstance.removeCar(p.getPosition(), p.getIndex());
         p.setPosition(p.getPosition() - 20);
@@ -302,7 +302,7 @@ public class FieldController {
             //The player should still pay 1000$ - dont know if this feature works totally correct?
             player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
             player.isInJail = false;
-            Language.ArrivedJailFieldText2(guiInstance);
+            Language.ArrivedJailFieldText2();
             cup.CupRoll();
             guiInstance.askForDice();
             guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
@@ -314,18 +314,18 @@ public class FieldController {
                     //Pay1000$, check if account>=1000
                     if (player.getAccount().getBalance() >= 1000) {
                         player.getAccount().setBalance(player.getAccount().getBalance() - 1000);
-                        Language.ArrivedJailFieldText3(guiInstance);
+                        Language.ArrivedJailFieldText3();
                         player.isInJail = false;
                     }
                     break;
                 case "Roll the dice":
                     //Roll the dice, and have a chance to get out of jail for free
-                    Language.ArrivedJailFieldText4(guiInstance);
+                    Language.ArrivedJailFieldText4();
                     cup.CupRoll();
                     guiInstance.askForDice();
                     guiInstance.setDice(cup.GetDice1Value(), cup.GetDice2Value());
                     if (cup.GetDice1Value() == cup.GetDice2Value()) {
-                        Language.ArrivedJailFieldText5(guiInstance);
+                        Language.ArrivedJailFieldText5();
                         player.isInJail = false;
 
                     }
